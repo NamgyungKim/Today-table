@@ -107,7 +107,50 @@ def sign_in():
 @app.route('/detail/<keyword>')
 def detail(keyword):
     food = db.foodInfo.find_one({'no' : keyword}, {'_id': False})
-    return render_template('detail.html', food=food)
+    comments = db.comments.find({'num': keyword}, {'_id': False})
+    return render_template('detail.html', food=food, comments=comments)
+
+
+# 코멘트 저장
+@app.route('/api/save_comment', methods=['POST'])
+def save_comment():
+    comment_receive = request.form['comment_give']
+    num_receive = request.form['num_give']
+    time_receive = request.form['time_give']
+
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    username = payload['id']
+
+    doc = {
+        "num": num_receive,
+        "username": username,
+        "comment": comment_receive,
+        "time": time_receive
+    }
+
+    db.comments.insert_one(doc)
+
+    return jsonify({'result': 'success', 'msg': 'Comment 저장 성공'})
+
+
+# 코멘트 불러오기
+@app.route('/api/get_comments', methods=['POST'])
+def get_comments():
+    num_receive = request.form['num_give']
+    comments = list(db.comments.find({'num': num_receive}, {'_id': False}).sort("time", -1))
+
+    return jsonify({'result': 'success', 'comments': comments})
+
+
+# 코멘트 삭제하기
+@app.route('/api/delete_comment', methods=['POST'])
+def delete_comment():
+    username_receive = request.form['username_give']
+    comment_receive = request.form['comment_give']
+    db.comments.delete_one({'username': username_receive, 'comment': comment_receive})
+
+    return jsonify({'result': 'success', 'msg': '코멘트가 삭제되었습니다.'})
 
 
 if __name__ == '__main__':
