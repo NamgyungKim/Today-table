@@ -26,17 +26,19 @@ import hashlib
 def home():
     # 클라이언트로 부터 토큰이 담긴 쿠키를 받는다.
     token_receive = request.cookies.get('mytoken')
+    dishes = list(db.foodInfo.find({}, {'_id': False}))
     try:
         # payload 생성
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload['id']})
-        return render_template('main.html', nickname=user_info["nickname"])
+        return render_template('main.html', nickname=user_info["nickname"], dishes=dishes)
     # 토큰이 만료되었을 때
     except jwt.ExpiredSignatureError:
         return redirect(url_for("index", msg="login expired"))
     # 로그아웃해서 토큰이 없을 때
     except jwt.exceptions.DecodeError:
         return redirect(url_for("index", msg="not logged in"))
+
 
 # 로그인 페이지
 @app.route('/index')
@@ -97,25 +99,12 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-# 메인 페이지
-# @app.route('/main')
-# def main():
-#     token_receive = request.cookies.get('mytoken')
-#     # payload 생성
-#     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-#     user_info = db.users.find_one({"username": payload['id']})
-#     return render_template('main.html')
+# detail 페이지
+@app.route('/detail/<keyword>')
+def detail(keyword):
+    food = db.foodInfo.find_one({'no' : keyword}, {'_id': False})
+    return render_template('detail.html', food=food)
 
-
-@app.route('/main', methods=['GET'])
-def main():
-    r = requests.get(
-        'http://api.nongsaro.go.kr/service/recomendDiet/recomendDietList?apiKey=20211101HGX1FPG4TTRUPRUQ36Y8MA')
-    dictionary = xmltodict.parse(r.text)
-    json_object = json.dumps(dictionary, ensure_ascii=False)
-    real_json = json.loads(json_object)
-    print(real_json['response']['body']['items']['item'][0]) # json 변환
-    return render_template('main.html', items=real_json)
 
 if __name__ == '__main__':
 
