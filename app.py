@@ -107,5 +107,16 @@ def sign_in():
 #     return render_template('main.html')
 
 
+@app.route('/main', methods=['GET'])
+def main():
+    r = requests.get(
+        'http://api.nongsaro.go.kr/service/recomendDiet/recomendDietList?apiKey=20211101HGX1FPG4TTRUPRUQ36Y8MA')
+    dictionary = xmltodict.parse(r.text)
+    json_object = json.dumps(dictionary, ensure_ascii=False)
+    real_json = json.loads(json_object)
+    print(real_json['response']['body']['items']['item'][0]) # json 변환
+    return render_template('main.html', items=real_json)
+
 if __name__ == '__main__':
+
     app.run('0.0.0.0', port=5000, debug=True)
