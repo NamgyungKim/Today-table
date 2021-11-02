@@ -1,0 +1,86 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Detail Page</title>
+        <link rel="stylesheet" href="styles/detail.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+        <style>
+            .nav-bar {
+                display: flex;
+                justify-content: center;
+            }
+
+            .main-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-like {
+                display: flex;
+                justify-content: center;
+            }
+
+            .menu-name {
+                float: left;
+                margin: auto;
+                width: 600px;
+
+            }
+
+            .like-btn {
+                height: 100px;
+                width: 100px;
+                background-color: pink;
+            }
+
+            .detail-container {
+                height: 300px;
+
+            }
+
+            .review-container {
+                width: 500px;
+
+            }
+
+            .review-btn {
+                height: 40px;
+            }
+
+            input {
+                height: 40px;
+            }
+        </style>
+    </head>
+
+    <body>
+    <nav class="nav-bar"><h1>오늘 뭐 먹이지?</h1></nav>
+    <div class="main-container">
+        <div class="menu-like">
+            <div class="menu-name"><h1>메뉴 이름</h1></div>
+            <button class="like-btn">LIKE!</button>
+        </div>
+        <img src="https://w.namu.la/s/0757e0521734bb19004e9c35b3d64e26509edd9480b184cdc591364f7d336c01294622cc7c3ec3a1cf95caf9d177e1abb2039b315958a3989b168e637497fb54ac296cab8950f3f81720029a246ced799154d29b3619401c53acbcba57fb0b38"
+             alt="food-image">
+        <div class="detail-container">
+            <div class="ingredient">재료 </div>
+            <div class="recipe">조리방법  </div>
+            <div class="contents">내용 </div>
+        </div>
+        <div class="review-container">
+            <h1>댓글</h1>
+            <div class="review-haed">
+                <input type="text">
+                <button class="review-btn"> 리뷰 저장</button>
+            </div>
+
+        </div>
+    </div>
+
+    </body>
+    </html>
