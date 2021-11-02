@@ -2,10 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Main Page</title>
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="/static/scripts/main.js"></script>
     <link rel="stylesheet" href="/static/styles/main.css" />
+    <title>Main Page</title>
   </head>
   <body>
+  <p>
+  {{ items }}</p>
     <nav class="nav-bar"><h1>오늘 뭐 먹이지?</h1></nav>
     <div class="main-container">
       <div class="search-container">
