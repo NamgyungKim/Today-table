@@ -20,56 +20,21 @@
     <script src="/static/scripts/main.js"></script>
     <link rel="stylesheet" href="/static/styles/main.css" />
     <title>Main Page</title>
-
   </head>
   <body>
     <nav class="nav-bar"><h1>오늘 뭐 먹이지?</h1></nav>
     <div class="main-container">
-      <div class="search-container">
+      <div class="recommend-container">
+        <h2>추천 드려요~!</h2>
+        <div class="image-container"></div>
+        <button class="recommend-btn">마음에 드는 게 없다면?</button>
+      </div>
+      <div class="list-container">
         <form class="search-form">
           <input type="text" class="search-input" />
           <button type="submit" class="search-btn">찾기</button>
         </form>
-        <button class="recommend-btn">추천 받기</button>
-      </div>
-      <div class="dish-lists">
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-        </div>
-        <div class="dish">
-          <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
-          <h3 class="title">굴밥</h3>
-
-        </div>
+        <div class="dish-lists"></div>
       </div>
     </div>
   </body>

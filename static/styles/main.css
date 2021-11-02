@@ -14,7 +14,7 @@ body {
 .nav-bar {
   width: 100%;
   height: auto;
-  background-color: blanchedalmond;
+  background-color: #ff4253;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,81 +27,112 @@ h1 {
 
 .main-container {
   width: 100%;
-  max-width: 1000px;
+  /* max-width: 1000px; */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 추천 부분 */
+.main-container .recommend-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding: 2rem 0;
+  background-color: #ffe4e0;
 }
 
-.main-container .search-container {
-  width: 100%;
-  max-width: 1000px;
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 10%;
+.main-container .recommend-container h2 {
+  font-size: 2rem;
 }
 
-.main-container .search-container .search-form {
+.main-container .recommend-container .image-container {
+  margin: 1rem 0;
 }
 
-.search-container .search-form .search-input {
+.image-container img {
   width: 200px;
-  height: 30px;
+  height: 320px;
+  object-fit: cover;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.main-container .recommend-container .recommend-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
   border: none;
-  background-color: #d5dbb3;
-  color: #334443;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #61b5d9;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* 목록 부분 */
+.main-container .list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #f8ada9;
+}
+
+.main-container .list-container .search-form {
+  width: fit-content;
+  margin: 0 10%;
+}
+
+.search-form .search-input {
+  width: 200px;
+  height: 40px;
+  border: none;
+  background-color: #61b5d9;
+  color: #fff;
   border-radius: 3px;
   padding: 5px;
   font-size: 17px;
   font-weight: bold;
 }
-.search-container .search-form .search-btn {
+.search-form .search-btn {
   width: 50px;
-  height: 30px;
-  background-color: #c6dd46;
-  color: #334443;
+  height: 40px;
+  background-color: #61b5d9;
+  color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.main-container .search-container .recommend-btn {
-  width: 100px;
-  height: 30px;
-  background-color: #c6dd46;
-  color: #334443;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.main-container .dish-lists {
+.main-container .list-container .dish-lists {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 1rem 0;
 }
 
-.main-container .dish-lists .dish {
+.main-container .list-container .dish-lists .dish {
   width: 200px;
-  height: 210px;
-  margin: 10px;
+  margin: 0.3rem;
   cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
-.main-container .dish-lists .dish:hover img {
-  transform: scale(1.1);
+.main-container .dish-lists .dish img {
+  width: 200px;
+  height: 200px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.dish-lists .dish img {
-  width: 100%;
-  transform: scale(1);
-  transition: all 0.3s ease;
-}
-
-.dish-lists .dish .title {
-  margin: 0.2rem 0;
+.main-container .dish-lists .dish .title {
+  font-size: 1rem;
+  word-break: keep-all;
   text-align: center;
+  margin-bottom: 0.3rem;
 }
