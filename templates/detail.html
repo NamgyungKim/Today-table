@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>Detail Page</title>
-    <link rel="stylesheet" href="styles/detail.css" />
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 구글폰트 -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="/static/scripts/dtail.js"></script>
+    <link rel="stylesheet" href="/static/styles/detail.css" />
+    <link rel="stylesheet" href="/static/styles/reset.css" />
+
+    <title>details</title>
   </head>
   <body>
-    <nav class="nav-bar"><h1>오늘 뭐 먹이지?</h1></nav>
+    <div class="wrap">
+      <section id="comments">
+        <form action="" class="form-comment">
+          <input class="input-comment" type="text" placeholder="뎃글 입력">
+          <button type="submit">입력</button>
+        </form>
+        <div class="comment">
+          <div class="user">
+            <img class="user-profil" src="https://picsum.photos/id/237/200/300" alt="유저 프로필사진">
+            <p class="user-name">user name</p>
+          </div>
+          <p class="comment-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque debitis asperiores voluptate dolores incidunt! Quam, officiis incidunt? Reprehenderit itaque sed qui, hic earum non voluptatem sint molestiae, corrupti, aliquam unde.
+          </p>
+          <div class="comment-bottom">
+            <span class="date">1일전</span>
+            <span class="delete-btn">삭제</span>
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
