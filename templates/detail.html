@@ -24,7 +24,55 @@
     <title>details</title>
   </head>
   <body>
+    <header id="header">
+      <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
+      <div class="user">
+        <span class="user-name"><span class="user-name-db">USER Name</span>님</span>
+        <img src="https://picsum.photos/id/237/200/300" alt="프로필">
+      </div>
+    </header>
     <div class="wrap">
+      <!-- 상세 이미지 -->
+      <section id="detail-image">
+        <h2 class="title">오늘의 매뉴 : <span class="menu">스테이크</span></h2>
+        <div class="ingredient-list">
+          <img class="pentagon-img" src="../static/imgs/Star.png" alt="5각형">
+          <img class="food-img" src="../static/imgs/food.jpg" alt="음식명도 넘겨받기">
+          <div class="circle circle-1">칼로리<p class="calorie">50</p></div>
+          <div class="circle circle-2">나트륨<p class="natrium">200</p></div>
+          <div class="circle circle-3">탄수화물<p class="carbo">242</p></div>
+          <div class="circle circle-4">단백질<p class="protein">53</p></div>
+          <div class="circle circle-5">지방<p class="fat">25</p></div>
+        </div>
+      </section>
+      <!-- 상세 설명글 -->
+      <section id="detail-text">
+        <div class="h2"><h2>RECIPE</h2></div>
+        <div class="recipe">
+          <div class="recipe-img">
+            <div class="img-box">
+              <img class="process-img" src="../static/imgs/과정1.png" alt="">
+              <span></span>
+            </div>
+            <div class="img-box">
+              <img class="process-img" src="../static/imgs/과정2.png" alt="">
+            </div>
+            <div class="img-box">
+              <img class="process-img" src="../static/imgs/과정3.png" alt="">
+            </div>
+            <div class="img-box">
+              <img class="process-img" src="../static/imgs/과정4.png" alt="">
+            </div>
+          </div>
+          <div class="recipe-text">
+            <p>1. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
+            <p>2. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
+            <p>3. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
+            <p>4. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
+          </div>
+        </div>
+      </section>
+      <!-- 댓글 -->
       <section id="comments">
         <form action="" class="form-comment">
           <input class="input-comment" type="text" placeholder="뎃글 입력">
@@ -43,7 +91,23 @@
             <span class="delete-btn">삭제</span>
           </div>
         </div>
+        <div class="comment">
+          <div class="user">
+            <img class="user-profil" src="https://picsum.photos/id/237/200/300" alt="유저 프로필사진">
+            <p class="user-name">user name</p>
+          </div>
+          <p class="comment-text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque debitis asperiores voluptate dolores incidunt! Quam, officiis incidunt? Reprehenderit itaque sed qui, hic earum non voluptatem sint molestiae, corrupti, aliquam unde.
+          </p>
+          <div class="comment-bottom">
+            <span class="date">1일전</span>
+            <span class="delete-btn">삭제</span>
+          </div>
+        </div>
       </section>
+      <footer id="footer">
+        © 2021 오늘뭐먹지? by 5조
+      </footer>
     </div>
   </body>
 </html>
