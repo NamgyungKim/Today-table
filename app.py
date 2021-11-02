@@ -20,8 +20,8 @@ def main():
     dictionary = xmltodict.parse(r.text)
     json_object = json.dumps(dictionary, ensure_ascii=False)
     real_json = json.loads(json_object)
-    print(real_json)
-    return render_template('main.html', items=real_json['response']['body'])
+    print(real_json['response']['body']['items']['item'][0]) # json 변환
+    return render_template('main.html', items=real_json)
 
 if __name__ == '__main__':
    app.run('0.0.0.0',port=5000,debug=True)
