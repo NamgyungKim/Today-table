@@ -26,7 +26,7 @@
 
     <script>
         $(document).ready(function () {
-            get_comments("{{ food.no }}")
+            get_comments("{{ food.no }}","{{ nickname }}")
         })
 
         function save_comment() {
@@ -94,8 +94,7 @@
         }
 
 
-
-        function get_comments(food_num) {
+        function get_comments(food_num,nickname) {
             $.ajax({
                 type: "POST",
                 url: "/api/get_comments",
@@ -105,13 +104,12 @@
                 success: function (response) {
                     if (response["result"] == "success") {
                         let comments = response["comments"]
-
                         for (let i = 0; i < comments.length; i++) {
                             let comment = comments[i]
                             if (comment["num"] == food_num) {
                                 let time_post = new Date(comment["time"])
                                 let time_before = time2str(time_post)
-                                let html_temp = `<div class="comment">
+                                let html_temp1 = `<div class="comment">
                                                     <div class="user">
                                                         <img class="user-profil" src="https://picsum.photos/id/237/200/300" alt="유저 프로필사진">
                                                         <p class="user-name"> ${comment["nickname"]}</p>
@@ -121,9 +119,17 @@
                                                     </p>
                                                     <div class="comment-bottom">
                                                         <span class="date">${time_before}</span>
-                                                        <button class="delete-btn" onclick="delete_comment('${comment["username"]}','${comment["comment"]}')">삭제</button>
-                                                    </div>
+                                                        `
+
+                                let html_temp2 = ``
+                                if(comment["nickname"] == nickname ){
+                                    html_temp2 =  `<button class="delete-btn" onclick="delete_comment('${comment["username"]}','${comment["comment"]}')">삭제</button>`
+                                }else{
+                                    html_temp2 = ``
+                                }
+                                let html_temp3 = ` </div>
                                                 </div>`
+                                let html_temp = html_temp1 + html_temp2 + html_temp3
                                 $('#comments').append(html_temp)
                                 //유저 이름 Header에 넣기
                             }
@@ -139,9 +145,9 @@
   </head>
   <body>
     <header id="header">
-      <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
+      <h1><a onclick="location.href='http://localhost:5000/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div tabindex="0" onclick="nav_show()"  class="user">
-        <span class="user-name"><span class="user-name-db">{{ nickname }}</span>님</span>
+        <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
       <div onclick="sign_out()" class="nav">
@@ -155,11 +161,11 @@
         <div class="ingredient-list">
           <img class="pentagon-img" src="../static/imgs/Star.png" alt="5각형">
           <img class="food-img" src="{{food.img}}" alt="음식명도 넘겨받기">
-          <div class="circle circle-1">칼로리<p class="calorie">{{food.calorie}}</p></div>
-          <div class="circle circle-2">나트륨<p class="natrium">{{food.natrium}}</p></div>
-          <div class="circle circle-3">탄수화물<p class="carbo">{{food.carbo}}</p></div>
-          <div class="circle circle-4">단백질<p class="protein">{{food.protein}}</p></div>
-          <div class="circle circle-5">지방<p class="fat">{{food.fat}}</p></div>
+          <div class="circle circle-1">칼로리<p class="calorie">{{food.calorie}}<span class="unit">cal</span></p></div>
+          <div class="circle circle-2">나트륨<p class="natrium">{{food.natrium}}<span class="unit">mg</span></p></div>
+          <div class="circle circle-3">탄수화물<p class="carbo">{{food.carbo}}<span class="unit">g</span></p></div>
+          <div class="circle circle-4">단백질<p class="protein">{{food.protein}}<span class="unit">g</span></p></div>
+          <div class="circle circle-5">지방<p class="fat">{{food.fat}}<span class="unit">g</span></p></div>
         </div>
       </section>
       <!-- 상세 설명글 -->
@@ -195,6 +201,7 @@
     </div>
   </body>
   <script>
+    // 프로필클릭시 로그아웃버튼 show
     function nav_show(){
       if($(".nav").hasClass("show")){
           $(".nav").removeClass("show");
@@ -203,14 +210,15 @@
       }
     }
     
-    //상단 비주얼 부분
 
+    //상단 비주얼 부분
     $(document).ready(function () {
         $("#detail-image").addClass("show")
         $(".pentagon-img").addClass("big")
         $(".circle").addClass("big")
     })
     
+    //스크롤 이벤트
     $(window).scroll(function () {
         var height = $(document).scrollTop();
         if(height > 600){

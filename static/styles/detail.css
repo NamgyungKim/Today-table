@@ -20,6 +20,7 @@ body { background-color: #FFE4E0;}
 #detail-image .circle-4{bottom: 30px; left: 200px;}
 #detail-image .circle-5{bottom: 30px; right: 200px;}
 #detail-image .circle p {margin-top: 10px; font-weight: bold; font-size: 50px;}
+#detail-image .circle .unit {font-size: 25px;}
 
 /* 상세 설명글 */
 #detail-text{margin:50px 0 100px; opacity: 0; transition: all 1s;}
@@ -49,9 +50,9 @@ body { background-color: #FFE4E0;}
 #comments .comment .comment-text {line-height: 30px; font-size: 20px;}
 #comments .comment .comment-bottom {display: flex; justify-content: flex-end;}
 #comments .comment .comment-bottom .date,
-#comments .comment .comment-bottom .delete-btn {line-height: 30px; }
-#comments .comment .comment-bottom .delete-btn {margin: 0 10px; cursor: pointer;}
-
+#comments .comment .comment-bottom .delete-btn {display: block; width: 80px;  line-height: 30px;}
+#comments .comment .comment-bottom .delete-btn {margin: 0 10px; border: 1px solid black; border-radius: 10px; background-color: white; font-weight: bold; font-size: 17px; cursor: pointer; transition: all .5s;}
+#comments .comment .comment-bottom .delete-btn:hover{ background-color: #FF4253;}
 
 /* pc */
 @media (max-width:1024px) { 
