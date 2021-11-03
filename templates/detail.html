@@ -4,12 +4,13 @@
     <meta charset="UTF-8"/>
 
     <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <!-- 구글폰트 -->
     <link
@@ -86,6 +87,14 @@
             return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
         }
 
+        function sign_out() {
+            $.removeCookie('mytoken', { path: '/'});
+            alert('정상적으로 로그아웃 되었습니다.')
+            window.location.href = "/"
+        }
+
+
+
         function get_comments(food_num) {
             $.ajax({
                 type: "POST",
@@ -96,6 +105,7 @@
                 success: function (response) {
                     if (response["result"] == "success") {
                         let comments = response["comments"]
+
                         for (let i = 0; i < comments.length; i++) {
                             let comment = comments[i]
                             if (comment["num"] == food_num) {
@@ -104,7 +114,7 @@
                                 let html_temp = `<div class="comment">
                                                     <div class="user">
                                                         <img class="user-profil" src="https://picsum.photos/id/237/200/300" alt="유저 프로필사진">
-                                                        <p class="user-name"> ${comment["username"]}</p>
+                                                        <p class="user-name"> ${comment["nickname"]}</p>
                                                     </div>
                                                     <p class="comment-text">
                                                         ${comment["comment"]}
@@ -128,11 +138,11 @@
     <header id="header">
       <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div onclick="nav_show()"  class="user">
-        <span class="user-name"><span class="user-name-db">USER Name</span>님</span>
+        <span class="user-name"><span class="user-name-db">{{ nickname }}</span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
-      <div class="nav">
-        로그 아웃
+      <div onclick="sign_out()" class="nav">
+        로그아웃
       </div>
     </header>
     <div class="wrap">

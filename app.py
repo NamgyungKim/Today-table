@@ -98,13 +98,23 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
-
 # detail 페이지
 @app.route('/detail/<keyword>')
 def detail(keyword):
     food = db.foodInfo.find_one({'no' : keyword}, {'_id': False})
     comments = db.comments.find({'num': keyword}, {'_id': False})
-    return render_template('detail.html', food=food, comments=comments)
+
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_info = db.users.find_one({"username": payload['id']})
+    username = user_info['username']
+    nickname = user_info['nickname']
+
+    food_recipe = db.foodManual.find({'num': keyword}, {'_id': False, 'num': False})[0]
+    food_img = db.foodImg.find({'num': keyword}, {'_id': False, 'num': False})[0]
+
+    return render_template('detail.html', food=food, comments=comments,
+                           receipe=food_recipe, foodImg=food_img, username=username, nickname=nickname)
 
 
 # 코멘트 저장
@@ -116,11 +126,14 @@ def save_comment():
 
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    username = payload['id']
+    user_info = db.users.find_one({"username": payload['id']})
+    username = user_info['username']
+    nickname = user_info['nickname']
 
     doc = {
         "num": num_receive,
         "username": username,
+        "nickname": nickname,
         "comment": comment_receive,
         "time": time_receive
     }
@@ -150,5 +163,4 @@ def delete_comment():
 
 
 if __name__ == '__main__':
-
     app.run('0.0.0.0', port=5000, debug=True)
