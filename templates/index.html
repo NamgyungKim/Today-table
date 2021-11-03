@@ -39,6 +39,7 @@
         $("#help-password2").toggleClass("is-hidden");
         $("#input-nickname").toggleClass("is-hidden");
         $("#nicknameIcon").toggleClass("is-hidden");
+        $("#help-nickname").toggleClass("is-hidden");
       }
 
       // 아이디 확인 정규표현식
@@ -113,6 +114,15 @@
         } else if (!$("#help-id").hasClass("is-success")) {
           alert("아이디 중복확인을 해주세요.");
           return;
+        }
+        
+        if(nickname == ""){
+          $("#help-nickname")
+            .text("닉네임을 입력해 주세요")
+          return
+        }else{
+          $("#help-nickname")
+            .text("")
         }
 
         if (password == "") {
@@ -227,8 +237,9 @@
                 <div class="content">
                   <div class="field has-addons">
                     <div class="control has-icons-left" style="width: 100%">
-                      <h2 class="h2-sign-up">SIGN UP</h2>
-                      <h2 class="h2-sign-in is-hidden">SIGN IN</h2>
+                      <h2 class="h2-sign-up">SIGN IN</h2>
+                      <h2 class="h2-sign-in is-hidden">SIGN UP</h2>
+                      <div class="bar"></div>
                       <div class="fild flex">
                         <input
                           id="input-username"
@@ -271,7 +282,7 @@
                       ><i class="fa fa-user"></i
                     ></span>
                   </div>
-                  <p></p>
+                  <p id="help-nickname" class="is-hidden"></p>
 
                   <div class="field">
                     <div class="control has-icons-left">
@@ -306,7 +317,7 @@
                     class="sign-in-btn is-sparta is-outlined"
                     onclick="toggle_sign_up()"
                   >
-                    Sign In
+                    Sign Up
                   </span>
                 </div>
 
@@ -353,5 +364,10 @@
     </div>
   </body>
   <script>
+    $("input").keydown(function(key) { 
+      if (key.keyCode == 13) { 
+        $(".sign-up-btn").click(); 
+      } 
+    });
   </script>
 </html>

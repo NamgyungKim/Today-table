@@ -54,7 +54,13 @@
 #login .form .h2-sign-in,
 #login .form .h2-sign-up {
   text-align: center;
-  margin: 20px 0 50px;
+  margin: 20px 0 0;
+}
+#login .form .bar {
+  width: 30px;
+  height: 2px;
+  margin: 25px auto;
+  background-color: #e8344e;
 }
 
 #login .form .button.is-sparta {
@@ -78,6 +84,14 @@
   font-weight: bold;
   color: #e8344e;
   cursor: pointer;
+}
+
+#help-nickname{
+  display: block;
+  margin-top: 0.25rem;
+  margin-bottom: 1em;
+  font-size: .75rem;
+  color: #e8344e;
 }
 
 .button.is-sparta.is-outlined {
