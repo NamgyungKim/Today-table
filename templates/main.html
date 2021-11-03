@@ -1,91 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
     ></script>
 
     <!-- 구글폰트 -->
     <link
-      href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
+            rel="stylesheet"
     />
     <!-- font awesome 추가 -->
     <script
-      src="https://kit.fontawesome.com/28653e43c1.js"
-      crossorigin="anonymous"
+            src="https://kit.fontawesome.com/28653e43c1.js"
+            crossorigin="anonymous"
     ></script>
     <script src="/static/scripts/main.js"></script>
-    <link rel="stylesheet" href="/static/styles/main.css" />
-    <link rel="stylesheet" href="/static/styles/reset.css" />
+    <link rel="stylesheet" href="/static/styles/main.css"/>
+    <link rel="stylesheet" href="/static/styles/reset.css"/>
     <title>Main Page</title>
-  </head>
-  <body>
-    <header id="header">
-      <h1>
+
+</head>
+<body>
+<header id="header">
+    <h1>
         <a href="#"
-          ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
+        ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
         /></a>
-      </h1>
-      <div onclick="nav_show()" class="user">
+    </h1>
+    <div onclick="nav_show()" class="user">
         <span class="user-name"
-          ><span class="user-name-db">{{ nickname }}</span>님</span
+        ><span class="user-name-db">{{ nickname }}</span>님</span
         >
-        <img src="https://picsum.photos/id/237/200/300" alt="프로필" />
-      </div>
-      <div class="nav">로그 아웃</div>
-    </header>
-    <div class="main-container">
-      <div class="recommend-container">
+        <img src="https://picsum.photos/id/237/200/300" alt="프로필"/>
+    </div>
+    <div class="nav" onclick=sign_out()>로그아웃</div>
+</header>
+<div class="main-container">
+    <div class="recommend-container">
         <h2>추천 드려요~!</h2>
         <h4>오늘의 건강식을 추천드립니다. 확인해보세요!</h4>
         <div class="image-container">
-          {% for dish in recommends %} {# {{ range(1, 51) | random }}#} {# {{
+            {% for dish in recommends %} {# {{ range(1, 51) | random }}#} {# {{
           loop.index }}#}
-          <div class="dish">
-            <a href="/detail/{{dish.no}}">
-              <img src="{{ dish.img }}" alt="dish-image" />
-              <div class="dish-desc">
-                <p class="dish-name">{{dish.menu_name}}</p>
-                <p class="dish-type">{{dish.menu_type}}</p>
-              </div>
-            </a>
-          </div>
-          {% endfor %}
+                <div class="dish">
+                    <a href="/detail/{{ dish.no }}">
+                        <img src="{{ dish.img }}" alt="dish-image"/>
+                        <div class="dish-desc">
+                            <p class="dish-name">{{ dish.menu_name }}</p>
+                            <p class="dish-type">{{ dish.menu_type }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
         <button class="recommend-btn">마음에 드는 게 없다면?</button>
         <div class="divide-line"></div>
-      </div>
-      <div class="list-container">
+    </div>
+    <div class="list-container">
         <h2>건강한 레시피를 찾아보세요!</h2>
         <h4>원하시는 재료를 검색해서 건강한 음식을 찾아보세요!</h4>
         <form class="search-form" onsubmit="search_ingredients()">
-          <input type="text" class="search-input" />
-          <button type="submit" class="search-btn">찾기</button>
+            <input type="text" class="search-input"/>
+            <button type="submit" class="search-btn">찾기</button>
         </form>
         <div class="dish-lists">
-          {% for dish in dishes %}
-          <div class="dish">
-            <a href="/detail/{{dish.no}}">
-              <div class="img-wrap">
-                <img src="{{ dish.img }}" alt="dish-image" />
-              </div>
-              <div class="description">
-                <p class="dish-type">{{dish.menu_type}}</p>
-                <h3 class="dish-name">{{ dish.menu_name }}</h3>
-              </div>
-            </a>
-            <i class="far fa-heart" onclick="likeHeart()"></i>
-          </div>
-          {% endfor %}
+            {% for dish in dishes %}
+                <div class="dish">
+                    <a href="/detail/{{ dish.no }}">
+                        <div class="img-wrap">
+                            <img src="{{ dish.img }}" alt="dish-image"/>
+                        </div>
+                        <div class="description">
+                            <p class="dish-type">{{ dish.menu_type }}</p>
+                            <h3 class="dish-name">{{ dish.menu_name }}</h3>
+                        </div>
+                    </a>
+                    <i class="far fa-heart" onclick="likeHeart()"></i>
+                </div>
+            {% endfor %}
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
