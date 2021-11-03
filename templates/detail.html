@@ -133,13 +133,14 @@
             })
             
         }
+        
     </script>
 
   </head>
   <body>
     <header id="header">
       <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
-      <div onclick="nav_show()"  class="user">
+      <div tabindex="0" onclick="nav_show()"  class="user">
         <span class="user-name"><span class="user-name-db">{{ nickname }}</span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
@@ -166,24 +167,17 @@
         <div class="h2"><h2>RECIPE</h2></div>
         <div class="recipe">
           <div class="recipe-img">
+            {% for img in foodImg %}
             <div class="img-box">
-              <img class="process-img" src="../static/imgs/과정1.png" alt="">
-              <span></span>
+              <img class="process-img" src="{{foodImg[img]}}" alt="">
             </div>
-            <div class="img-box">
-              <img class="process-img" src="../static/imgs/과정2.png" alt="">
-            </div>
-            <div class="img-box">
-              <img class="process-img" src="../static/imgs/과정3.png" alt="">
-            </div>
-            <div class="img-box">
-              <img class="process-img" src="../static/imgs/과정4.png" alt="">
-            </div>
+           {% endfor %}
           </div>
           <div class="recipe-text">
             <p class="ingredient"><strong>재료 :</strong> {{food.ingredient}}</p>
-            <p>{{food.Manual01}}</p>
-            <p>{{food.Manual02}}</p>
+            {% for manual in receipe %}
+              <p>{{receipe[manual]}}</p>  
+            {% endfor %}
           </div>
         </div>
       </section>
@@ -225,7 +219,6 @@
         if(height > 1000){
             $("#comments").addClass("show")
         }
-        console.log(height)
     }); 
 
   </script>
