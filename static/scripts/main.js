@@ -11,7 +11,7 @@
 // })
 
 $(document).ready(function () {
-  get_list();
+  // get_list();
 });
 
 function get_list() {
