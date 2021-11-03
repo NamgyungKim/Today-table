@@ -16,19 +16,36 @@
       href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
       rel="stylesheet"
     />
-
+    <!-- font awesome 추가 -->
+    <script
+      src="https://kit.fontawesome.com/28653e43c1.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="/static/scripts/main.js"></script>
     <link rel="stylesheet" href="/static/styles/main.css" />
     <link rel="stylesheet" href="/static/styles/reset.css" />
     <title>Main Page</title>
   </head>
   <body>
-    <nav class="nav-bar"><h1>오늘 뭐 먹이지?</h1></nav>
+    <header id="header">
+      <h1>
+        <a href="#"
+          ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
+        /></a>
+      </h1>
+      <div onclick="nav_show()" class="user">
+        <span class="user-name"
+          ><span class="user-name-db">{{ nickname }}</span>님</span
+        >
+        <img src="https://picsum.photos/id/237/200/300" alt="프로필" />
+      </div>
+      <div class="nav">로그 아웃</div>
+    </header>
     <div class="main-container">
       <div class="recommend-container">
         <h2>추천 드려요~!</h2>
         <div class="image-container">
-          {% for dish in dishes %}
+          {% for dish in dishes %} {# {{ range(1, 51) | random }}#}
           <div class="dish">
             <a href="/detail/{{dish.no}}">
               <img src="{{ dish.img }}" alt="dish-image" />
@@ -43,6 +60,7 @@
         <button class="recommend-btn">마음에 드는 게 없다면?</button>
       </div>
       <div class="list-container">
+        <h2>건강한 레시피를 찾아보세요!</h2>
         <form class="search-form">
           <input type="text" class="search-input" />
           <button type="submit" class="search-btn">찾기</button>
@@ -52,7 +70,12 @@
           <div class="dish">
             <a href="/detail/{{dish.no}}">
               <img src="{{ dish.img }}" alt="dish-image" />
-              <h3 class="title">{{ dish.menu_type }} {{ dish.menu_name }}</h3>
+              <div class="description">
+                <p class="dish-type">{{dish.menu_type}}</p>
+                <h3 class="dish-name">{{ dish.menu_name }}</h3>
+                <i class="far fa-heart"></i>
+                <!-- <i class="fas fa-heart"></i> -->
+              </div>
             </a>
           </div>
           {% endfor %}
