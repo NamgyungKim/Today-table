@@ -51,13 +51,8 @@ def index():
     return render_template('index.html', msg=msg)
 
 
-# @app.route('/register')
-# def register():
-#     return render_template('register.html')
-
-
 # 아이디 중복 체크 API
-@app.route('/sign_up/check_dup', methods=['POST'])
+@app.route('/api/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']
     exists = bool(db.users.find_one({"username": username_receive}))
@@ -65,7 +60,7 @@ def check_dup():
 
 
 # 회원가입 완료 후 DB에 저장
-@app.route('/sign_up/save', methods=['POST'])
+@app.route('/api/sign_up', methods=['POST'])
 def sign_up():
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
@@ -81,7 +76,7 @@ def sign_up():
 
 
 # 로그인 기능
-@app.route('/sign_in', methods=['POST'])
+@app.route('/api/sign_in', methods=['POST'])
 def sign_in():
     # 로그인
     username_receive = request.form['username_give']
@@ -101,6 +96,7 @@ def sign_in():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+
 
 
 # detail 페이지
