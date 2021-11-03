@@ -44,8 +44,10 @@
     <div class="main-container">
       <div class="recommend-container">
         <h2>추천 드려요~!</h2>
+        <h4>오늘의 건강식을 추천드립니다. 확인해보세요!</h4>
         <div class="image-container">
-          {% for dish in dishes %} {# {{ range(1, 51) | random }}#}
+          {% for dish in recommends %} {# {{ range(1, 51) | random }}#} {# {{
+          loop.index }}#}
           <div class="dish">
             <a href="/detail/{{dish.no}}">
               <img src="{{ dish.img }}" alt="dish-image" />
@@ -61,7 +63,8 @@
       </div>
       <div class="list-container">
         <h2>건강한 레시피를 찾아보세요!</h2>
-        <form class="search-form">
+        <h4>원하시는 재료를 검색해서 건강한 음식을 찾아보세요!</h4>
+        <form class="search-form" onsubmit="search_ingredients()">
           <input type="text" class="search-input" />
           <button type="submit" class="search-btn">찾기</button>
         </form>

@@ -18,6 +18,11 @@ function nav_show() {
   }
 }
 
+function search_ingredients() {
+  let value = $(".search-input").val();
+  console.log(value);
+}
+
 $(document).ready(function () {
   // get_list();
 });
