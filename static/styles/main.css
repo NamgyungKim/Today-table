@@ -165,9 +165,18 @@ h1 {
   font-weight: bold;
   letter-spacing: 1px;
   transition: 0.1s ease-in;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 .main-container .recommend-container .recommend-btn:active {
   transform: scale(0.995);
+}
+
+.main-container .recommend-container .divide-line {
+  width: 80%;
+  height: 3px;
+  background-color: #ff4253;
+  margin: 5rem 0;
+  border-radius: 1.5px;
 }
 
 /* 목록 부분 */
@@ -177,7 +186,7 @@ h1 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 5rem 0;
+  padding-bottom: 5rem;
   background-color: #ffe4e0;
 }
 
@@ -189,35 +198,47 @@ h1 {
 }
 
 .main-container .list-container .search-form {
-  width: fit-content;
-  margin: 0 10%;
+  display: flex;
+  width: 300px;
+  height: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .search-form .search-input {
-  width: 200px;
-  height: 40px;
+  width: 70%;
   border: none;
   background-color: #61b5d9;
   color: #fff;
-  border-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   padding: 5px;
   font-size: 17px;
   font-weight: bold;
 }
+
 .search-form .search-btn {
-  width: 50px;
-  height: 40px;
+  width: 30%;
+  background-color: #fff;
+  color: #61b5d9;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: 0.3s ease-in;
+}
+
+.search-form .search-btn:hover {
   background-color: #61b5d9;
   color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
 }
 
 .main-container .list-container .dish-lists {
-  width: 900px;
+  width: 1200px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   justify-content: center;
   padding: 2rem 3rem;
   margin: 1rem 0;
@@ -232,9 +253,15 @@ h1 {
   background-color: #fff;
   border-radius: 5px;
   overflow: hidden;
+  position: relative;
 }
 
-.main-container .dish-lists .dish img {
+.main-container .dish-lists .dish .img-wrap {
+  width: 200px;
+  overflow: hidden;
+}
+
+.main-container .dish-lists .dish .img-wrap img {
   width: 200px;
   height: 200px;
   border-top-left-radius: 5px;
@@ -252,7 +279,6 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   padding: 0.4rem;
-  position: relative;
   background-color: #fff;
 }
 
@@ -269,13 +295,9 @@ h1 {
   font-weight: bold;
 }
 
-.dish .description .fa-heart {
+.dish .fa-heart {
   position: absolute;
-  top: 0.2rem;
+  top: 205px;
   right: 0.4rem;
   font-size: 1rem;
-}
-
-.dish .description .fa-heart.fas {
-  background-color: red;
 }

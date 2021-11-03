@@ -23,6 +23,10 @@ function search_ingredients() {
   console.log(value);
 }
 
+function likeHeart() {
+  console.log("ㅇㅇㅇ");
+}
+
 $(document).ready(function () {
   // get_list();
 });
@@ -57,7 +61,3 @@ function get_list() {
     },
   });
 }
-
-// jinja로 3개만 랜덤 나타내기
-// 디자인 찾아서 예쁘게 하기
-// flex wrap 말고 4줄로 정렬되도록

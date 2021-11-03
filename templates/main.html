@@ -60,6 +60,7 @@
           {% endfor %}
         </div>
         <button class="recommend-btn">마음에 드는 게 없다면?</button>
+        <div class="divide-line"></div>
       </div>
       <div class="list-container">
         <h2>건강한 레시피를 찾아보세요!</h2>
@@ -72,14 +73,15 @@
           {% for dish in dishes %}
           <div class="dish">
             <a href="/detail/{{dish.no}}">
-              <img src="{{ dish.img }}" alt="dish-image" />
+              <div class="img-wrap">
+                <img src="{{ dish.img }}" alt="dish-image" />
+              </div>
               <div class="description">
                 <p class="dish-type">{{dish.menu_type}}</p>
                 <h3 class="dish-name">{{ dish.menu_name }}</h3>
-                <i class="far fa-heart"></i>
-                <!-- <i class="fas fa-heart"></i> -->
               </div>
             </a>
+            <i class="far fa-heart" onclick="likeHeart()"></i>
           </div>
           {% endfor %}
         </div>
