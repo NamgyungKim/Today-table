@@ -31,12 +31,15 @@ import hashlib
 def home():
     # 클라이언트로 부터 토큰이 담긴 쿠키를 받는다.
     token_receive = request.cookies.get('mytoken')
-    dishes = list(db.foodInfo.find({}, {'_id': False}))
-    recommends = random.sample(dishes, 3)
     try:
         # payload 생성
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload['id']})
+        dishes = list(db.foodInfo.find({}, {'_id': False}))
+        for dish in dishes:
+            dish["count_like"] = db.likes.count_documents({'foodNum':dish['no'], 'type':'heart'})
+            dish["like_by_me"] = bool(db.likes.find_one({'foodNum':dish['no'], 'type':'heart', 'username':payload['id']}))
+        recommends = random.sample(dishes, 3)
         return render_template('main.html', nickname=user_info["nickname"], dishes=dishes, recommends=recommends)
     # 토큰이 만료되었을 때
     except jwt.ExpiredSignatureError:
@@ -162,6 +165,31 @@ def delete_comment():
     db.comments.delete_one({'username': username_receive, 'comment': comment_receive})
 
     return jsonify({'result': 'success', 'msg': '코멘트가 삭제되었습니다.'})
+
+
+@app.route('/update_like', methods=['POST'])
+def update_like():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+
+        user_info = db.users.find_one({"username": payload["id"]})
+        food_num_receive = request.form["food_num_give"]
+        type_receive = request.form["type_give"]
+        action_receive = request.form["action_give"]
+        doc = {
+            "foodNum": food_num_receive,
+            "username": user_info["username"],
+            "type": type_receive
+        }
+        if action_receive == "like":
+            db.likes.insert_one(doc)
+        else:
+            db.likes.delete_one(doc)
+        count = db.likes.count_documents({"foodNum": food_num_receive, "type": type_receive})
+        return jsonify({"result": "success", 'msg': 'updated', "count": count})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/"))
 
 
 if __name__ == '__main__':
