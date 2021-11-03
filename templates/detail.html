@@ -129,8 +129,7 @@
                                 }
                                 let html_temp3 = ` </div>
                                                 </div>`
-                                let html_temp = html_temp1 + html_temp2 + html_temp3
-                                $('#comments').append(html_temp)
+                                $('#comments').append(html_temp1 + html_temp2 + html_temp3)
                                 //유저 이름 Header에 넣기
                             }
                         }
@@ -157,7 +156,7 @@
     <div class="wrap">
       <!-- 상세 이미지 -->
       <section id="detail-image">
-        <div class="h2"><h2 class="title">Menu : <span class="menu">{{food.menu_name}}</span></h2></div>
+        <div class="h2"><h2 class="title"><span class="menu">{{food.menu_name}}</span></h2></div>
         <div class="ingredient-list">
           <img class="pentagon-img" src="../static/imgs/Star.png" alt="5각형">
           <img class="food-img" src="{{food.img}}" alt="음식명도 넘겨받기">
@@ -221,10 +220,10 @@
     //스크롤 이벤트
     $(window).scroll(function () {
         var height = $(document).scrollTop();
-        if(height > 600){
+        if(height > 500){
             $("#detail-text").addClass("show")
         }
-        if(height > 1000){
+        if(height > 1400){
             $("#comments").addClass("show")
         }
     }); 
