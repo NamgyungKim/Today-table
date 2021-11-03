@@ -18,7 +18,6 @@
             rel="stylesheet"
     />
 
-    <script src="/static/scripts/dtail.js"></script>
     <link rel="stylesheet" href="/static/styles/detail.css"/>
     <link rel="stylesheet" href="/static/styles/reset.css"/>
 
@@ -125,11 +124,14 @@
                                                     </div>
                                                 </div>`
                                 $('#comments').append(html_temp)
+                                //유저 이름 Header에 넣기
+                                $('.user-name-db').append(comment.nickname)
                             }
                         }
                     }
                 }
             })
+            
         }
     </script>
 
@@ -138,7 +140,11 @@
     <header id="header">
       <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div onclick="nav_show()"  class="user">
+<<<<<<< HEAD
         <span class="user-name"><span class="user-name-db">{{ nickname }}</span>님</span>
+=======
+        <span class="user-name"><span class="user-name-db"></span>님</span>
+>>>>>>> namgyung3
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
       <div onclick="sign_out()" class="nav">
@@ -148,15 +154,15 @@
     <div class="wrap">
       <!-- 상세 이미지 -->
       <section id="detail-image">
-        <h2 class="title">오늘의 매뉴 : <span class="menu">스테이크</span></h2>
+        <div class="h2"><h2 class="title">Menu : <span class="menu">{{food.menu_name}}</span></h2></div>
         <div class="ingredient-list">
           <img class="pentagon-img" src="../static/imgs/Star.png" alt="5각형">
-          <img class="food-img" src="../static/imgs/food.jpg" alt="음식명도 넘겨받기">
-          <div class="circle circle-1">칼로리<p class="calorie">50</p></div>
-          <div class="circle circle-2">나트륨<p class="natrium">200</p></div>
-          <div class="circle circle-3">탄수화물<p class="carbo">242</p></div>
-          <div class="circle circle-4">단백질<p class="protein">53</p></div>
-          <div class="circle circle-5">지방<p class="fat">25</p></div>
+          <img class="food-img" src="{{food.img}}" alt="음식명도 넘겨받기">
+          <div class="circle circle-1">칼로리<p class="calorie">{{food.calorie}}</p></div>
+          <div class="circle circle-2">나트륨<p class="natrium">{{food.natrium}}</p></div>
+          <div class="circle circle-3">탄수화물<p class="carbo">{{food.carbo}}</p></div>
+          <div class="circle circle-4">단백질<p class="protein">{{food.protein}}</p></div>
+          <div class="circle circle-5">지방<p class="fat">{{food.fat}}</p></div>
         </div>
       </section>
       <!-- 상세 설명글 -->
@@ -179,10 +185,9 @@
             </div>
           </div>
           <div class="recipe-text">
-            <p>1. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
-            <p>2. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
-            <p>3. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
-            <p>4. 고구마는 깨끗이 씻어서 껍질을 벗기고 4cm 정도로 잘라준다. </p>
+            <p class="ingredient"><strong>재료 :</strong> {{food.ingredient}}</p>
+            <p>{{food.Manual01}}</p>
+            <p>{{food.Manual02}}</p>
           </div>
         </div>
       </section>
@@ -201,12 +206,32 @@
   </body>
   <script>
     function nav_show(){
-      if($(".nav").css("display") == "none"){
-        $(".nav").show();
-      }else{
-        $(".nav").hide();
+      if($(".nav").hasClass("show")){
+          $(".nav").removeClass("show");
+    }else{
+        $(".nav").addClass("show");
       }
     }
+    
+    //상단 비주얼 부분
+
+    $(document).ready(function () {
+        $("#detail-image").addClass("show")
+        $(".pentagon-img").addClass("big")
+        $(".circle").addClass("big")
+    })
+    
+    $(window).scroll(function () {
+        var height = $(document).scrollTop();
+        if(height > 600){
+            $("#detail-text").addClass("show")
+        }
+        if(height > 1000){
+            $("#comments").addClass("show")
+        }
+        console.log(height)
+    }); 
+
   </script>
 
 </html>

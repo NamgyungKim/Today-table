@@ -1,22 +1,26 @@
 body { background-color: #FFE4E0;}
 .wrap { max-width: 1024px; margin: auto; padding: 20px}
 .blind {position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);}
+.show {opacity: 1 !important;}
 
-#header {display: flex; justify-content: space-between; height: 100px; background-color: #FF4253; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);}
+#header {position: sticky; display: flex; top: 0; justify-content: space-between; height: 100px; background-color: #FF4253; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3); z-index: 10;}
 #header .logo {height: 100px; padding: 15px 50px; box-sizing: border-box;}
 #header .user {display: flex; align-items: center; justify-content: space-between; cursor: pointer;}
 #header .user .user-name {font-size: 30px; font-weight: bold; color: white;}
 #header .user img {width: 50px; height: 50px; border-radius: 50%; margin: 0 50px 0 20px; }
-#header .nav {display: none; position: absolute; top: 120px; right: 50px; width: 200px;  border-radius: 10px; background-color: white; text-align:center; font-size: 28px; font-weight: bold; line-height: 70px; cursor: pointer;}
+#header .nav {position: absolute; top: 120px; right: 50px; width: 200px;  border-radius: 10px; background-color: white; opacity: 0; text-align:center; font-size: 28px; font-weight: bold; line-height: 70px; cursor: pointer; transition: all .5s;}
 
 /* 상세 이미지 */
-#detail-image {margin-top: 100px;}
-#detail-image .title {margin-bottom: 70px; text-align: center; font-size: 50px; font-weight: bold;}
+#detail-image { border-radius: 10px; padding: 0 10px 40px; margin-top: 80px; background-color: white; opacity: 0; transition: all 1s; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
+#detail-image .h2 {text-align: center;}
+#detail-image .title {display: inline-block; padding: 0 30px; margin: 0 auto 0px; background-color: #F8ADA9; transform: translateY(-50%); text-align: center; line-height: 60px; font-size: 40px; font-weight: bold;}
 #detail-image .ingredient-list {position: relative; height: 850px;}
-#detail-image .pentagon-img{ width: 600px; padding: 90px; margin: 20px auto; }
-#detail-image .food-img{position: absolute;top: 50%;left: 50%; width: 350px; transform: translate(-50%,-50%); border-radius: 20px; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);}
-#detail-image .circle {position: absolute; width: 200px; height: 200px; text-align: center; padding: 60px 0; border-radius: 50%; background-color: #FF4253;  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); color: white; box-sizing: border-box; font-size: 25px;}
-#detail-image .circle-1{top: 0; left: 50%; transform: translateX(-50%);}
+#detail-image .pentagon-img{ width: 0px; padding: 90px; margin: 20px auto; transition: all .5s;}
+#detail-image .pentagon-img.big {width: 600px;}
+#detail-image .food-img{position: absolute;top: 50%;left: 50%; width: 350px; transform: translate(-50%,-48%); border-radius: 20px; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);}
+#detail-image .circle {position: absolute; width: 180px; height: 180px; text-align: center; padding: 53px 0; border-radius: 50%; background-color: #FF4253;  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); color: white; box-sizing: border-box; font-size: 25px; transition: transform 1s ease; }
+#detail-image .circle.big{transform: scale(1.2);}
+#detail-image .circle-1{top: 0; left: 42%;}
 #detail-image .circle-2{top: 250px; left: 80px;}
 #detail-image .circle-3{top: 250px; right: 80px;}
 #detail-image .circle-4{bottom: 30px; left: 200px;}
@@ -24,19 +28,22 @@ body { background-color: #FFE4E0;}
 #detail-image .circle p {margin-top: 10px; font-weight: bold; font-size: 50px;}
 
 /* 상세 설명글 */
-#detail-text{margin:50px 0 100px;}
+#detail-text{margin:50px 0 100px; opacity: 0; transition: all 1s;}
 #detail-text .h2 {text-align: center;}
 #detail-text .h2 h2 { display: inline-block; padding: 0 50px; transform: translateY(50%); font-size: 45px; font-weight: bold; line-height: 60px; background-color: #F8ADA9;}
-#detail-text .recipe{padding: 50px 30px 30px; border-radius: 10px;; background-color: white; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
+#detail-text .recipe{padding: 50px 30px 30px; border-radius: 10px;; background-color: white; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
 #detail-text .recipe-img{display: flex; flex-wrap: wrap; justify-content:space-around;}
 #detail-text .recipe-img .img-box{ margin-bottom: 15px}
 #detail-text .recipe-img .process-img{height: 200px;}
 #detail-text .recipe-text{ margin-top: 40px;}
 #detail-text .recipe-text p{font-size: 20px; line-height: 40px;}
+#detail-text .recipe-text .ingredient{ margin-bottom: 20px; font-size: 16px;line-height: 30px;}
+#detail-text .recipe-text .ingredient strong{ font-weight: bold;}
 
 
 /* 댓글 */
-#comments .comment{ padding: 20px; border: 3px solid #F8ADA9; border-radius: 10px; background-color: #F8ADA9;}
+#comments {opacity: 0; transition: all 1s;}
+#comments .comment{ padding: 20px; border: 3px solid #F8ADA9; border-radius: 10px; background-color: #F8ADA9; }
 #comments .form-comment {display: flex; justify-content: space-between; border-radius: 10px; margin: 0 0 30px; width: 100%; background-color: white; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
 #comments .form-comment .input-comment {width: 100%; margin: 0; border: 0; padding: 20px; border-radius: 10px; font-size: 18px;}
 #comments .form-comment .input-comment::placeholder {font-size: 18px;}
