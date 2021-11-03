@@ -31,7 +31,7 @@
   <body>
     <header id="header">
       <h1>
-        <a href="#"
+        <a href="/"
           ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
         /></a>
       </h1>
@@ -87,6 +87,23 @@
           {% endfor %}
         </div>
       </div>
+
+      <!-- 모달 -->
+      <div class="modal hidden">
+        <div class="modal-contents">
+          <h1>질문에 답해주세요.</h1>
+          <div class="questions-container">
+            <h3 class="question">질문. 밥드실래요? 디저트드실래요?</h3>
+            <button class="answerUp">밥</button>
+            <button class="answerDown">후식</button>
+          </div>
+          <div class="control-container">
+            <button class="prev">prev</button>
+            <button class="next">next</button>
+          </div>
+        </div>
+      </div>
+
       <footer id="footer">© 2021 오늘뭐먹지? by 5조</footer>
     </div>
   </body>
