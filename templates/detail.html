@@ -125,7 +125,6 @@
                                                 </div>`
                                 $('#comments').append(html_temp)
                                 //유저 이름 Header에 넣기
-                                $('.user-name-db').append(comment.nickname)
                             }
                         }
                     }
@@ -140,11 +139,7 @@
     <header id="header">
       <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div onclick="nav_show()"  class="user">
-<<<<<<< HEAD
-        <span class="user-name"><span class="user-name-db">{{ nickname }}</span>님</span>
-=======
-        <span class="user-name"><span class="user-name-db"></span>님</span>
->>>>>>> namgyung3
+        <span class="user-name"><span class="user-name-db">{{nickname}}</span> 님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
       <div onclick="sign_out()" class="nav">
