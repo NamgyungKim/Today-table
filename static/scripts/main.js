@@ -10,6 +10,23 @@
 //     }
 // })
 
+function nav_show() {
+  if ($(".nav").css("display") == "none") {
+    $(".nav").show();
+  } else {
+    $(".nav").hide();
+  }
+}
+
+function search_ingredients() {
+  let value = $(".search-input").val();
+  console.log(value);
+}
+
+function likeHeart() {
+  console.log("ㅇㅇㅇ");
+}
+
 $(document).ready(function () {
   // get_list();
 });

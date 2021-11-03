@@ -1,4 +1,5 @@
 import json
+import random
 from datetime import date, datetime, timedelta
 
 import requests
@@ -31,11 +32,12 @@ def home():
     # 클라이언트로 부터 토큰이 담긴 쿠키를 받는다.
     token_receive = request.cookies.get('mytoken')
     dishes = list(db.foodInfo.find({}, {'_id': False}))
+    recommends = random.sample(dishes, 3)
     try:
         # payload 생성
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload['id']})
-        return render_template('main.html', nickname=user_info["nickname"], dishes=dishes)
+        return render_template('main.html', nickname=user_info["nickname"], dishes=dishes, recommends=recommends)
     # 토큰이 만료되었을 때
     except jwt.ExpiredSignatureError:
         return redirect(url_for("index", msg="login expired"))

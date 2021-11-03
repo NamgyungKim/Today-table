@@ -11,14 +11,50 @@ body {
   align-items: center;
 }
 
-.nav-bar {
-  width: 100%;
-  height: auto;
-  background-color: #ff4253;
+#header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100px;
+  background-color: #ff4253;
+  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);
+}
+#header .logo {
+  height: 100px;
+  padding: 15px 50px;
+  box-sizing: border-box;
+}
+#header .user {
+  display: flex;
   align-items: center;
-  padding: 0.5rem 0;
+  justify-content: space-between;
+  cursor: pointer;
+}
+#header .user .user-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+}
+#header .user img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 50px 0 20px;
+}
+#header .nav {
+  display: none;
+  position: absolute;
+  top: 120px;
+  right: 50px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 70px;
+  cursor: pointer;
 }
 
 h1 {
@@ -39,12 +75,21 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 5rem 0 3rem 0;
   background-color: #ffe4e0;
 }
 
-.main-container .recommend-container h2 {
+.main-container .recommend-container h2,
+.main-container .list-container h2 {
   font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.main-container .recommend-container h4,
+.main-container .list-container h4 {
+  color: black;
+  opacity: 0.8;
 }
 
 .main-container .recommend-container .image-container {
@@ -52,7 +97,9 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
+  margin: 1.5rem 0 3rem 0;
+  padding: 1rem 2rem;
+  background-color: #f8ada9;
 }
 
 .image-container .dish {
@@ -92,6 +139,7 @@ h1 {
   width: 60%;
   text-align: center;
   word-break: keep-all;
+  line-height: 1.5rem;
 }
 
 .dish .dish-desc .dish-type {
@@ -116,50 +164,86 @@ h1 {
   color: #fff;
   font-weight: bold;
   letter-spacing: 1px;
+  transition: 0.1s ease-in;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.main-container .recommend-container .recommend-btn:active {
+  transform: scale(0.995);
+}
+
+.main-container .recommend-container .divide-line {
+  width: 80%;
+  height: 3px;
+  background-color: #ff4253;
+  margin: 5rem 0;
+  border-radius: 1.5px;
 }
 
 /* 목록 부분 */
 .main-container .list-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  padding: 1rem 0;
-  background-color: #f8ada9;
+  padding-bottom: 5rem;
+  background-color: #ffe4e0;
+}
+
+.main-container .list-container h2 {
+  margin-bottom: 2rem;
+}
+.main-container .list-container h4 {
+  margin-bottom: 1rem;
 }
 
 .main-container .list-container .search-form {
-  width: fit-content;
-  margin: 0 10%;
+  display: flex;
+  width: 300px;
+  height: 40px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .search-form .search-input {
-  width: 200px;
-  height: 40px;
+  width: 70%;
   border: none;
   background-color: #61b5d9;
   color: #fff;
-  border-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   padding: 5px;
   font-size: 17px;
   font-weight: bold;
 }
+
 .search-form .search-btn {
-  width: 50px;
-  height: 40px;
+  width: 30%;
+  background-color: #fff;
+  color: #61b5d9;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: 0.3s ease-in;
+}
+
+.search-form .search-btn:hover {
   background-color: #61b5d9;
   color: #fff;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
 }
 
 .main-container .list-container .dish-lists {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   justify-content: center;
+  padding: 2rem 3rem;
   margin: 1rem 0;
+  background-color: #f8ada9;
+  border-radius: 10px;
 }
 
 .main-container .list-container .dish-lists .dish {
@@ -168,21 +252,52 @@ h1 {
   cursor: pointer;
   background-color: #fff;
   border-radius: 5px;
+  overflow: hidden;
+  position: relative;
 }
 
-.main-container .dish-lists .dish img {
+.main-container .dish-lists .dish .img-wrap {
+  width: 200px;
+  overflow: hidden;
+}
+
+.main-container .dish-lists .dish .img-wrap img {
   width: 200px;
   height: 200px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  transition: 0.3s ease-in;
 }
 
-.main-container .dish-lists .dish .title {
-  font-size: 1rem;
+.main-container .dish-lists .dish img:hover {
+  transform: scale(1.1);
+}
+
+.main-container .dish-lists .dish .description {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.4rem;
+  background-color: #fff;
+}
+
+.dish .description .dish-type {
+  font-size: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.dish .description .dish-name {
+  font-size: 0.8rem;
   word-break: keep-all;
-  text-align: center;
   margin-bottom: 0.3rem;
   color: black;
   font-weight: bold;
-  padding: 0.2rem 0;
+}
+
+.dish .fa-heart {
+  position: absolute;
+  top: 205px;
+  right: 0.4rem;
+  font-size: 1rem;
 }
