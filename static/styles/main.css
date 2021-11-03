@@ -63,9 +63,9 @@ h1 {
 
 .main-container {
   width: 100%;
-  /* max-width: 1000px; */
   display: flex;
   flex-direction: column;
+  background-color: #ffe4e0;
 }
 
 /* 추천 부분 */
@@ -76,7 +76,6 @@ h1 {
   justify-content: center;
   align-items: center;
   padding: 5rem 0 3rem 0;
-  background-color: #ffe4e0;
 }
 
 .main-container .recommend-container h2,
@@ -98,13 +97,13 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 1.5rem 0 3rem 0;
-  padding: 1rem 2rem;
+  padding: 2rem 3rem;
   background-color: #f8ada9;
 }
 
 .image-container .dish {
-  width: 200px;
-  height: 320px;
+  width: 280px;
+  height: 430px;
   position: relative;
   margin: 0 0.5rem;
   cursor: pointer;
@@ -115,14 +114,14 @@ h1 {
 }
 
 .image-container .dish img {
-  width: 200px;
-  height: 320px;
+  width: 280px;
+  height: 430px;
   object-fit: cover;
 }
 
 .image-container .dish .dish-desc {
-  width: 200px;
-  height: 320px;
+  width: 280px;
+  height: 430px;
   background-color: black;
   color: #fff;
   position: absolute;
@@ -137,9 +136,10 @@ h1 {
 
 .dish .dish-desc .dish-name {
   width: 60%;
+  font-size: 1.5rem;
   text-align: center;
   word-break: keep-all;
-  line-height: 1.5rem;
+  line-height: 2rem;
 }
 
 .dish .dish-desc .dish-type {
@@ -171,14 +171,6 @@ h1 {
   transform: scale(0.995);
 }
 
-.main-container .recommend-container .divide-line {
-  width: 80%;
-  height: 3px;
-  background-color: #ff4253;
-  margin: 5rem 0;
-  border-radius: 1.5px;
-}
-
 /* 목록 부분 */
 .main-container .list-container {
   display: flex;
@@ -186,15 +178,14 @@ h1 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-bottom: 5rem;
-  background-color: #ffe4e0;
+  padding: 5rem 0;
 }
 
 .main-container .list-container h2 {
   margin-bottom: 2rem;
 }
 .main-container .list-container h4 {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .main-container .list-container .search-form {
@@ -202,15 +193,16 @@ h1 {
   width: 300px;
   height: 40px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-color: #fff;
 }
 
 .search-form .search-input {
   width: 70%;
   border: none;
-  background-color: #61b5d9;
-  color: #fff;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
+  color: black;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   padding: 5px;
   font-size: 17px;
   font-weight: bold;
@@ -218,11 +210,10 @@ h1 {
 
 .search-form .search-btn {
   width: 30%;
-  background-color: #fff;
-  color: #61b5d9;
+  background-color: #ff4253;
+  color: #fff;
   border: none;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
@@ -231,14 +222,14 @@ h1 {
 }
 
 .search-form .search-btn:hover {
-  background-color: #61b5d9;
-  color: #fff;
+  background-color: #fff;
+  color: #ff4253;
 }
 
 .main-container .list-container .dish-lists {
-  width: 1200px;
+  width: 900px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
   padding: 2rem 3rem;
   margin: 1rem 0;
@@ -250,7 +241,7 @@ h1 {
   width: 200px;
   margin: 0.3rem;
   cursor: pointer;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 5px;
   overflow: hidden;
   position: relative;
@@ -274,12 +265,12 @@ h1 {
 }
 
 .main-container .dish-lists .dish .description {
-  height: 50px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0.4rem;
-  background-color: #fff;
+  padding: 0.6rem;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .dish .description .dish-type {
@@ -288,9 +279,14 @@ h1 {
 }
 
 .dish .description .dish-name {
-  font-size: 0.8rem;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   word-break: keep-all;
+  font-size: 0.8rem;
   margin-bottom: 0.3rem;
+  line-height: 1rem;
   color: black;
   font-weight: bold;
 }
@@ -300,4 +296,151 @@ h1 {
   top: 205px;
   right: 0.4rem;
   font-size: 1rem;
+}
+
+/* 모달 */
+.main-container .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.main-container .modal.hidden {
+  display: none;
+}
+
+.main-container .modal .modal-contents {
+  width: 900px;
+  height: 540px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5c156;
+  border-radius: 10px;
+  border: 3px solid midnightblue;
+  overflow: hidden;
+}
+
+.modal .modal-contents h1 {
+  font-size: 2rem;
+}
+
+.modal .modal-contents .questions-container {
+  width: 600px;
+  height: 400px;
+  background-color: tomato;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.questions-container .question {
+  font-size: 1.5rem;
+}
+
+.questions-container .answerUp,
+.questions-container .answerDown {
+  width: 400px;
+  background-color: thistle;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 1rem 0;
+}
+
+.modal .modal-contents .control-container {
+  width: 200px;
+  position: absolute;
+  bottom: 10px;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-contents .control-container button {
+  width: 80px;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  border: 2px solid black;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #61b5d9;
+  transition: 0.3s ease-in;
+}
+
+.modal-contents .control-container button:hover {
+  background-color: #61b5d9;
+  color: #fff;
+}
+
+/* pc */
+@media (max-width: 1024px) {
+  .main-container {
+    background-color: yellow;
+  }
+
+  .image-container .dish {
+    width: 240px;
+    height: 380px;
+  }
+
+  .image-container .dish img {
+    width: 240px;
+    height: 380px;
+  }
+
+  .image-container .dish .dish-desc {
+    width: 240px;
+    height: 380px;
+  }
+
+  .dish .dish-desc .dish-name {
+    font-size: 1.2rem;
+  }
+
+  .main-container .list-container .dish-lists {
+    width: 700px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+/* 태블릿 가로 */
+@media (max-width: 768px) {
+  .main-container {
+    background-color: pink;
+  }
+
+  .image-container .dish,
+  .image-container .dish img,
+  .image-container .dish .dish-desc {
+    width: 150px;
+    height: 270px;
+  }
+
+  .dish .dish-desc .dish-name {
+    font-size: 1rem;
+    line-height: 1.2rem;
+  }
+
+  .main-container .list-container .dish-lists {
+    width: 480px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/* 태블릿 세로, 모바일 가로*/
+@media (max-width: 480px) {
 }
