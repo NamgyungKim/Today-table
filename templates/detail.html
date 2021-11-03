@@ -20,6 +20,7 @@
 
     <link rel="stylesheet" href="/static/styles/detail.css"/>
     <link rel="stylesheet" href="/static/styles/reset.css"/>
+    <link rel="stylesheet" href="/static/styles/common.css"/>
 
     <title>details</title>
 
@@ -139,7 +140,7 @@
     <header id="header">
       <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div onclick="nav_show()"  class="user">
-        <span class="user-name"><span class="user-name-db">{{nickname}}</span> 님</span>
+        <span class="user-name"><span class="user-name-db">{{ nickname }}</span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
       <div onclick="sign_out()" class="nav">

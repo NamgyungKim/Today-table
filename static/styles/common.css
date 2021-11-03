@@ -1,0 +1,24 @@
+/*********header *********/
+#header {position: sticky; display: flex; top: 0; justify-content: space-between; height: 100px; background-color: #FF4253; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3); z-index: 10;}
+#header .logo {height: 100px; padding: 15px 50px; box-sizing: border-box;}
+#header .user {display: flex; align-items: center; justify-content: space-between; cursor: pointer;}
+#header .user .user-name {font-size: 30px; font-weight: bold; color: white;}
+#header .user img {width: 50px; height: 50px; border-radius: 50%; margin: 0 50px 0 20px; }
+#header .nav {position: absolute; top: 120px; right: 50px; width: 200px;  border-radius: 10px; background-color: white; opacity: 0; text-align:center; font-size: 28px; font-weight: bold; line-height: 70px; cursor: pointer; transition: all .5s;}
+.show {opacity: 1 !important;}
+
+/********* footer *********/
+#footer {margin: 100px 0 50px; text-align: center;}
+
+
+
+
+/* pc */
+@media (max-width:1024px) { 
+} 
+/* 태블릿 가로 */
+@media (max-width:768px){ 
+} 
+/* 태블릿 세로, 모바일 가로*/ 
+@media (max-width:480px){
+}
