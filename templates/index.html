@@ -78,7 +78,7 @@
         $('#help-id').addClass('is-loading')
         $.ajax({
           type: 'POST',
-          url: '/sign_up/check_dup',
+          url: '/api/sign_up/check_dup',
           data: {
             username_give: username,
           },
@@ -158,7 +158,7 @@
         }
         $.ajax({
           type: 'POST',
-          url: '/sign_up/save',
+          url: '/api/sign_up',
           data: {
             username_give: username,
             password_give: password,
@@ -192,7 +192,7 @@
         }
         $.ajax({
           type: 'POST',
-          url: '/sign_in',
+          url: '/api/sign_in',
           data: {
             username_give: username,
             password_give: password,

@@ -51,13 +51,8 @@ def index():
     return render_template('index.html', msg=msg)
 
 
-# @app.route('/register')
-# def register():
-#     return render_template('register.html')
-
-
 # 아이디 중복 체크 API
-@app.route('/sign_up/check_dup', methods=['POST'])
+@app.route('/api/sign_up/check_dup', methods=['POST'])
 def check_dup():
     username_receive = request.form['username_give']
     exists = bool(db.users.find_one({"username": username_receive}))
@@ -65,7 +60,7 @@ def check_dup():
 
 
 # 회원가입 완료 후 DB에 저장
-@app.route('/sign_up/save', methods=['POST'])
+@app.route('/api/sign_up', methods=['POST'])
 def sign_up():
     username_receive = request.form['username_give']
     password_receive = request.form['password_give']
@@ -81,7 +76,7 @@ def sign_up():
 
 
 # 로그인 기능
-@app.route('/sign_in', methods=['POST'])
+@app.route('/api/sign_in', methods=['POST'])
 def sign_in():
     # 로그인
     username_receive = request.form['username_give']
@@ -103,11 +98,55 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 
 
+
 # detail 페이지
 @app.route('/detail/<keyword>')
 def detail(keyword):
     food = db.foodInfo.find_one({'no' : keyword}, {'_id': False})
-    return render_template('detail.html', food=food)
+    comments = db.comments.find({'num': keyword}, {'_id': False})
+    return render_template('detail.html', food=food, comments=comments)
+
+
+# 코멘트 저장
+@app.route('/api/save_comment', methods=['POST'])
+def save_comment():
+    comment_receive = request.form['comment_give']
+    num_receive = request.form['num_give']
+    time_receive = request.form['time_give']
+
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    username = payload['id']
+
+    doc = {
+        "num": num_receive,
+        "username": username,
+        "comment": comment_receive,
+        "time": time_receive
+    }
+
+    db.comments.insert_one(doc)
+
+    return jsonify({'result': 'success', 'msg': 'Comment 저장 성공'})
+
+
+# 코멘트 불러오기
+@app.route('/api/get_comments', methods=['POST'])
+def get_comments():
+    num_receive = request.form['num_give']
+    comments = list(db.comments.find({'num': num_receive}, {'_id': False}).sort("time", -1))
+
+    return jsonify({'result': 'success', 'comments': comments})
+
+
+# 코멘트 삭제하기
+@app.route('/api/delete_comment', methods=['POST'])
+def delete_comment():
+    username_receive = request.form['username_give']
+    comment_receive = request.form['comment_give']
+    db.comments.delete_one({'username': username_receive, 'comment': comment_receive})
+
+    return jsonify({'result': 'success', 'msg': '코멘트가 삭제되었습니다.'})
 
 
 if __name__ == '__main__':
