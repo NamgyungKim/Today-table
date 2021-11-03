@@ -26,9 +26,12 @@
   <body>
     <header id="header">
       <h1><a href="#"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
-      <div class="user">
+      <div onclick="nav_show()"  class="user">
         <span class="user-name"><span class="user-name-db">USER Name</span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
+      </div>
+      <div class="nav">
+        로그 아웃
       </div>
     </header>
     <div class="wrap">
@@ -110,4 +113,13 @@
       </footer>
     </div>
   </body>
+  <script>
+    function nav_show(){
+      if($(".nav").css("display") == "none"){
+        $(".nav").show();
+      }else{
+        $(".nav").hide();
+      }
+    }
+  </script>
 </html>
