@@ -48,15 +48,62 @@ h1 {
 }
 
 .main-container .recommend-container .image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 1rem 0;
 }
 
-.image-container img {
+.image-container .dish {
+  width: 200px;
+  height: 320px;
+  position: relative;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.image-container .dish:hover .dish-desc {
+  opacity: 0.6;
+}
+
+.image-container .dish img {
   width: 200px;
   height: 320px;
   object-fit: cover;
-  margin: 0 0.5rem;
-  cursor: pointer;
+}
+
+.image-container .dish .dish-desc {
+  width: 200px;
+  height: 320px;
+  background-color: black;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.3s ease-in;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dish .dish-desc .dish-name {
+  width: 60%;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.dish .dish-desc .dish-type {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 5px;
+  background-color: yellow;
+  color: black;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 0.2rem 0.3rem;
 }
 
 .main-container .recommend-container .recommend-btn {
@@ -135,4 +182,7 @@ h1 {
   word-break: keep-all;
   text-align: center;
   margin-bottom: 0.3rem;
+  color: black;
+  font-weight: bold;
+  padding: 0.2rem 0;
 }

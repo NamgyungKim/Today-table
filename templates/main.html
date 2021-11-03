@@ -19,6 +19,7 @@
 
     <script src="/static/scripts/main.js"></script>
     <link rel="stylesheet" href="/static/styles/main.css" />
+    <link rel="stylesheet" href="/static/styles/reset.css" />
     <title>Main Page</title>
   </head>
   <body>
@@ -26,7 +27,19 @@
     <div class="main-container">
       <div class="recommend-container">
         <h2>추천 드려요~!</h2>
-        <div class="image-container"></div>
+        <div class="image-container">
+          {% for dish in dishes %}
+          <div class="dish">
+            <a href="/detail/{{dish.no}}">
+              <img src="{{ dish.img }}" alt="dish-image" />
+              <div class="dish-desc">
+                <p class="dish-name">{{dish.menu_name}}</p>
+                <p class="dish-type">{{dish.menu_type}}</p>
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
         <button class="recommend-btn">마음에 드는 게 없다면?</button>
       </div>
       <div class="list-container">
@@ -34,7 +47,16 @@
           <input type="text" class="search-input" />
           <button type="submit" class="search-btn">찾기</button>
         </form>
-        <div class="dish-lists"></div>
+        <div class="dish-lists">
+          {% for dish in dishes %}
+          <div class="dish">
+            <a href="/detail/{{dish.no}}">
+              <img src="{{ dish.img }}" alt="dish-image" />
+              <h3 class="title">{{ dish.menu_type }} {{ dish.menu_name }}</h3>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </body>
