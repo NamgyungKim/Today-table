@@ -419,6 +419,11 @@ h1 {
   background-color: #61b5d9;
   color: #fff;
 }
+.modal-contents .control-container button:disabled {
+  background-color: #ccc;
+  color: #61b5d9;
+  cursor: initial;
+}
 
 .modal .modal-contents .exit-btn {
   width: 30px;
@@ -430,6 +435,72 @@ h1 {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.modal .modal-contents .recomended-dish {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 5.5rem;
+  width: 400px;
+  height: 400px;
+  background-color: tomato;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.modal .modal-contents .recomended-dish a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-contents .recomended-dish .img-wrap {
+  border-radius: 5px;
+  overflow: hidden;
+}
+.modal-contents .recomended-dish .img-wrap img {
+  width: 300px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.modal-contents .recomended-dish .dish-name {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  background-color: brown;
+  padding: 0.5rem 1rem;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+
+.modal-contents .recomended-dish .retry-btn {
+  font-size: 1.2rem;
+  background-color: coral;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.modal-contents .recomended-dish .retry-btn:hover {
+  background-color: #fff;
+  color: coral;
+}
+
+.modal-contents .recomended-dish .description {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 /* pc */
