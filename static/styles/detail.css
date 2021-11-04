@@ -1,4 +1,4 @@
-body { background-color: #FFE4E0;}
+body { background-color: #FFE4E0; color: #4a4a4a;}
 .wrap { max-width: 1024px; margin: auto; padding: 20px}
 .blind {position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);}
 .show {opacity: 1 !important;}
@@ -6,7 +6,7 @@ body { background-color: #FFE4E0;}
 
 /* 상세 이미지 */
 #detail-image { border-radius: 10px; padding: 0 10px 40px; margin: 80px 90px 0; background-color: white; opacity: 0; transition: all 1s; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
-#detail-image .h2 {text-align: center;}
+#detail-image .h2 {text-align: center; color: black;}
 #detail-image .title {display: inline-block; padding: 0 30px; margin: 0 auto 0px; background-color: #F8ADA9; transform: translateY(-50%); text-align: center; line-height: 60px; font-size: 34px; font-weight: bold;}
 #detail-image .ingredient-list {position: relative; }
 #detail-image .food-img{ width: 550px; margin: 56px auto 74px;-webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);}
@@ -21,7 +21,7 @@ body { background-color: #FFE4E0;}
 
 /* 상세 설명글 */
 #detail-text{margin:50px 0 100px; opacity: 0; transition: all 1.5s;}
-#detail-text .h2 {text-align: center;}
+#detail-text .h2 {text-align: center; color: black;}
 #detail-text .h2 h2 { display: inline-block; padding: 0 50px; transform: translateY(50%); font-size: 45px; font-weight: bold; line-height: 60px; background-color: #F8ADA9;}
 #detail-text .recipe{padding: 50px 30px 30px; border-radius: 10px; margin: 0 90px; background-color: white; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
 #detail-text .recipe-img{display: flex; flex-wrap: wrap; justify-content:space-around;}
@@ -49,8 +49,8 @@ body { background-color: #FFE4E0;}
 #comments .comment .comment-bottom {display: flex; justify-content: flex-end;}
 #comments .comment .comment-bottom .date,
 #comments .comment .comment-bottom .delete-btn {display: block; width: 80px;  line-height: 30px;}
-#comments .comment .comment-bottom .delete-btn {margin: 0 10px; border: 1px solid gray; border-radius: 10px; background-color: white; color: gray; font-weight: bold; font-size: 17px; cursor: pointer; transition: all .5s;}
-#comments .comment .comment-bottom .delete-btn:hover{ background-color: #fb7883; color: black;}
+#comments .comment .comment-bottom .delete-btn {margin: 0 10px; border: 1px solid gray; border-radius: 10px; background-color: white; color: rgb(156, 156, 156); font-weight: bold; font-size: 17px; cursor: pointer; transition: all .5s;}
+#comments .comment .comment-bottom .delete-btn:hover{border: 1px solid rgb(77, 76, 76); color: black;}
 
 
 #pentagon {z-index: 10px; border: 1px solid red;}
