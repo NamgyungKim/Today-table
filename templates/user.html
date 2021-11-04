@@ -277,19 +277,14 @@
 
 </head>
 <body>
-<header id="header">
-    <h1>
-        <a href="/"
-        ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
-        /></a>
-    </h1>
-    <div onclick="nav_show()" class="user">
-        <span class="user-name">
-            <span class="user-name-db">{{ nickname }}</span>님</span>
-        <img src="https://picsum.photos/id/237/200/300"/>
-    </div>
-    <div class="nav" onclick="sign_out()">로그아웃</div>
-</header>
+ <header id="header">
+      <h1><a onclick="window.location.href='/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
+      <div tabindex="0" class="user">
+        <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
+        <img src="https://picsum.photos/id/237/200/300" alt="프로필">
+         <div class="nav">  <div onclick="sign_out()">로그아웃</div> </div>
+      </div>
+    </header>
 <div class="wrap">
     <div class="main-container">
 
@@ -381,5 +376,16 @@
     </div>
 </div>
 </body>
+<script>
+       // 프로필클릭시 로그아웃버튼 show
+    $('.user').click(function(){
+      if($(".nav").hasClass("show")){
+        $(".nav").removeClass("show");
+      }else{
+        $(".nav").show()
+        $(".nav").addClass("show");
+      }
+    })
+</script>
 
 </html>
