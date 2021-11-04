@@ -55,7 +55,6 @@ body {
   font-weight: bold;
   line-height: 70px;
   cursor: pointer;
-  opacity: 1;
 }
 
 h1 {
@@ -327,12 +326,13 @@ h1 {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #f5c156;
   border-radius: 10px;
   border: 3px solid midnightblue;
   overflow: hidden;
+  padding: 1rem 0;
 }
 
 .modal .modal-contents h1 {
@@ -341,6 +341,10 @@ h1 {
 
 .modal .modal-contents .question-wrap {
   width: 1800px;
+  display: flex;
+  position: absolute;
+  top: 4.5rem;
+  left: 0;
 }
 
 .modal .modal-contents .question-wrap .questions-container {
@@ -351,8 +355,9 @@ h1 {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  margin: 0 150px;
 }
 
 .box-radio-input input[type="radio"] {
@@ -383,10 +388,10 @@ h1 {
 
 .modal .modal-contents .control-container {
   width: 200px;
-  position: absolute;
+  /* position: absolute;
   bottom: 10px;
   right: 50%;
-  transform: translateX(50%);
+  transform: translateX(50%); */
   display: flex;
   justify-content: space-between;
 }
@@ -406,6 +411,18 @@ h1 {
 .modal-contents .control-container button:hover {
   background-color: #61b5d9;
   color: #fff;
+}
+
+.modal .modal-contents .exit-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid black;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 /* pc */

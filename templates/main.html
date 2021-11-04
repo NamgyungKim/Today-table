@@ -62,7 +62,9 @@
           </div>
           {% endfor %}
         </div>
-        <button class="recommend-btn">마음에 드는 게 없다면?</button>
+        <button class="recommend-btn" onclick="show_modal()">
+          마음에 드는 게 없다면?
+        </button>
       </div>
       <div class="list-container">
         <h2>건강한 레시피를 찾아보세요!</h2>
@@ -90,7 +92,7 @@
               aria-label="heart"
               onclick="toggle_like('{{ dish.no }}', 'heart')"
             >
-              <i class="fa {{ class_heart }} like-heart" aria-hidden="true"></i>
+              <i class="fa {{ class_heart }}" aria-hidden="true"></i>
               <span class="like-num">{{ dish.count_like }}</span></a
             >
           </div>
@@ -108,14 +110,31 @@
               <label class="box-radio-input"
                 ><input
                   type="radio"
-                  name="cp_item"
+                  name="item_type"
                   value="밥"
                   checked="checked"
                 /><span>밥</span></label
               >
               <label class="box-radio-input"
-                ><input type="radio" name="cp_item" value="후식" /><span
+                ><input type="radio" name="item_type" value="후식" /><span
                   >후식</span
+                ></label
+              >
+            </div>
+
+            <div class="questions-container">
+              <h3 class="question">질문. 끓이기? 조리기?</h3>
+              <label class="box-radio-input"
+                ><input
+                  type="radio"
+                  name="item_howto"
+                  value="끓이기"
+                  checked="checked"
+                /><span>끓이기</span></label
+              >
+              <label class="box-radio-input"
+                ><input type="radio" name="item_howto" value="조리기" /><span
+                  >조리기</span
                 ></label
               >
             </div>
@@ -124,6 +143,7 @@
             <button class="prev">prev</button>
             <button class="next">next</button>
           </div>
+          <button class="exit-btn" onclick="hide_modal()">X</button>
         </div>
       </div>
 
