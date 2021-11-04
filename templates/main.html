@@ -284,10 +284,13 @@
           answers_give: answers,
         },
         success: function (response) {
+            // 여기는 안쓰고
           if (response["result"] == "success") {
             $(".question-wrap").empty();
             let recommended_dish = response["recommended"]; // recommended
             console.log(recommended_dish);
+
+            // temp html
           }
         },
       });
