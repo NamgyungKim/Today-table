@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://3.38.96.45', 27017, username="test", password="test")
-db = client.what_to_feed
+client = MongoClient('mongodb://3.35.19.169', 27017, username="test", password="test")
+db = client.todaystable
 
 # JWT 토큰을 만들 때 필요한 비밀번호와 같은 문자열.
 # JWT 토큰을 만들 때 필요한 비밀번호와 같은 문자열.
