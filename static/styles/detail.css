@@ -71,11 +71,8 @@ body { background-color: #FFE4E0;}
 /* 태블릿 가로 */
 @media (max-width:768px){ 
   .wrap { max-width: 480px; margin: auto; padding: 20px}
-  
-
   #detail-image {margin-top: 40px;}
   #detail-image .title { font-size: 22px;}
-
   #detail-image .ingredient-list {height: auto;}
   #detail-image .food-img {position: static; width: 90%; margin: 10px auto; transform: translate(0); }
   #detail-image .pentagon-img {display: none;}
