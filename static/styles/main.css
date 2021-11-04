@@ -505,10 +505,6 @@ h1 {
 
 /* pc */
 @media (max-width: 1024px) {
-  .main-container {
-    background-color: yellow;
-  }
-
   .image-container .dish {
     width: 240px;
     height: 380px;
@@ -535,10 +531,6 @@ h1 {
 }
 /* 태블릿 가로 */
 @media (max-width: 768px) {
-  .main-container {
-    background-color: pink;
-  }
-
   .image-container .dish,
   .image-container .dish img,
   .image-container .dish .dish-desc {

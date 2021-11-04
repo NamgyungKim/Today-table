@@ -105,7 +105,7 @@
         <div class="modal-contents">
           <!-- <h1>추천 드립니다!</h1>
           <div class="recomended-dish">
-            <a href="/detail/{{ recommended_dish.no }}">
+            <a href="/detail/">
               <h3 class="dish-name">굴밥</h3>
               <div class="img-wrap">
                 <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
@@ -263,41 +263,41 @@
       clearQnA();
 
       // 메뉴 한 개 추천받으러
-      $.ajax({
-        type: "POST",
-        url: "/api/recommend_food",
-        data: {
-          answers_give: answers,
-        },
-        success: function (response) {
-          if (response["result"] == "success") {
-            $(".question-wrap").empty();
-            let recommended_dish = response["food"];
-            let temp_html = `
-                <a href="/detail/{{ recommended_dish.no }}">
-                    <div class="img-wrap">
-                        <img src="{{ recommended_dish.img }}" alt="dish-image" />
-                    </div>
-                    <div class="description">
-                        <p class="dish-type">{{ recommended_dish.menu_type }}</p>
-                        <h3 class="dish-name">{{ recommended_dish.menu_name }}</h3>
-                    </div>
-                </a>
-                <a
-                class="level-item"
-                aria-label="heart"
-                onclick="toggle_like('{{ recommended_dish.no }}', 'heart')"
-                >
-                    <i class="fa {{ class_heart }}" aria-hidden="true"></i>
-                    <span class="like-num">{{ recommended_dish.count_like }}</span></a
-                >`;
-            $(".question-wrap").append(temp_html);
-          }
-        },
-      });
+      {#// $.ajax({#}
+      {#//   type: "POST",#}
+      {#//   url: "/api/recommend_food",#}
+      {#//   data: {#}
+      {#//     answers_give: answers,#}
+      {#//   },#}
+      {#//   success: function (response) {#}
+      {#//     if (response["result"] == "success") {#}
+      {#//       $(".question-wrap").empty();#}
+      {#//       let recommended_dish = response["food"];#}
+      {#//       let temp_html = `#}
+      {#//           <a href="/detail/{{ recommended_dish.no }}">#}
+      {#//               <div class="img-wrap">#}
+      {#//                   <img src="{{ recommended_dish.img }}" alt="dish-image" />#}
+      {#//               </div>#}
+      {#//               <div class="description">#}
+      {#//                   <p class="dish-type">{{ recommended_dish.menu_type }}</p>#}
+      {#//                   <h3 class="dish-name">{{ recommended_dish.menu_name }}</h3>#}
+      {#//               </div>#}
+      {#//           </a>#}
+      {#//           <a#}
+      {#//           class="level-item"#}
+      {#//           aria-label="heart"#}
+      {#//           onclick="toggle_like('{{ recommended_dish.no }}', 'heart')"#}
+      {#//           >#}
+      {#//               <i class="fa {{ class_heart }}" aria-hidden="true"></i>#}
+      {#//               <span class="like-num">{{ recommended_dish.count_like }}</span></a#}
+      {#//           >`;#}
+      {#//       $(".question-wrap").append(temp_html);#}
+      {#//     }#}
+      {#//   },#}
+      {#// });#}
     });
   </script>
-    <script>
+  <script>
     let dishes = {{ dishes|tojson }};
     $(document).ready(function () {
         $(".search-form").on("submit", function (e) {
@@ -338,5 +338,5 @@
             }
         });
     });
-    </script>
+  </script>
 </html>
