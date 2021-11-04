@@ -43,13 +43,15 @@ function toggle_like(food_num, type) {
     });
   }
 }
+function userpage() {
+  window.location.href="/user/{{ user_info.username }}";
+}
 
 function sign_out() {
   $.removeCookie("mytoken", { path: "/" });
   alert("정상적으로 로그아웃 되었습니다.");
   window.location.href = "/";
 }
-
 function nav_show() {
   if ($(".nav").css("display") == "none") {
     $(".nav").show();
