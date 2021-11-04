@@ -193,114 +193,114 @@
     </div>
   </body>
   <script>
-    let idx = 0;
+    let idx = 0
 
-    const modalContents = document.querySelector(".modal-contents");
-    const modalWrap = document.querySelector(".modal-wrap");
-    const modalResult = document.querySelector(".modal-result");
-    const controlContainer = document.querySelector(".control-container");
-    const questionWrap = document.querySelector(".question-wrap");
-    const questions = document.querySelectorAll(".questions-container");
-    const prevBtn = document.querySelector(".prev");
-    const nextBtn = document.querySelector(".next");
-    const submitBtn = document.querySelector(".submit");
-    const modalHideBtn = document.querySelector(".exit-btn");
+    const modalContents = document.querySelector('.modal-contents')
+    const modalWrap = document.querySelector('.modal-wrap')
+    const modalResult = document.querySelector('.modal-result')
+    const controlContainer = document.querySelector('.control-container')
+    const questionWrap = document.querySelector('.question-wrap')
+    const questions = document.querySelectorAll('.questions-container')
+    const prevBtn = document.querySelector('.prev')
+    const nextBtn = document.querySelector('.next')
+    const submitBtn = document.querySelector('.submit')
+    const modalHideBtn = document.querySelector('.exit-btn')
 
-    controlContainer.addEventListener("click", (e) => {
-      if (e.target.id === "prev") {
-        idx--;
-        moveQuestion();
-      } else if (e.target.id === "next") {
-        idx++;
-        moveQuestion();
+    controlContainer.addEventListener('click', (e) => {
+      if (e.target.id === 'prev') {
+        idx--
+        moveQuestion()
+      } else if (e.target.id === 'next') {
+        idx++
+        moveQuestion()
       }
-    });
+    })
 
     function moveQuestion() {
-      prevBtn.disabled = false;
+      prevBtn.disabled = false
 
       if (idx === questions.length - 1) {
-        console.log("마지막 질문");
-        nextBtn.classList.add("hide");
-        submitBtn.classList.remove("hide");
-        idx = questions.length - 1;
+        console.log('마지막 질문')
+        nextBtn.classList.add('hide')
+        submitBtn.classList.remove('hide')
+        idx = questions.length - 1
       } else if (idx < 0) {
-        idx = 0;
+        idx = 0
       } else if (idx === 0) {
-        prevBtn.disabled = true;
+        prevBtn.disabled = true
       } else {
-        nextBtn.classList.remove("hide");
-        submitBtn.classList.add("hide");
+        nextBtn.classList.remove('hide')
+        submitBtn.classList.add('hide')
       }
 
-      questionWrap.style.transform = `translateX(${-idx * 900}px)`;
+      questionWrap.style.transform = `translateX(${-idx * 900}px)`
     }
 
     function clearQnA() {
       // 설문 clear
-      prevBtn.disabled = true;
+      prevBtn.disabled = true
 
-      idx = 0;
-      questionWrap.style.transform = `translateX(0)`;
-      nextBtn.classList.remove("hide");
-      submitBtn.classList.add("hide");
+      idx = 0
+      questionWrap.style.transform = `translateX(0)`
+      nextBtn.classList.remove('hide')
+      submitBtn.classList.add('hide')
 
-      document.querySelector('input[value="밥"]').checked = true;
-      document.querySelector('input[value="끓이기"]').checked = true;
-      document.querySelector('input[value="다이어트식"]').checked = true;
+      document.querySelector('input[value="밥"]').checked = true
+      document.querySelector('input[value="끓이기"]').checked = true
+      document.querySelector('input[value="다이어트식"]').checked = true
     }
 
     function retryQnA() {
-      clearQnA();
+      clearQnA()
 
-      modalWrap.style.display = "flex";
-      modalResult.style.display = "none";
+      modalWrap.style.display = 'flex'
+      modalResult.style.display = 'none'
     }
 
-    submitBtn.addEventListener("click", (e) => {
+    submitBtn.addEventListener('click', (e) => {
       const answerType = document.querySelector(
         'input[name="item_type"]:checked'
-      ).value;
+      ).value
       const answerHowto = document.querySelector(
         'input[name="item_howto"]:checked'
-      ).value;
+      ).value
       const answerCal = document.querySelector(
         'input[name="item_cal"]:checked'
-      ).value;
+      ).value
 
-      const answers = [answerType, answerHowto, answerCal];
-      console.log(answers);
+      const answers = [answerType, answerHowto, answerCal]
+      console.log(answers)
 
       // 질문지는 감추고 결과는 보여주고
-      modalWrap.style.display = "none";
-      modalResult.style.display = "flex";
-      clearQnA();
+      modalWrap.style.display = 'none'
+      modalResult.style.display = 'flex'
+      clearQnA()
 
       // 메뉴 한 개 추천받으러
       $.ajax({
-        type: "POST",
-        url: "/api/recommend_food",
+        type: 'POST',
+        url: '/api/recommend_food',
         data: {
           answers_give: answers,
         },
         success: function (response) {
-          if (response["result"] == "success") {
-            $(".question-wrap").empty();
-            let recommended_dish = response["recommended"]; // recommended
-            console.log(recommended_dish);
+          if (response['result'] == 'success') {
+            $('.question-wrap').empty()
+            let recommended_dish = response['recommended'] // recommended
+            console.log(recommended_dish)
           }
         },
-      });
-    });
+      })
+    })
 
-    const retryBtn = document.querySelector(".retry-btn");
-    retryBtn.addEventListener("click", (e) => {
-      retryQnA();
-    });
+    const retryBtn = document.querySelector('.retry-btn')
+    retryBtn.addEventListener('click', (e) => {
+      retryQnA()
+    })
 
-    modalHideBtn.addEventListener("click", (e) => {
-      retryQnA();
-    });
+    modalHideBtn.addEventListener('click', (e) => {
+      retryQnA()
+    })
   </script>
   <script>
           //top버튼 클릭시 위로스크롤
