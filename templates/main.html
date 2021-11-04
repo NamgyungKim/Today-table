@@ -1,110 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
     ></script>
 
     <!-- 구글폰트 -->
     <link
-      href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Stylish&display=swap"
+            rel="stylesheet"
     />
     <!-- font awesome 추가 -->
     <script
-      src="https://kit.fontawesome.com/28653e43c1.js"
-      crossorigin="anonymous"
+            src="https://kit.fontawesome.com/28653e43c1.js"
+            crossorigin="anonymous"
     ></script>
     <script src="/static/scripts/main.js"></script>
-    <link rel="stylesheet" href="/static/styles/main.css" />
-    <link rel="stylesheet" href="/static/styles/reset.css" />
-    <link rel="stylesheet" href="/static/styles/common.css" />
+    <link rel="stylesheet" href="/static/styles/main.css"/>
+    <link rel="stylesheet" href="/static/styles/reset.css"/>
+    <link rel="stylesheet" href="/static/styles/common.css"/>
     <title>Main Page</title>
-  </head>
-  <body>
-    <header id="header">
-      <h1>
+
+    <script>
+
+    </script>
+
+
+</head>
+<body>
+<header id="header">
+    <h1>
         <a href="/"
-          ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
+        ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
         /></a>
-      </h1>
-      <div onclick="nav_show()" class="user">
+    </h1>
+    <div onclick="nav_show()" class="user">
         <span class="user-name"
-          ><span class="user-name-db">{{ nickname }}</span>님</span
+        ><span class="user-name-db">{{ nickname }}</span>님</span
         >
-        <img src="https://picsum.photos/id/237/200/300" alt="프로필" />
-      </div>
-      <div class="nav" onclick="sign_out()">로그아웃</div>
-    </header>
-    <div class="main-container">
-      <div class="recommend-container">
+        <img src="https://picsum.photos/id/237/200/300" alt="프로필"/>
+    </div>
+    <div class="nav" onclick="sign_out()">로그아웃</div>
+</header>
+<div class="main-container">
+    <div class="recommend-container">
         <h2>추천 드려요~!</h2>
         <h4>오늘의 건강식을 추천드립니다. 확인해보세요!</h4>
         <div class="image-container">
-          {% for dish in recommends %} {# {{ range(1, 51) | random }}#} {# {{
-          loop.index }}#}
-          <div class="dish">
-            <a href="/detail/{{ dish.no }}">
-              <img src="{{ dish.img }}" alt="dish-image" />
-              <div class="dish-desc">
-                <p class="dish-name">{{ dish.menu_name }}</p>
-                <p class="dish-type">{{ dish.menu_type }}</p>
-              </div>
-            </a>
-          </div>
-          {% endfor %}
+            {% for dish in recommends %}
+                <div class="dish">
+                    <a href="/detail/{{ dish.no }}">
+                        <img src="{{ dish.img }}" alt="dish-image"/>
+                        <div class="dish-desc">
+                            <p class="dish-name">{{ dish.menu_name }}</p>
+                            <p class="dish-type">{{ dish.menu_type }}</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
         </div>
         <button class="recommend-btn">마음에 드는 게 없다면?</button>
-      </div>
-      <div class="list-container">
+    </div>
+    <div class="list-container">
         <h2>건강한 레시피를 찾아보세요!</h2>
         <h4>원하시는 재료를 검색해서 건강한 음식을 찾아보세요!</h4>
         <form class="search-form" onsubmit="search_ingredients()">
-          <input type="text" class="search-input" placeholder="재료 입력" />
-          <button type="submit" class="search-btn">찾기</button>
+            <input type="text" class="search-input" placeholder="재료 입력"/>
+            <button type="submit" class="search-btn">찾기</button>
         </form>
         <div class="dish-lists">
-          {% for dish in dishes %}
-          <div class="dish">
-            <a href="/detail/{{ dish.no }}">
-              <div class="img-wrap">
-                <img src="{{ dish.img }}" alt="dish-image" />
-              </div>
-              <div class="description">
-                <p class="dish-type">{{ dish.menu_type }}</p>
-                <h3 class="dish-name">{{ dish.menu_name }}</h3>
-              </div>
-            </a>
-            <i class="far fa-heart" onclick="likeHeart()"></i>
-          </div>
-          {% endfor %}
+            {% for dish in dishes %}
+                {% set class_heart = "" %}
+                {% if dish["like_by_me"] %}
+                    {% set class_heart = "fa-heart" %}
+                {% else %}
+                    {% set class_heart = "fa-heart-o" %}
+                {% endif %}
+                <div id ="{{ dish.no }}" class="dish">
+                    <a href="/detail/{{ dish.no }}">
+                        <div class="img-wrap">
+                            <img src="{{ dish.img }}" alt="dish-image"/>
+                        </div>
+                        <div class="description">
+                            <p class="dish-type">{{ dish.menu_type }}</p>
+                            <h3 class="dish-name">{{ dish.menu_name }}</h3>
+                        </div>
+                    </a>
+                    <a class="level-item" aria-label="heart" onclick="toggle_like('{{ dish.no }}', 'heart')">
+                    <i class="fa {{ class_heart }}" aria-hidden="true"></i>
+                    <span class="like-num">{{ dish.count_like }}</span></a>
+                </div>
+            {% endfor %}
         </div>
-      </div>
-
-      <!-- 모달 -->
-      <div class="modal hidden">
-        <div class="modal-contents">
-          <h1>질문에 답해주세요.</h1>
-          <div class="questions-container">
-            <h3 class="question">질문. 밥드실래요? 디저트드실래요?</h3>
-            <button class="answerUp">밥</button>
-            <button class="answerDown">후식</button>
-          </div>
-          <div class="control-container">
-            <button class="prev">prev</button>
-            <button class="next">next</button>
-          </div>
-        </div>
-      </div>
-
-      <footer id="footer">© 2021 오늘뭐먹지? by 5조</footer>
     </div>
-  </body>
+
+    <!-- 모달 -->
+    <div class="modal hidden">
+        <div class="modal-contents">
+            <h1>질문에 답해주세요.</h1>
+            <div class="questions-container">
+                <h3 class="question">질문. 밥드실래요? 디저트드실래요?</h3>
+                <button class="answerUp">밥</button>
+                <button class="answerDown">후식</button>
+            </div>
+            <div class="control-container">
+                <button class="prev">prev</button>
+                <button class="next">next</button>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">© 2021 오늘뭐먹지? by 5조</footer>
+</div>
+</body>
 </html>
