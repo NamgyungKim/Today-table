@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 
-client = MongoClient('mongodb://3.38.96.45', 27017, username="test", password="test")
-db = client.what_to_feed
+client = MongoClient('mongodb://3.35.19.169', 27017, username="test", password="test")
+db = client.todaystable
 
 # JWT 토큰을 만들 때 필요한 비밀번호와 같은 문자열.
 # JWT 토큰을 만들 때 필요한 비밀번호와 같은 문자열.
@@ -203,11 +203,10 @@ def user():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]}, {"_id": False})
         comments = list(db.comments.find({"username": payload["id"]}, {"_id": False}))
-        food_infos = list(db.foodInfo.find({}, {'_id': False}))
         food_info = {}
         for comment in comments:
+            food_info["num"] = db.foodInfo.find_one({"no":comment["num"]})["no"]
             food_info[comment["num"]] = db.foodInfo.find_one({"no":comment["num"]})["menu_name"]
-            food_infos.append(food_info)
 
         return render_template('user.html', user_info=user_info, nickname=user_info["nickname"], food_info=food_info, comments=comments)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
