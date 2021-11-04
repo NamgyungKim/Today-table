@@ -203,11 +203,10 @@ def user():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload["id"]}, {"_id": False})
         comments = list(db.comments.find({"username": payload["id"]}, {"_id": False}))
-        food_infos = list(db.foodInfo.find({}, {'_id': False}))
         food_info = {}
         for comment in comments:
+            food_info["num"] = db.foodInfo.find_one({"no":comment["num"]})["no"]
             food_info[comment["num"]] = db.foodInfo.find_one({"no":comment["num"]})["menu_name"]
-            food_infos.append(food_info)
 
         return render_template('user.html', user_info=user_info, nickname=user_info["nickname"], food_info=food_info, comments=comments)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
