@@ -43,6 +43,9 @@ function toggle_like(food_num, type) {
     });
   }
 }
+function userpage() {
+  window.location.href="/user/{{ user_info.username }}";
+}
 
 function sign_out() {
   $.removeCookie("mytoken", { path: "/" });
