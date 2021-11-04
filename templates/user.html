@@ -68,7 +68,7 @@
                 data: {},
                 success: function (response) {
                     let comments = {{ comments|tojson }};
-                    let food_name = {{ food_info|tojson }};
+                    let food_info = {{ food_info|tojson }};
                     for (let i = 0; i < comments.length; i++) {
                         let comment = comments[i]
                         let time_post = new Date(comment["time"])
@@ -79,7 +79,7 @@
                                                 <p class="user-name"> ${comment["nickname"]}</p>
                                             </div>
 
-                                            <p class="food_name"> [${food_name[comment["num"]]}] </p>
+                                            <p class="food_name"><a href="/detail/${food_info["num"]}"> [${food_info[comment["num"]]}] </a></p>
                                             <p class="comment-text">${comment["comment"]}</p>
                                             <div class="comment-bottom">
                                                 <span class="date">${time_before}</span>
@@ -266,11 +266,23 @@
         }
 
         .profile-info {
-            min-height: 200px;
-            margin: 30px auto 30px auto;
+            height: 400px;
+            margin: 30px auto 10px auto;
             padding: 5em 5em 5em 5em;
         }
 
+        .user-info {
+            align-items: center;
+        }
+
+        .name-nickname {
+            text-align: center;
+        }
+
+        .user-profile {
+            display: block;
+            margin: auto;
+        }
 
     </style>
 
@@ -292,14 +304,13 @@
 </header>
 <div class="wrap">
     <div class="main-container">
-
         <section class="profile-top">
             <div class="profile-info">
                 <article class="user-info">
-                    <figure class="media-left" style="align-self: center">
+                    <figure class="figure-info" style="align-self: center">
                         <img class="user-profile" src="https://picsum.photos/id/237/200/300">
                         <br>
-                        <p>
+                        <p class="name-nickname">
                             <strong>{{ nickname }}</strong><br><small>@{{ user_info.username }}</small>
                         </p>
                     </figure>
