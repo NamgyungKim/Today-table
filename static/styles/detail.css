@@ -8,15 +8,14 @@ body { background-color: #FFE4E0;}
 #detail-image { border-radius: 10px; padding: 0 10px 40px; margin: 80px 90px 0; background-color: white; opacity: 0; transition: all 1s; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
 #detail-image .h2 {text-align: center;}
 #detail-image .title {display: inline-block; padding: 0 30px; margin: 0 auto 0px; background-color: #F8ADA9; transform: translateY(-50%); text-align: center; line-height: 60px; font-size: 34px; font-weight: bold;}
-#detail-image .ingredient-list {position: relative; height: 790px;}
-#detail-image .pentagon-img{ width: 550px; padding: 60px; margin: 20px auto; transition: all .5s;}
-#detail-image .food-img{position: absolute;top: 50%;left: 50%; width: 300px; transform: translate(-50%,-48%); border-radius: 20px; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);}
+#detail-image .ingredient-list {position: relative; }
+#detail-image .food-img{ width: 550px; margin: 56px auto 74px;-webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);}
 #detail-image .circle {position: absolute; width: 180px; height: 180px; text-align: center; padding: 50px 0; border-radius: 50%; background-color: #FF4253;  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); color: white; box-sizing: border-box; font-size: 25px; }
-#detail-image .circle-1{top: 0; left: 50%; transform: translateX(-50%);}
-#detail-image .circle-2{top: 240px; left: 50px;}
-#detail-image .circle-3{top: 240px; right: 50px;}
-#detail-image .circle-4{bottom: 70px; left: 140px;}
-#detail-image .circle-5{bottom: 70px; right: 140px;}
+#detail-image .circle-1{top: -70px; left: 50%; transform: translateX(-50%);}
+#detail-image .circle-2{top: 150px; left: 50px;}
+#detail-image .circle-3{top: 150px; right: 50px;}
+#detail-image .circle-4{bottom: -80px; left: 140px;}
+#detail-image .circle-5{bottom: -80px; right: 140px;}
 #detail-image .circle p {margin-top: 10px; font-weight: bold; font-size: 50px;}
 #detail-image .circle .unit {font-size: 25px;}
 
@@ -53,18 +52,19 @@ body { background-color: #FFE4E0;}
 #comments .comment .comment-bottom .delete-btn {margin: 0 10px; border: 1px solid gray; border-radius: 10px; background-color: white; color: gray; font-weight: bold; font-size: 17px; cursor: pointer; transition: all .5s;}
 #comments .comment .comment-bottom .delete-btn:hover{ background-color: #fb7883; color: black;}
 
+
+#pentagon {z-index: 10px; border: 1px solid red;}
 /* pc */
 @media (max-width:1024px) { 
   .wrap { max-width: 768px;}
   #detail-image {margin: 80px 0 0;}
   #detail-image .ingredient-list {height: 700px;}
-  #detail-image .food-img {width: 220px; transform: translate(-50%,-50%);}
-  #detail-image .pentagon-img { width: 500px;}
+  #detail-image .food-img {width: 500px;}
   #detail-image .circle {width: 180px; height: 180px;}
-  #detail-image .circle-2{top: 180px; left: 50px;}
-  #detail-image .circle-3{top: 180px; right: 50px;}
-  #detail-image .circle-4{bottom: 30px; left: 120px;}
-  #detail-image .circle-5{bottom: 30px; right: 120px;}
+  #detail-image .circle-2{top: 150px; left: 30px;}
+  #detail-image .circle-3{top: 150px; right: 30px;}
+  #detail-image .circle-4{bottom: 50px; left: 120px;}
+  #detail-image .circle-5{bottom: 50px; right: 120px;}
   #detail-text .recipe {margin: 0;}
   #comments {margin: 0;}
 } 
@@ -74,7 +74,7 @@ body { background-color: #FFE4E0;}
   #detail-image {margin-top: 40px;}
   #detail-image .title { font-size: 22px;}
   #detail-image .ingredient-list {height: auto;}
-  #detail-image .food-img {position: static; width: 90%; margin: 10px auto; transform: translate(0); }
+  #detail-image .food-img {position: static; width: 90%; margin: 10px auto; border-radius: 10px; transform: translate(0);  clip-path:none; }
   #detail-image .pentagon-img {display: none;}
   #detail-image .circle {position: static; display: inline-block; width: 80px; height: 80px; margin: 3px; padding: 18px 0; font-size: 18px;}
   #detail-image .circle-1{top: 0; left: 50%; transform: translateX(0);}
