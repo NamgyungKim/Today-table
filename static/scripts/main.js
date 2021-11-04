@@ -68,39 +68,31 @@ function hide_modal() {
   $(".modal").addClass("hidden");
 }
 
-function prev_question() {
-  $(".question-wrap").css("transform", `translateX(${900 * idx}px)`);
-}
-
-function next_question() {
-  $(".question-wrap").css("transform", `translateX(${-900 * idx}px)`);
-}
-
 $(document).ready(function () {
   // get_list();
 });
 
 // 프로필클릭시 로그아웃버튼 show
-$('.user').click(function(){
-  if($(".nav").hasClass("show")){
+$(".user").click(function () {
+  if ($(".nav").hasClass("show")) {
     $(".nav").removeClass("show");
-  }else{
+  } else {
     $(".nav").addClass("show");
   }
-})
+});
 //top버튼 클릭시 위로스크롤
-$( '#top-btn' ).click( function() {
-  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+$("#top-btn").click(function () {
+  $("html, body").animate({ scrollTop: 0 }, 400);
   return false;
-} );
+});
 //top버튼 스트롤200부터 보임
-$( window ).scroll( function() {
-  if ( $( this ).scrollTop() > 200 ) {
-    $( '#top-btn' ).fadeIn();
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 200) {
+    $("#top-btn").fadeIn();
   } else {
-    $( '#top-btn' ).fadeOut();
+    $("#top-btn").fadeOut();
   }
-} );
+});
 
 function get_list() {
   $.ajax({
@@ -133,7 +125,80 @@ function get_list() {
   });
 }
 
+// const retryBtn = document.querySelector(".retry-btn");
 
+// console.log(retryBtn);
+// function retryQuestion() {
+//   console.log("이건 나옴?");
+
+//   // clearQnA();
+//   modalContents.innerHTML = "";
+
+//   let temp_html = `
+// <h1>질문에 답해주세요.</h1>
+//     <div class="question-wrap">
+//       <div class="questions-container">
+//         <h3 class="question">질문. 밥드실래요? 디저트드실래요?</h3>
+//         <label class="box-radio-input"
+//           ><input
+//             type="radio"
+//             name="item_type"
+//             value="밥"
+//             checked="checked"
+//           /><span>밥</span></label
+//         >
+//         <label class="box-radio-input"
+//           ><input type="radio" name="item_type" value="후식" /><span
+//             >후식</span
+//           ></label
+//         >
+//       </div>
+//       <div class="questions-container">
+//         <h3 class="question">질문. 끓이기? 굽기?</h3>
+//         <label class="box-radio-input"
+//           ><input
+//             type="radio"
+//             name="item_howto"
+//             value="끓이기"
+//             checked="checked"
+//           /><span>끓이기</span></label
+//         >
+//         <label class="box-radio-input"
+//           ><input type="radio" name="item_howto" value="굽기" /><span
+//             >굽기</span
+//           ></label
+//         >
+//       </div>
+//       <div class="questions-container">
+//         <h3 class="question">질문. 다이어트식? 보양식?</h3>
+//         <label class="box-radio-input"
+//           ><input
+//             type="radio"
+//             name="item_cal"
+//             value="다이어트식"
+//             checked="checked"
+//           /><span>다이어트식</span></label
+//         >
+//         <label class="box-radio-input"
+//           ><input type="radio" name="item_cal" value="보양식" /><span
+//             >보양식</span
+//           ></label
+//         >
+//       </div>
+//     </div>
+//     <div class="control-container">
+//       <button class="prev" id="prev" disabled>prev</button>
+//       <button class="next" id="next">next</button>
+//       <button class="submit hide" id="submit">submit</button>
+//     </div>
+//     <button class="exit-btn" onclick="hide_modal()">X</button>
+// `;
+
+//   $(".modal-contents").append(temp_html);
+
+//   // retryBtn.addEventListener("click", (e) => {
+//   // });
+// }
 
 //// 추천 요리 크기변경
 //// 중간 라인 삭제

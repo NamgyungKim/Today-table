@@ -5,6 +5,7 @@ from datetime import date, datetime, timedelta
 import requests
 import xmltodict
 from flask import Flask, render_template, jsonify, request, redirect, url_for
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://3.38.96.45', 27017, username="test", password="test")
 db = client.what_to_feed
 
+# JWT 토큰을 만들 때 필요한 비밀번호와 같은 문자열.
 # JWT 토큰을 만들 때 필요한 비밀번호와 같은 문자열.
 # 내 서버에서만 토큰을 인코딩/디코딩이 가능하다.
 SECRET_KEY = 'HANGHAE99'
@@ -35,7 +37,7 @@ def home():
         # payload 생성
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.users.find_one({"username": payload['id']})
-        dishes = list(db.foodInfo.find({}, {'_id': False}))
+        dishes = list(db.foodInfo.find({}, {'_id': False}).sort('likeCount', -1))
         for dish in dishes:
             dish["count_like"] = db.likes.count_documents({'foodNum':dish['no'], 'type':'heart'})
             dish["like_by_me"] = bool(db.likes.find_one({'foodNum':dish['no'], 'type':'heart', 'username':payload['id']}))
@@ -186,8 +188,84 @@ def update_like():
             db.likes.insert_one(doc)
         else:
             db.likes.delete_one(doc)
-        count = db.likes.count_documents({"foodNum": food_num_receive, "type": type_receive})
+        count = db.likes.count_documents({"foodNum": food_num_receive, "type": "heart"})
+        db.foodInfo.update({"no": food_num_receive}, {"$set": {"likeCount": count}})
         return jsonify({"result": "success", 'msg': 'updated', "count": count})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/"))
+
+
+# 마이 페이지
+@app.route('/user')
+def user():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]}, {"_id": False})
+        comments = list(db.comments.find({"username": payload["id"]}, {"_id": False}))
+        food_infos = list(db.foodInfo.find({}, {'_id': False}))
+        food_info = {}
+        for comment in comments:
+            food_info[comment["num"]] = db.foodInfo.find_one({"no":comment["num"]})["menu_name"]
+            food_infos.append(food_info)
+
+        return render_template('user.html', user_info=user_info, nickname=user_info["nickname"], food_info=food_info, comments=comments)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/"))
+
+#
+# @app.route('/api/time_string', methods=['POST'])
+# def time_string():
+#     time_receive = request.form['time_give']
+#     return render_template('user.html', time_string=time_receive)
+
+
+# 마이페이지 코멘트 불러오기
+@app.route('/api/get_my_comments', methods=['GET'])
+def get_my_comments():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.users.find_one({"username": payload["id"]}, {"_id": False})
+        food_info = list(db.foodInfo.find({}, {"_id": False}))
+        # food_info = {}
+        # for comment in comments:
+        #     food_info[comment["num"]] = db.foodInfo.find_one({"no":comment["num"]})["menu_name"]
+        #     food_infos.append(food_info)
+        return jsonify({'result': 'success', 'user_info': user_info})
+        #, 'comments': comments, 'food_info': food_info}
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("/"))
+
+
+# 음식 추천
+@app.route('/api/recommend_food', methods=['POST'])
+def recommend_food():
+    return 0
+
+
+# 프로필 수정
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = payload["id"]
+        nickname_receive = request.form["nickname_give"]
+        new_doc = {
+            "nickname": nickname_receive,
+        }
+        if 'file_give' in request.files:
+            file = request.files["file_give"]
+            filename = secure_filename(file.filename)
+            extension = filename.split(".")[-1]
+            file_path = f"profile_pics/{username}.{extension}"
+            file.save("./static/"+file_path)
+            new_doc["profile_pic"] = filename
+            new_doc["profile_pic_real"] = file_path
+        db.users.update_one({'username': payload['id']}, {'$set':new_doc})
+        db.comments.update_many({'username': payload['id']}, {'$set': {'nickname': nickname_receive}})
+        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("/"))
 
