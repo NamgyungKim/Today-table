@@ -149,9 +149,7 @@
         <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
-      <div class="nav">
-        로그아웃
-      </div>
+      <div onclick="sign_out()"  class="nav"> 로그아웃  </div>
     </header>
     <button id="top-btn" type="button">Top</button>
     <div class="wrap">
@@ -207,6 +205,7 @@
       if($(".nav").hasClass("show")){
         $(".nav").removeClass("show");
       }else{
+        $(".nav").show()
         $(".nav").addClass("show");
       }
     })
