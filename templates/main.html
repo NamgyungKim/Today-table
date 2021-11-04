@@ -123,7 +123,7 @@
             </div>
 
             <div class="questions-container">
-              <h3 class="question">질문. 끓이기? 조리기?</h3>
+              <h3 class="question">질문. 끓이기? 굽기?</h3>
               <label class="box-radio-input"
                 ><input
                   type="radio"
@@ -133,15 +133,33 @@
                 /><span>끓이기</span></label
               >
               <label class="box-radio-input"
-                ><input type="radio" name="item_howto" value="조리기" /><span
-                  >조리기</span
+                ><input type="radio" name="item_howto" value="굽기" /><span
+                  >굽기</span
+                ></label
+              >
+            </div>
+
+            <div class="questions-container">
+              <h3 class="question">질문. 다이어트식? 보양식?</h3>
+              <label class="box-radio-input"
+                ><input
+                  type="radio"
+                  name="item_cal"
+                  value="다이어트식"
+                  checked="checked"
+                /><span>다이어트식</span></label
+              >
+              <label class="box-radio-input"
+                ><input type="radio" name="item_cal" value="보양식" /><span
+                  >보양식</span
                 ></label
               >
             </div>
           </div>
           <div class="control-container">
-            <button class="prev">prev</button>
-            <button class="next">next</button>
+            <button class="prev" id="prev">prev</button>
+            <button class="next" id="next">next</button>
+            <button class="submit hide" id="submit">submit</button>
           </div>
           <button class="exit-btn" onclick="hide_modal()">X</button>
         </div>
@@ -150,4 +168,95 @@
       <footer id="footer">© 2021 오늘뭐먹지? by 5조</footer>
     </div>
   </body>
+  <script>
+    let idx = 0;
+
+    const controlContainer = document.querySelector(".control-container");
+    const questionWrap = document.querySelector(".question-wrap");
+    const questions = document.querySelectorAll(".questions-container");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    const submitBtn = document.querySelector(".submit");
+    const modalHideBtn = document.querySelector(".exit-btn");
+
+    console.log(questions.length);
+
+    controlContainer.addEventListener("click", (e) => {
+      if (e.target.id === "prev") {
+        idx--;
+        moveQuestion();
+      } else if (e.target.id === "next") {
+        idx++;
+        moveQuestion();
+      }
+    });
+
+    function moveQuestion() {
+      if (idx === questions.length - 1) {
+        console.log("마지막 질문");
+        nextBtn.classList.add("hide");
+        submitBtn.classList.remove("hide");
+        idx = questions.length - 1;
+      } else if (idx < 0) {
+        idx = 0;
+      } else {
+        nextBtn.classList.remove("hide");
+        submitBtn.classList.add("hide");
+      }
+
+      questionWrap.style.transform = `translateX(${-idx * 900}px)`;
+    }
+
+    submitBtn.addEventListener("click", (e) => {
+      const answerType = document.querySelector(
+        'input[name="item_type"]:checked'
+      ).value;
+      const answerHowto = document.querySelector(
+        'input[name="item_howto"]:checked'
+      ).value;
+      const answerCal = document.querySelector(
+        'input[name="item_cal"]:checked'
+      ).value;
+
+      const answers = [answerType, answerHowto, answerCal];
+      console.log(answers);
+
+      // 메뉴 한 개 추천받으러
+      $.ajax({
+        type: "POST",
+        url: "/api/recommend_food",
+        data: {
+            "answers_give": answers
+        },
+        success: function (response) {
+            if (response["result"] == "success") {
+                let recommended_dish = response['food']
+                let temp_html =`
+                <a href="/detail/{{ recommended_dish.no }}">
+                    <div class="img-wrap">
+                        <img src="{{ recommended_dish.img }}" alt="dish-image" />
+                    </div>
+                    <div class="description">
+                        <p class="dish-type">{{ recommended_dish.menu_type }}</p>
+                        <h3 class="dish-name">{{ recommended_dish.menu_name }}</h3>
+                    </div>
+                </a>
+                <a
+                class="level-item"
+                aria-label="heart"
+                onclick="toggle_like('{{ recommended_dish.no }}', 'heart')"
+                >
+                    <i class="fa {{ class_heart }}" aria-hidden="true"></i>
+                    <span class="like-num">{{ recommended_dish.count_like }}</span></a
+                >`
+                $('#modal-contents').append(temp_html)
+            }
+        },
+      });
+    });
+
+    // modalHideBtn.addEventListener("click", (e) => {
+    //   questionWrap.style.transform = `translateX(0)`;
+    // });
+  </script>
 </html>

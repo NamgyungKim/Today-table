@@ -340,11 +340,13 @@ h1 {
 }
 
 .modal .modal-contents .question-wrap {
-  width: 1800px;
+  width: 2700px;
   display: flex;
   position: absolute;
   top: 4.5rem;
   left: 0;
+  transform: translateX(0);
+  transition: 0.3s ease-in;
 }
 
 .modal .modal-contents .question-wrap .questions-container {
@@ -397,6 +399,7 @@ h1 {
 }
 
 .modal-contents .control-container button {
+  display: block;
   width: 80px;
   font-size: 1rem;
   padding: 0.3rem 1rem;
@@ -406,6 +409,10 @@ h1 {
   background-color: #fff;
   color: #61b5d9;
   transition: 0.3s ease-in;
+}
+
+.modal-contents .control-container button.hide {
+  display: none;
 }
 
 .modal-contents .control-container button:hover {
