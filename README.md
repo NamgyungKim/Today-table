@@ -18,7 +18,7 @@
 
 ## 📑 와이어 프레임
 
-![와이어프레임](../assets/images/README/와이어프레임.png)
+![와이어프레임](./static/imgs/와이어프레임.png)
 
 
 
