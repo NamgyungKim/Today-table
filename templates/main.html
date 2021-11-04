@@ -74,9 +74,8 @@
         <form class="search-form">
           <input type="text" class="search-input" placeholder="재료 입력" />
           <button type="submit" class="search-btn">찾기</button>
-
         </form>
-        <div class="dish-lists">
+        <div id="ds" class="dish-lists">
           {% for dish in dishes %} {% set class_heart = "" %} {% if
           dish["like_by_me"] %} {% set class_heart = "fa-heart" %} {% else %} {%
           set class_heart = "fa-heart-o" %} {% endif %}
@@ -106,80 +105,86 @@
       <!-- 모달 -->
       <div class="modal hidden">
         <div class="modal-contents">
-          <!-- <h1>추천 드립니다!</h1>
-          <div class="recomended-dish">
-            <a href="/detail/">
-              <h3 class="dish-name">굴밥</h3>
-              <div class="img-wrap">
-                <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
+          <div class="modal-wrap">
+            <h1>질문에 답해주세요.</h1>
+            <div class="question-wrap">
+              <div class="questions-container">
+                <h3 class="question">질문. 밥드실래요? 디저트드실래요?</h3>
+                <label class="box-radio-input"
+                  ><input
+                    type="radio"
+                    name="item_type"
+                    value="밥"
+                    checked="checked"
+                  /><span>밥</span></label
+                >
+                <label class="box-radio-input"
+                  ><input type="radio" name="item_type" value="후식" /><span
+                    >후식</span
+                  ></label
+                >
               </div>
-              <div class="description">
-                <p class="dish-type">끼니: 밥</p>
-                <p class="dish-howto">끓이기</p>
-                <p class="dish-cal">310Cal</p>
+
+              <div class="questions-container">
+                <h3 class="question">질문. 끓이기? 굽기?</h3>
+                <label class="box-radio-input"
+                  ><input
+                    type="radio"
+                    name="item_howto"
+                    value="끓이기"
+                    checked="checked"
+                  /><span>끓이기</span></label
+                >
+                <label class="box-radio-input"
+                  ><input type="radio" name="item_howto" value="굽기" /><span
+                    >굽기</span
+                  ></label
+                >
               </div>
-            </a>
-            <button class="retry-btn">다시 추천 받기</button>
-          </div>
-          <button class="exit-btn" onclick="hide_modal()">X</button> -->
-          <h1>질문에 답해주세요.</h1>
-          <div class="question-wrap">
-            <div class="questions-container">
-              <h3 class="question">질문. 밥드실래요? 디저트드실래요?</h3>
-              <label class="box-radio-input"
-                ><input
-                  type="radio"
-                  name="item_type"
-                  value="밥"
-                  checked="checked"
-                /><span>밥</span></label
-              >
-              <label class="box-radio-input"
-                ><input type="radio" name="item_type" value="후식" /><span
-                  >후식</span
-                ></label
-              >
-            </div>
 
-            <div class="questions-container">
-              <h3 class="question">질문. 끓이기? 굽기?</h3>
-              <label class="box-radio-input"
-                ><input
-                  type="radio"
-                  name="item_howto"
-                  value="끓이기"
-                  checked="checked"
-                /><span>끓이기</span></label
-              >
-              <label class="box-radio-input"
-                ><input type="radio" name="item_howto" value="굽기" /><span
-                  >굽기</span
-                ></label
-              >
+              <div class="questions-container">
+                <h3 class="question">질문. 다이어트식? 보양식?</h3>
+                <label class="box-radio-input"
+                  ><input
+                    type="radio"
+                    name="item_cal"
+                    value="다이어트식"
+                    checked="checked"
+                  /><span>다이어트식</span></label
+                >
+                <label class="box-radio-input"
+                  ><input type="radio" name="item_cal" value="보양식" /><span
+                    >보양식</span
+                  ></label
+                >
+              </div>
             </div>
+            <div class="control-container">
+              <button class="prev" id="prev" disabled>prev</button>
+              <button class="next" id="next">next</button>
+              <button class="submit hide" id="submit">submit</button>
+            </div>
+          </div>
 
-            <div class="questions-container">
-              <h3 class="question">질문. 다이어트식? 보양식?</h3>
-              <label class="box-radio-input"
-                ><input
-                  type="radio"
-                  name="item_cal"
-                  value="다이어트식"
-                  checked="checked"
-                /><span>다이어트식</span></label
-              >
-              <label class="box-radio-input"
-                ><input type="radio" name="item_cal" value="보양식" /><span
-                  >보양식</span
-                ></label
-              >
+          <!-- 진자 -->
+          <div class="modal-result">
+            <h1>추천 드립니다!</h1>
+            <div class="recomended-dish">
+              <a href="/detail/">
+                <h3 class="dish-name">굴밥</h3>
+                <div class="img-wrap">
+                  <img src="/static/imgs/ricewithoister.png" alt="dish-image" />
+                </div>
+                <div class="description">
+                  <p class="dish-type">끼니: 밥</p>
+                  <p class="dish-howto">끓이기</p>
+                  <p class="dish-cal">310Cal</p>
+                </div>
+              </a>
+              <button class="retry-btn">다시 추천 받기</button>
             </div>
           </div>
-          <div class="control-container">
-            <button class="prev" id="prev" disabled>prev</button>
-            <button class="next" id="next">next</button>
-            <button class="submit hide" id="submit">submit</button>
-          </div>
+
           <button class="exit-btn" onclick="hide_modal()">X</button>
         </div>
       </div>
@@ -190,6 +195,9 @@
   <script>
     let idx = 0;
 
+    const modalContents = document.querySelector(".modal-contents");
+    const modalWrap = document.querySelector(".modal-wrap");
+    const modalResult = document.querySelector(".modal-result");
     const controlContainer = document.querySelector(".control-container");
     const questionWrap = document.querySelector(".question-wrap");
     const questions = document.querySelectorAll(".questions-container");
@@ -197,7 +205,6 @@
     const nextBtn = document.querySelector(".next");
     const submitBtn = document.querySelector(".submit");
     const modalHideBtn = document.querySelector(".exit-btn");
-    const retryBtn = document.querySelector(".retry-btn");
 
     controlContainer.addEventListener("click", (e) => {
       if (e.target.id === "prev") {
@@ -208,10 +215,6 @@
         moveQuestion();
       }
     });
-
-    // if (idx === 0) {
-    //   prevBtn.disabled = true;
-    // }
 
     function moveQuestion() {
       prevBtn.disabled = false;
@@ -247,6 +250,13 @@
       document.querySelector('input[value="다이어트식"]').checked = true;
     }
 
+    function retryQnA() {
+      clearQnA();
+
+      modalWrap.style.display = "flex";
+      modalResult.style.display = "none";
+    }
+
     submitBtn.addEventListener("click", (e) => {
       const answerType = document.querySelector(
         'input[name="item_type"]:checked'
@@ -261,12 +271,35 @@
       const answers = [answerType, answerHowto, answerCal];
       console.log(answers);
 
-      // $(".modal-contents").empty();
-
+      // 질문지는 감추고 결과는 보여주고
+      modalWrap.style.display = "none";
+      modalResult.style.display = "flex";
       clearQnA();
 
       // 메뉴 한 개 추천받으러
+      $.ajax({
+        type: "POST",
+        url: "/api/recommend_food",
+        data: {
+          answers_give: answers,
+        },
+        success: function (response) {
+          if (response["result"] == "success") {
+            $(".question-wrap").empty();
+            let recommended_dish = response["recommended"]; // recommended
+            console.log(recommended_dish);
+          }
+        },
+      });
+    });
 
+    const retryBtn = document.querySelector(".retry-btn");
+    retryBtn.addEventListener("click", (e) => {
+      retryQnA();
+    });
+
+    modalHideBtn.addEventListener("click", (e) => {
+      retryQnA();
     });
   </script>
   <script>
@@ -295,7 +328,6 @@
             for (let i = 0; i < dishes.length; i++) {
 
                 if (dishes[i]["ingredient"].includes(words)) {
-
                     let dish_no = dishes[i]['no'];
                     let dish_img = dishes[i]['img'];
                     let dish_name = dishes[i]["menu_name"];
@@ -315,7 +347,6 @@
                          </div>`;
                     $('#ds').append(temp_html);
                     existWords = true;
-
                 }
             }
             if (existWords == false){
