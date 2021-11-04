@@ -75,6 +75,28 @@ $(document).ready(function () {
   // get_list();
 });
 
+// 프로필클릭시 로그아웃버튼 show
+$('.user').click(function(){
+  if($(".nav").hasClass("show")){
+    $(".nav").removeClass("show");
+  }else{
+    $(".nav").addClass("show");
+  }
+})
+//top버튼 클릭시 위로스크롤
+$( '#top-btn' ).click( function() {
+  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+  return false;
+} );
+//top버튼 스트롤200부터 보임
+$( window ).scroll( function() {
+  if ( $( this ).scrollTop() > 200 ) {
+    $( '#top-btn' ).fadeIn();
+  } else {
+    $( '#top-btn' ).fadeOut();
+  }
+} );
+
 function get_list() {
   $.ajax({
     type: "GET",
@@ -105,6 +127,8 @@ function get_list() {
     },
   });
 }
+
+
 
 //// 추천 요리 크기변경
 //// 중간 라인 삭제
