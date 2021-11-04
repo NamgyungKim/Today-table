@@ -254,9 +254,52 @@
         },
       });
     });
+  </script>
+    <script>
+    let dishes = {{ dishes|tojson }};
+    $(document).ready(function () {
+        $(".search-form").on("submit", function (e) {
+            e.preventDefault();
+            let words = $(".search-input").val();
+            $(".search-input").val("");
+            $('#ds').empty();
+            let existWords = false;
+            for (let i = 0; i < dishes.length; i++) {
+
+                if (dishes[i]["ingredient"].includes(words)) {
+
+                    let dish_no = dishes[i]['no'];
+                    let dish_img = dishes[i]['img'];
+                    let dish_name = dishes[i]["menu_name"];
+                    let dish_type = dishes[i]["menu_type"];
+                    let temp_html =
+                        `<div  class="dish">
+                         <a href="/detail/${dish_no}">
+                         <div class="img-wrap">
+                         <img src="${dish_img}" alt="dish-image"/>
+                         </div>
+                         <div class="description">
+                         <p class="dish-type">${dish_type}</p>
+                         <h3 class="dish-name">${dish_name}</h3>
+                         </div>
+                         </a>
+                         <i class="far fa-heart" onclick="likeHeart()"></i>
+                         </div>`;
+                    $('#ds').append(temp_html);
+                    existWords = true;
+
+                }
+            }
+            if (existWords == false){
+                alert("없는 재료입니다");
+                window.location.href = `/`
+            }
+        });
+    });
+    </script>
 
     // modalHideBtn.addEventListener("click", (e) => {
     //   questionWrap.style.transform = `translateX(0)`;
     // });
-  </script>
+
 </html>
