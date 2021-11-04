@@ -22,13 +22,13 @@
       src="https://kit.fontawesome.com/28653e43c1.js"
       crossorigin="anonymous"
     ></script>
-    <script src="/static/scripts/main.js"></script>
+
     <link rel="stylesheet" href="/static/styles/main.css" />
     <link rel="stylesheet" href="/static/styles/reset.css" />
     <link rel="stylesheet" href="/static/styles/common.css" />
     <title>Main Page</title>
 
-    <script></script>
+
   </head>
   <body>
     <header id="header">
@@ -72,10 +72,12 @@
         <h4>원하시는 재료를 검색해서 건강한 음식을 찾아보세요!</h4>
 
         <form class="search-form">
-          <input type="text" class="search-input" placeholder="재료 입력" />
+          <input type="text" class="search-input" id="input" placeholder="재료 입력" />
           <button type="submit" class="search-btn">찾기</button>
         </form>
-        <div id="ds" class="dish-lists">
+
+        <div class="dish-lists" id="ds">
+
           {% for dish in dishes %} {% set class_heart = "" %} {% if
           dish["like_by_me"] %} {% set class_heart = "fa-heart" %} {% else %} {%
           set class_heart = "fa-heart-o" %} {% endif %}
@@ -95,8 +97,8 @@
               onclick="toggle_like('{{ dish.no }}', 'heart')"
             >
               <i class="fa {{ class_heart }}" aria-hidden="true"></i>
-              <span class="like-num">{{ dish.count_like }}</span></a
-            >
+              <span class="like-num">{{ dish.count_like }}</span></a>
+
           </div>
           {% endfor %}
         </div>
@@ -192,6 +194,7 @@
       <footer id="footer">© 2021 오늘뭐먹지? by 5조</footer>
     </div>
   </body>
+  <script src="/static/scripts/main.js"></script>
   <script>
     let idx = 0;
 
@@ -319,7 +322,8 @@
         $( '#top-btn' ).fadeOut();
       }
     } );
-
+</script>
+  <script>
     let dishes = {{ dishes|tojson }};
     $(document).ready(function () {
         $(".search-form").on("submit", function (e) {
@@ -331,12 +335,17 @@
             for (let i = 0; i < dishes.length; i++) {
 
                 if (dishes[i]["ingredient"].includes(words)) {
+
+                    let dish = dishes[i]
+                    let class_heart = dish["like_by_me"] ? "fa-heart" : "fa-heart-o";
+
+
                     let dish_no = dishes[i]['no'];
                     let dish_img = dishes[i]['img'];
                     let dish_name = dishes[i]["menu_name"];
                     let dish_type = dishes[i]["menu_type"];
                     let temp_html =
-                        `<div  class="dish">
+                        `<div id = "${ dish.no }" class="dish">
                          <a href="/detail/${dish_no}">
                          <div class="img-wrap">
                          <img src="${dish_img}" alt="dish-image"/>
@@ -344,19 +353,23 @@
                          <div class="description">
                          <p class="dish-type">${dish_type}</p>
                          <h3 class="dish-name">${dish_name}</h3>
-                         </div>
-                         </a>
-                         <i class="far fa-heart" onclick="likeHeart()"></i>
-                         </div>`;
-                    $('#ds').append(temp_html);
-                    existWords = true;
-                }
-            }
-            if (existWords == false){
-                alert("없는 재료입니다");
-                window.location.href = `/`
-            }
-        });
-    });
+
+                         </div></a>
+                         <a
+                         class="level-item"
+                         aria-label="heart"
+                         onclick="toggle_like('${ dish_no }', 'heart')">
+                         <i class= "fa ${ class_heart}" aria-hidden="true"></i>
+                          <span class="like-num"> ${dish["count_like"]}</span></a>
+                         </div>`
+                            $('#ds').append(temp_html);
+                            existWords = true;
+                            }
+                         }
+                         if (existWords == false||words == ""){
+                            alert("다른 재료를 입력해주세요!");
+                         }
+                    });
+                });
   </script>
 </html>
