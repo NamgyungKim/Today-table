@@ -27,23 +27,21 @@
     <link rel="stylesheet" href="/static/styles/reset.css" />
     <link rel="stylesheet" href="/static/styles/common.css" />
     <title>Main Page</title>
-
-
   </head>
   <body>
     <header id="header">
       <h1>
-        <a href="/"
+        <a onclick="location.href='http://localhost:5000/'"
           ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
         /></a>
       </h1>
-      <div onclick="nav_show()" tabindex="0" class="user">
+      <div tabindex="0" class="user">
         <span class="user-name"
-          ><span class="user-name-db">{{ nickname }}</span>님</span
+          ><span class="user-name-db">{{ nickname }} </span>님</span
         >
         <img src="https://picsum.photos/id/237/200/300" alt="프로필" />
       </div>
-      <div class="nav" onclick="sign_out()">로그아웃</div>
+      <div onclick="sign_out()" class="nav">로그아웃</div>
     </header>
     <button id="top-btn" type="button">Top</button>
     <div class="main-container">
@@ -72,12 +70,16 @@
         <h4>원하시는 재료를 검색해서 건강한 음식을 찾아보세요!</h4>
 
         <form class="search-form">
-          <input type="text" class="search-input" id="input" placeholder="재료 입력" />
+          <input
+            type="text"
+            class="search-input"
+            id="input"
+            placeholder="재료 입력"
+          />
           <button type="submit" class="search-btn">찾기</button>
         </form>
 
         <div class="dish-lists" id="ds">
-
           {% for dish in dishes %} {% set class_heart = "" %} {% if
           dish["like_by_me"] %} {% set class_heart = "fa-heart" %} {% else %} {%
           set class_heart = "fa-heart-o" %} {% endif %}
@@ -97,8 +99,8 @@
               onclick="toggle_like('{{ dish.no }}', 'heart')"
             >
               <i class="fa {{ class_heart }}" aria-hidden="true"></i>
-              <span class="like-num">{{ dish.count_like }}</span></a>
-
+              <span class="like-num">{{ dish.count_like }}</span></a
+            >
           </div>
           {% endfor %}
         </div>
@@ -287,7 +289,7 @@
           answers_give: answers,
         },
         success: function (response) {
-            // 여기는 안쓰고
+          // 여기는 안쓰고
           if (response["result"] == "success") {
             $(".question-wrap").empty();
             let recommended_dish = response["recommended"]; // recommended
@@ -309,21 +311,32 @@
     });
   </script>
   <script>
-          //top버튼 클릭시 위로스크롤
-    $( '#top-btn' ).click( function() {
-      $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-      return false;
-    } );
-    //top버튼 스트롤200부터 보임
-    $( window ).scroll( function() {
-      if ( $( this ).scrollTop() > 200 ) {
-        $( '#top-btn' ).fadeIn();
+    // 프로필클릭시 로그아웃버튼 show
+    $(".user").click(function () {
+      if ($(".nav").hasClass("show")) {
+        $(".nav").addClass("show");
       } else {
-        $( '#top-btn' ).fadeOut();
+        $(".nav").show();
+        $(".nav").removeClass("show");
       }
-    } );
-</script>
+    });
+
+    //top버튼 클릭시 위로스크롤
+    $("#top-btn").click(function () {
+      $("html, body").animate({ scrollTop: 0 }, 400);
+      return false;
+    });
+    //top버튼 스트롤200부터 보임
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 200) {
+        $("#top-btn").fadeIn();
+      } else {
+        $("#top-btn").fadeOut();
+      }
+    });
+  </script>
   <script>
+
     let dishes = {{ dishes|tojson }};
     $(document).ready(function () {
         $(".search-form").on("submit", function (e) {

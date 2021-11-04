@@ -50,16 +50,6 @@ function sign_out() {
   window.location.href = "/";
 }
 
-function nav_show() {
-  if ($(".nav").css("display") == "none") {
-    $(".nav").show();
-    $(".nav").addClass("show");
-  } else {
-    $(".nav").hide();
-    $(".nav").removeClass("show");
-  }
-}
-
 function show_modal() {
   $(".modal").removeClass("hidden");
 }
