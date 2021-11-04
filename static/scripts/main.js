@@ -68,14 +68,6 @@ function hide_modal() {
   $(".modal").addClass("hidden");
 }
 
-function prev_question() {
-  $(".question-wrap").css("transform", `translateX(${900 * idx}px)`);
-}
-
-function next_question() {
-  $(".question-wrap").css("transform", `translateX(${-900 * idx}px)`);
-}
-
 $(document).ready(function () {
   // get_list();
 });

@@ -37,7 +37,7 @@
           ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
         /></a>
       </h1>
-      <div onclick="nav_show()" class="user">
+      <div onclick="nav_show()" tabindex="0" class="user">
         <span class="user-name"
           ><span class="user-name-db">{{ nickname }}</span>님</span
         >
@@ -45,6 +45,7 @@
       </div>
       <div class="nav" onclick="sign_out()">로그아웃</div>
     </header>
+    <button id="top-btn" type="button">Top</button>
     <div class="main-container">
       <div class="recommend-container">
         <h2>추천 드려요~!</h2>
@@ -69,7 +70,7 @@
       <div class="list-container">
         <h2>건강한 레시피를 찾아보세요!</h2>
         <h4>원하시는 재료를 검색해서 건강한 음식을 찾아보세요!</h4>
-        <form class="search-form" onsubmit="search_ingredients()">
+        <form class="search-form">
           <input type="text" class="search-input" placeholder="재료 입력" />
           <button type="submit" class="search-btn">찾기</button>
         </form>
@@ -263,41 +264,24 @@
       clearQnA();
 
       // 메뉴 한 개 추천받으러
-      {#// $.ajax({#}
-      {#//   type: "POST",#}
-      {#//   url: "/api/recommend_food",#}
-      {#//   data: {#}
-      {#//     answers_give: answers,#}
-      {#//   },#}
-      {#//   success: function (response) {#}
-      {#//     if (response["result"] == "success") {#}
-      {#//       $(".question-wrap").empty();#}
-      {#//       let recommended_dish = response["food"];#}
-      {#//       let temp_html = `#}
-      {#//           <a href="/detail/{{ recommended_dish.no }}">#}
-      {#//               <div class="img-wrap">#}
-      {#//                   <img src="{{ recommended_dish.img }}" alt="dish-image" />#}
-      {#//               </div>#}
-      {#//               <div class="description">#}
-      {#//                   <p class="dish-type">{{ recommended_dish.menu_type }}</p>#}
-      {#//                   <h3 class="dish-name">{{ recommended_dish.menu_name }}</h3>#}
-      {#//               </div>#}
-      {#//           </a>#}
-      {#//           <a#}
-      {#//           class="level-item"#}
-      {#//           aria-label="heart"#}
-      {#//           onclick="toggle_like('{{ recommended_dish.no }}', 'heart')"#}
-      {#//           >#}
-      {#//               <i class="fa {{ class_heart }}" aria-hidden="true"></i>#}
-      {#//               <span class="like-num">{{ recommended_dish.count_like }}</span></a#}
-      {#//           >`;#}
-      {#//       $(".question-wrap").append(temp_html);#}
-      {#//     }#}
-      {#//   },#}
-      {#// });#}
+
     });
   </script>
   <script>
+          //top버튼 클릭시 위로스크롤
+    $( '#top-btn' ).click( function() {
+      $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+      return false;
+    } );
+    //top버튼 스트롤200부터 보임
+    $( window ).scroll( function() {
+      if ( $( this ).scrollTop() > 200 ) {
+        $( '#top-btn' ).fadeIn();
+      } else {
+        $( '#top-btn' ).fadeOut();
+      }
+    } );
+
     let dishes = {{ dishes|tojson }};
     $(document).ready(function () {
         $(".search-form").on("submit", function (e) {
