@@ -25,7 +25,7 @@
     <title>details</title>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function  () {
             get_comments("{{ food.no }}","{{ nickname }}")
         })
 
@@ -144,20 +144,18 @@
   <body>
     <header id="header">
       <h1><a onclick="location.href='http://localhost:5000/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
-      <div tabindex="0" onclick="nav_show()"  class="user">
+      <div tabindex="0" class="user">
         <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
         <img src="https://picsum.photos/id/237/200/300" alt="프로필">
       </div>
-      <div onclick="sign_out()" class="nav">
-        로그아웃
-      </div>
+      <div onclick="sign_out()"  class="nav"> 로그아웃  </div>
     </header>
+    <button id="top-btn" type="button">Top</button>
     <div class="wrap">
       <!-- 상세 이미지 -->
       <section id="detail-image">
         <div class="h2"><h2 class="title"><span class="menu">{{food.menu_name}}</span></h2></div>
         <div class="ingredient-list">
-          <img class="pentagon-img" src="../static/imgs/Star.png" alt="5각형">
           <img class="food-img" src="{{food.img}}" alt="음식명도 넘겨받기">
           <div class="circle circle-1">칼로리<p class="calorie">{{food.calorie}}<span class="unit">cal</span></p></div>
           <div class="circle circle-2">나트륨<p class="natrium">{{food.natrium}}<span class="unit">mg</span></p></div>
@@ -166,6 +164,7 @@
           <div class="circle circle-5">지방<p class="fat">{{food.fat}}<span class="unit">g</span></p></div>
         </div>
       </section>
+      
       <!-- 상세 설명글 -->
       <section id="detail-text">
         <div class="h2"><h2>RECIPE</h2></div>
@@ -200,14 +199,28 @@
   </body>
   <script>
     // 프로필클릭시 로그아웃버튼 show
-    function nav_show(){
+    $('.user').click(function(){
       if($(".nav").hasClass("show")){
-          $(".nav").removeClass("show");
-    }else{
+        $(".nav").removeClass("show");
+      }else{
+        $(".nav").show()
         $(".nav").addClass("show");
       }
-    }
+    })
     
+    //top버튼 클릭시 위로스크롤
+    $( '#top-btn' ).click( function() {
+      $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+      return false;
+    } );
+    //top버튼 스트롤200부터 보임
+    $( window ).scroll( function() {
+      if ( $( this ).scrollTop() > 200 ) {
+        $( '#top-btn' ).fadeIn();
+      } else {
+        $( '#top-btn' ).fadeOut();
+      }
+    } );
 
     //상단 비주얼 부분
     $(document).ready(function () {
@@ -216,16 +229,19 @@
         $(".circle").addClass("big")
     })
     
+
     //스크롤 이벤트
     $(window).scroll(function () {
         var height = $(document).scrollTop();
-        if(height > 500){
+        if(height > 400){
             $("#detail-text").addClass("show")
         }
-        if(height > 1400){
+        if(height > 1300){
             $("#comments").addClass("show")
         }
     }); 
+
+ 
 
   </script>
 

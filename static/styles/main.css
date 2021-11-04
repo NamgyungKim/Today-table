@@ -1,62 +1,3 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100px;
-  background-color: #ff4253;
-  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);
-}
-#header .logo {
-  height: 100px;
-  padding: 15px 50px;
-  box-sizing: border-box;
-}
-#header .user {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-#header .user .user-name {
-  font-size: 30px;
-  font-weight: bold;
-  color: white;
-}
-#header .user img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 0 50px 0 20px;
-}
-#header .nav {
-  display: none;
-  position: absolute;
-  top: 120px;
-  right: 50px;
-  width: 200px;
-  border-radius: 10px;
-  background-color: white;
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  line-height: 70px;
-  cursor: pointer;
-}
-
 h1 {
   font-size: 2.5rem;
 }
@@ -291,11 +232,15 @@ h1 {
   font-weight: bold;
 }
 
-.dish .fa-heart {
+.dish .level-item {
   position: absolute;
-  top: 205px;
-  right: 0.4rem;
-  font-size: 1rem;
+  top: 208px;
+  right: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.dish .level-item .fa-heart {
+  color: red;
 }
 
 /* 모달 */
@@ -322,19 +267,30 @@ h1 {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #f5c156;
   border-radius: 10px;
   border: 3px solid midnightblue;
   overflow: hidden;
+  padding: 1rem 0;
 }
 
 .modal .modal-contents h1 {
   font-size: 2rem;
 }
 
-.modal .modal-contents .questions-container {
+.modal .modal-contents .question-wrap {
+  width: 2700px;
+  display: flex;
+  position: absolute;
+  top: 4.5rem;
+  left: 0;
+  transform: translateX(0);
+  transition: 0.3s ease-in;
+}
+
+.modal .modal-contents .question-wrap .questions-container {
   width: 600px;
   height: 400px;
   background-color: tomato;
@@ -342,16 +298,18 @@ h1 {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
+  margin: 0 150px;
 }
 
-.questions-container .question {
-  font-size: 1.5rem;
+.box-radio-input input[type="radio"] {
+  display: none;
 }
 
-.questions-container .answerUp,
-.questions-container .answerDown {
+.box-radio-input input[type="radio"] + span {
+  display: inline-block;
+  text-align: center;
   width: 400px;
   background-color: thistle;
   border: none;
@@ -361,17 +319,28 @@ h1 {
   padding: 1rem 0;
 }
 
+.box-radio-input input[type="radio"]:checked + span {
+  border: 1px solid #23a3a7;
+  background: #23a3a7;
+  color: #fff;
+}
+
+.questions-container .question {
+  font-size: 1.5rem;
+}
+
 .modal .modal-contents .control-container {
   width: 200px;
-  position: absolute;
+  /* position: absolute;
   bottom: 10px;
   right: 50%;
-  transform: translateX(50%);
+  transform: translateX(50%); */
   display: flex;
   justify-content: space-between;
 }
 
 .modal-contents .control-container button {
+  display: block;
   width: 80px;
   font-size: 1rem;
   padding: 0.3rem 1rem;
@@ -383,17 +352,100 @@ h1 {
   transition: 0.3s ease-in;
 }
 
+.modal-contents .control-container button.hide {
+  display: none;
+}
+
 .modal-contents .control-container button:hover {
   background-color: #61b5d9;
   color: #fff;
 }
+.modal-contents .control-container button:disabled {
+  background-color: #ccc;
+  color: #61b5d9;
+  cursor: initial;
+}
+
+.modal .modal-contents .exit-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid black;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.modal .modal-contents .recomended-dish {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 5.5rem;
+  width: 400px;
+  height: 400px;
+  background-color: tomato;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.modal .modal-contents .recomended-dish a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-contents .recomended-dish .img-wrap {
+  border-radius: 5px;
+  overflow: hidden;
+}
+.modal-contents .recomended-dish .img-wrap img {
+  width: 300px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.modal-contents .recomended-dish .dish-name {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  background-color: brown;
+  padding: 0.5rem 1rem;
+  letter-spacing: 2px;
+  border-radius: 5px;
+}
+
+.modal-contents .recomended-dish .retry-btn {
+  font-size: 1.2rem;
+  background-color: coral;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.modal-contents .recomended-dish .retry-btn:hover {
+  background-color: #fff;
+  color: coral;
+}
+
+.modal-contents .recomended-dish .description {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
 
 /* pc */
 @media (max-width: 1024px) {
-  .main-container {
-    background-color: yellow;
-  }
-
   .image-container .dish {
     width: 240px;
     height: 380px;
@@ -420,10 +472,6 @@ h1 {
 }
 /* 태블릿 가로 */
 @media (max-width: 768px) {
-  .main-container {
-    background-color: pink;
-  }
-
   .image-container .dish,
   .image-container .dish img,
   .image-container .dish .dish-desc {

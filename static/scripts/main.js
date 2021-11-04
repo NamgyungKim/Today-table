@@ -11,42 +11,38 @@
 // })
 
 function toggle_like(food_num, type) {
-
-    let $a_like = $(`#${food_num} a[aria-label='heart']`)
-    let $i_like = $a_like.find("i")
-    if ($i_like.hasClass("fa-heart")) {
-        $.ajax({
-            type: "POST",
-            url: "/update_like",
-            data: {
-                food_num_give: food_num,
-                type_give: type,
-                action_give: "unlike"
-            },
-            success: function (response) {
-                $i_like.addClass("fa-heart-o").removeClass("fa-heart")
-                $a_like.find("span.like-num").text(response["count"])
-            }
-        })
-    } else {
-        $.ajax({
-            type: "POST",
-            url: "/update_like",
-            data: {
-                food_num_give: food_num,
-                type_give: type,
-                action_give: "like"
-            },
-            success: function (response) {
-                $i_like.addClass("fa-heart").removeClass("fa-heart-o")
-                $a_like.find("span.like-num").text(response["count"])
-            }
-        })
-    }
+  let $a_like = $(`#${food_num} a[aria-label='heart']`);
+  let $i_like = $a_like.find("i");
+  if ($i_like.hasClass("fa-heart")) {
+    $.ajax({
+      type: "POST",
+      url: "/update_like",
+      data: {
+        food_num_give: food_num,
+        type_give: type,
+        action_give: "unlike",
+      },
+      success: function (response) {
+        $i_like.addClass("fa-heart-o").removeClass("fa-heart");
+        $a_like.find("span.like-num").text(response["count"]);
+      },
+    });
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/update_like",
+      data: {
+        food_num_give: food_num,
+        type_give: type,
+        action_give: "like",
+      },
+      success: function (response) {
+        $i_like.addClass("fa-heart").removeClass("fa-heart-o");
+        $a_like.find("span.like-num").text(response["count"]);
+      },
+    });
+  }
 }
-
-
-
 
 function sign_out() {
   $.removeCookie("mytoken", { path: "/" });
@@ -57,23 +53,46 @@ function sign_out() {
 function nav_show() {
   if ($(".nav").css("display") == "none") {
     $(".nav").show();
+    $(".nav").addClass("show");
   } else {
     $(".nav").hide();
+    $(".nav").removeClass("show");
   }
 }
 
-function search_ingredients() {
-  let value = $(".search-input").val();
-  console.log(value);
+function show_modal() {
+  $(".modal").removeClass("hidden");
 }
 
-function likeHeart() {
-  console.log("ㅇㅇㅇ");
+function hide_modal() {
+  $(".modal").addClass("hidden");
 }
 
 $(document).ready(function () {
   // get_list();
 });
+
+// 프로필클릭시 로그아웃버튼 show
+$('.user').click(function(){
+  if($(".nav").hasClass("show")){
+    $(".nav").removeClass("show");
+  }else{
+    $(".nav").addClass("show");
+  }
+})
+//top버튼 클릭시 위로스크롤
+$( '#top-btn' ).click( function() {
+  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+  return false;
+} );
+//top버튼 스트롤200부터 보임
+$( window ).scroll( function() {
+  if ( $( this ).scrollTop() > 200 ) {
+    $( '#top-btn' ).fadeIn();
+  } else {
+    $( '#top-btn' ).fadeOut();
+  }
+} );
 
 function get_list() {
   $.ajax({
@@ -105,6 +124,8 @@ function get_list() {
     },
   });
 }
+
+
 
 //// 추천 요리 크기변경
 //// 중간 라인 삭제
