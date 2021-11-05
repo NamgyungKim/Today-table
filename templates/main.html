@@ -39,21 +39,12 @@
     <title>오늘의 식탁</title>
   </head>
   <body>
-    <header id="header">
-      <h1>
-        <a onclick="window.location.href='/'"
-          ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
-        /></a>
-      </h1>
+  <header id="header">
+      <h1><a onclick="window.location.href='/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div tabindex="0" class="user">
-        <span class="user-name"
-          ><span class="user-name-db">{{ nickname }} </span>님</span
-        >
-        <img src="../static/imgs/기본프로필.jpg" alt="프로필" />
-        <div class="nav">
-          <div onclick="userpage()">마이페이지</div>
-          <div onclick="sign_out()">로그아웃</div>
-        </div>
+        <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
+        <img src="https://picsum.photos/id/237/200/300" alt="프로필">
+        <div class="nav">  <div onclick="window.location.href='/user'"> 마이페이지</div> <div onclick="sign_out()">로그아웃</div> </div>
       </div>
     </header>
     <button id="top-btn" type="button">Top</button>
@@ -327,15 +318,14 @@
 </script>
 <script>
     // 프로필클릭시 로그아웃버튼 show
-    $(".user").click(function () {
-        if ($(".nav").hasClass("show")) {
-            $(".nav").addClass("show");
-        } else {
-            $(".nav").show();
-            $(".nav").removeClass("show");
-        }
-
-    });
+    $('.user').click(function(){
+      if($(".nav").hasClass("show")){
+        $(".nav").removeClass("show");
+      }else{
+        $(".nav").show()
+        $(".nav").addClass("show");
+      }
+    })
 
     //top버튼 클릭시 위로스크롤
     $("#top-btn").click(function () {
