@@ -2,6 +2,14 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
+    <meta property="og:site_name" content="오늘의 식탁">
+    <meta property="og:title" content="마이페이지">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:type" content="website">
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
@@ -18,10 +26,10 @@
             rel="stylesheet"
     />
 
-    <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="/static/styles/detail.css"/>
     <link rel="stylesheet" href="/static/styles/reset.css"/>
     <link rel="stylesheet" href="/static/styles/common.css"/>
+    <link rel="icon" href="../static/imgs/favicon.ico">
 
     <title>오늘의 식탁</title>
 
@@ -112,7 +120,7 @@
                                 let time_before = time2str(time_post)
                                 let html_temp1 = `<div class="comment">
                                                     <div class="user">
-                                                        <img class="user-profil" src="https://picsum.photos/id/237/200/300" alt="유저 프로필사진">
+                                                        <img class="user-profil" src="../static/imgs/기본프로필.jpg" alt="유저 프로필사진">
                                                         <p class="user-name"> ${comment["nickname"]}</p>
                                                     </div>
                                                     <p class="comment-text">
@@ -147,7 +155,7 @@
       <h1><a onclick="window.location.href='/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div tabindex="0" class="user">
         <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
-        <img src="https://picsum.photos/id/237/200/300" alt="프로필">
+        <img src="../static/imgs/기본프로필.jpg" alt="프로필">
 
 
           <div class="nav">  <div onclick="userpage()"> 마이페이지</div> <div onclick="sign_out()">로그아웃</div> </div>
