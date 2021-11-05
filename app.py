@@ -241,10 +241,9 @@ def get_my_comments():
 #음식 추천
 @app.route('/api/recommend_food', methods=['POST'])
 def recommend_food():
-    answer_receive = request.form['answers_give']
-    answer1 = answer_receive[0]
-    answer2 = answer_receive[1]
-    answer3 = answer_receive[2]
+    answer1 = request.form['answers1']
+    answer2 = request.form['answers2']
+    answer3 = request.form['answers3']
 
     main_dish = db.foodInfo.find({'menu_type': '밥'}, {'_id': False})
     dessert = db.foodInfo.find({'menu_type': '후식'}, {'_id': False})
@@ -254,19 +253,19 @@ def recommend_food():
     r2 = []
     for i in r:
         if answer2 == "고단백":
-            if int(i['protein']) > 25:
+            if float(i['protein']) > 25:
                 r2.append(i)
         else:
-            if int(i['natrium']) < 100:
+            if float(i['natrium']) < 100:
                 r2.append(i)
 
     r3 = []
     for i in r2:
         if answer3 == "다이어트식":
-            if int(i['calorie']) < 300:
+            if float(i['calorie']) < 300:
                 r3.append(i)
         else:
-            if int(i['calorie']) > 500:
+            if float(i['calorie']) > 500:
                 r3.append(i)
 
     result = random.sample(r3, 1)
