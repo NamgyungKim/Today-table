@@ -452,6 +452,10 @@ h1 {
   margin-top: 0.5rem;
 }
 
+.recomended-dish .description p {
+  margin: 0.25rem;
+}
+
 .modal .modal-contents .exit-btn {
   width: 30px;
   height: 30px;
