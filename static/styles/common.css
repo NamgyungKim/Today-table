@@ -1,7 +1,12 @@
 /*********header *********/
 #header { position: sticky; display: flex; top: 0; justify-content: space-between; height: 100px; background-color: #ff4253; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3); z-index: 10; } 
-#header .logo { height: 100px; padding: 0 20px; box-sizing: border-box; } 
-#header .user { display: flex; align-items: center; justify-content: space-between; cursor: pointer; } 
+#header .logo { height: 100px; padding: 0 20px; box-sizing: border-box; cursor: pointer;} 
+#header .user { display: flex; align-items: center; justify-content: space-between; cursor: pointer;} 
+#header .user:hover .user-name,
+#header .user:hover img {opacity: .7; transition: all .5s;}
+#header .user_page {cursor:default !important;}
+#header .user_page:hover .user-name,
+#header .user_page:hover img{opacity: 1;}
 #header .user .user-name { font-size: 24px; font-weight: bold; color: white; } 
 #header .user img { width: 40px; height: 40px; border-radius: 50%; margin: 0 50px 0 20px; } 
 #header .nav { visibility: hidden; position: absolute; top: 100px; right: 50px; width: 200px; border-radius: 10px; background-color: white; opacity: 0; text-align: center; font-size: 24px; font-weight: bold; line-height: 70px; cursor: pointer; transition: all 0.5s; } 

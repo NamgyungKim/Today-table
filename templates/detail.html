@@ -33,7 +33,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script defer src="../static/scripts/common.js"></script>
 
-    <script>
+    <script>      
       $(document).ready(function  () {
         get_comments("{{ food.no }}","{{ nickname }}")
       })
@@ -43,6 +43,7 @@
         let comment = $('.input-comment').val()
         let num = "{{ food.no }}"
         let today = new Date().toISOString()
+        // 댓글을단 음식의 고유번호와 댓글, 오늘 날짜 전송
         $.ajax({
           type: 'POST',
           url: '/api/save_comment',
@@ -51,6 +52,7 @@
             num_give: num,
             time_give: today
           },
+          //완료시 알림과, 윈도우 리로딩
           success: function (response) {
             alert(response["msg"])
             window.location.reload()
@@ -60,6 +62,7 @@
 
       // 댓글 삭제
       function delete_comment(username, comment) {
+        // 유저의 이름과 댓글을 가져옴
         $.ajax({
           type: "POST",
           url: '/api/delete_comment',
@@ -67,6 +70,7 @@
             username_give: username,
             comment_give: comment
           },
+          //완료시 알림과, 윈도우 리로딩
           success: function (response) {
             alert(response["msg"])
             window.location.reload()
@@ -76,6 +80,7 @@
 
         // 댓글 불러오기
       function get_comments(food_num,nickname) {
+        //유저 정보와 음식정보 가져옴
         $.ajax({
           type: "POST",
           url: "/api/get_comments",
@@ -85,11 +90,13 @@
           success: function (response) {
             if (response["result"] == "success") {
               let comments = response["comments"]
+              // for문으로 현재 페이지음식에 달린 댓글들 전부 가져오기
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i]
                 if (comment["num"] == food_num) {
                   let time_post = new Date(comment["time"])
                   let time_before = time2str(time_post)
+                  // 댓글 폼(유저의 닉네임,프로필 사진, 댓글,날짜 사용)
                   let html_temp1 = `<div class="comment">
                                         <div class="user">
                                             <img class="user-profil" src="../static/${comment["profile_pic_real"]}" alt="유저 프로필사진">
@@ -102,6 +109,8 @@
                                             <span class="date">${time_before}</span>
                                             `
                     let html_temp2 = ``
+                    // 본인의 댓글만 삭제버튼이 보임
+                    // 댓글작성자와 본인의 닉네임이 맞으면 삭제 버튼 생성, 아니면 생성하지 않음
                     if(comment["nickname"] == nickname ){
                         html_temp2 =  `<button class="delete-btn" onclick="delete_comment('${comment["username"]}','${comment["comment"]}')">삭제</button>`
                     }else{
@@ -186,12 +195,14 @@
   </body>
   <script>
 
-    //스크롤 이벤트
+    //스크롤에 따른 애니메이션
     $(window).scroll(function () {
+      //스크롤이 400만큼 내려올시 show클래스를 붙인다.
         var height = $(document).scrollTop();
         if(height > 400){
             $("#detail-text").addClass("show")
         }
+      //스크롤이 1300만큼 내려올시 show클래스를 붙인다.
         if(height > 1300){
             $("#comments").addClass("show")
         }

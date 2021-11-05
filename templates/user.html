@@ -41,18 +41,21 @@
 
 
     <script>
+      //document가 다 불러온 후 다음 함수 실행
       $(document).ready(function () {
+        // 내가쓴 댓글 불러오기 함수
         get_my_comments()
       })
 
       //프로필 업로드
       function update_profile() {
+        //유저의 이름과 파일데이터를 가져온다.
         let nickname = $('#input-name').val()
         let file = $('#input-pic')[0].files[0]
         let form_data = new FormData()
         form_data.append("file_give", file)
         form_data.append("nickname_give", nickname)
-
+        //가져온 데이터를 db에 저장
         $.ajax({
           type: "POST",
           url: "/update_profile",
@@ -60,6 +63,7 @@
           cache: false,
           contentType: false,
           processData: false,
+          //완료시 완료알림과 리로딩
           success: function (response) {
             if (response["result"] == "success") {
               alert(response["msg"])
@@ -70,8 +74,9 @@
         });
       }
 
-        // 댓글 제거
+        // 본인이 쓴 댓글 제거
       function delete_comment(username, comment) {
+        //유저의 이름과 선택한 댓글을 가져온다.
         $.ajax({
           type: "POST",
           url: '/api/delete_comment',
@@ -79,6 +84,7 @@
             username_give: username,
             comment_give: comment
           },
+          //완료시 완료알림과 리로딩
           success: function (response) {
             alert(response["msg"])
             window.location.reload()
@@ -92,11 +98,12 @@
         type: "GET",
         url: "/api/get_my_comments",
         data: {},
+        // 내가쓴 댓글 불러오기 성공시,
+        // html_temp를 댓글들의 숫자만큼 append
         success: function (response) {
           let comments = {{ comments|tojson }};
           let food_info = {{ food_info|tojson }};
           let profile_pic = '{{ user_pic }}';
-          console.log(profile_pic)
           for (let i = 0; i < comments.length; i++) {
             let comment = comments[i]
             let time_post = new Date(comment["time"])
@@ -128,7 +135,7 @@
   <!-- header -->
   <header id="header">
     <h1><a onclick="window.location.href='/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
-    <div tabindex="0" class="user">
+    <div tabindex="0" class="user user_page">
       <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
       <img src="../static/{{ user_pic }}" alt="프로필">
       <div class="nav"> <div onclick="sign_out()">로그아웃</div> </div>
@@ -172,6 +179,8 @@
             로그아웃&nbsp;&nbsp;<span class="icon is-small"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
           </a>
         </nav>
+
+        <!-- 프로필수정 모달창 -->
         <div class="modal is-hidden" id="modal-edit">
           <div
             class="modal-background"
@@ -207,11 +216,6 @@
                             </span>
                             업로드
                           </span>
-                          <!-- <span
-                            id="file-name"
-                            class="file-name"
-                            style="width: 100%; max-width: 100%">{{ user_info.profile_pic }}
-                          </span> -->
                         </label>
                       </div>
                     </div>
@@ -240,6 +244,8 @@
             aria-label="close"
             onclick='$("#modal-edit").removeClass("is-active")'></button>
         </div>
+
+
       </div>
     </section>
 
@@ -252,7 +258,8 @@
 </div>
 </body>
 <script>
-       // 프로필클릭시 로그아웃버튼 show
+
+    // 프로필클릭시 로그아웃버튼 show
     $('.user').click(function(){
       if($(".nav").hasClass("show")){
         $(".nav").removeClass("show");
@@ -261,5 +268,6 @@
         $(".nav").addClass("show");
       }
     })
+
 </script>
 </html>
