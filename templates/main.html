@@ -188,7 +188,6 @@
           <div class="modal-result">
             <h1>추천 드립니다!</h1>
             <div class="recomended-dish">
-              <a href="/detail/" id="result-dish"> </a>
               <button class="retry-btn">다시 추천 받기</button>
             </div>
           </div>
@@ -287,6 +286,7 @@
       modalResult.style.display = "flex";
       clearQnA();
 
+      $(".recomended-dish").find(":not(button)").remove();
       // 메뉴 한 개 추천받으러
       $.ajax({
         type: "POST",
@@ -297,12 +297,10 @@
           answers3: answerCal,
         },
         success: function (response) {
-          console.log("success");
           if (response["result"] == "success") {
-            $("#result-dish").empty();
             let recommended_dish = response["recommended"][0];
-            console.log(recommended_dish);
-            let temp_html = `<h3 class="dish-name"> ${recommended_dish["menu_name"]}</h3>
+            let temp_html = `<a href="/detail/${recommended_dish["no"]}" id="result-dish">
+                              <h3 class="dish-name"> ${recommended_dish["menu_name"]}</h3>
                                     <div class="img-wrap">
                                       <img src="${recommended_dish["img"]}" alt="dish-image" />
                                     </div>
@@ -314,9 +312,20 @@
                                       <p class="dish-protein">단: ${recommended_dish["protein"]}g</p>
                                       <p class="dish-fat">지: ${recommended_dish["fat"]}g</p>
                                       <p class="dish-natrium">염: ${recommended_dish["natrium"]}mg</p>
-                                    </div>`;
-            $("#result-dish").append(temp_html);
+                                    </div>
+                                  </a>`;
+            $(".recomended-dish").prepend(temp_html);
           }
+        },
+        error: function (e) {
+          console.log(e);
+          // 추천할 것이 없어서 오류났을 때
+          let temp_html = `<p class="retry-noti">
+                선택하신 카테고리에 맞는 음식이 없어요ㅠㅠ
+              </p>
+          `;
+
+          $(".recomended-dish").prepend(temp_html);
         },
       });
     });

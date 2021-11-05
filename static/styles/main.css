@@ -468,6 +468,13 @@ h1 {
   color: coral;
 }
 
+.recomended-dish .retry-noti {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  word-break: keep-all;
+}
+
 .modal .modal-contents .exit-btn {
   width: 30px;
   height: 30px;
