@@ -33,6 +33,7 @@ h1 {
 }
 
 .main-container .recommend-container .image-container {
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -255,10 +256,14 @@ h1 {
   height: 100%;
   z-index: 200;
   background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease-in;
 }
 
-.main-container .modal.hidden {
-  display: none;
+.main-container .modal.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .main-container .modal .modal-contents {
@@ -450,6 +455,10 @@ h1 {
   flex-direction: column;
   font-size: 1.2rem;
   margin-top: 0.5rem;
+}
+
+.recomended-dish .description p {
+  margin: 0.25rem;
 }
 
 .modal .modal-contents .exit-btn {
