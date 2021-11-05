@@ -12,7 +12,7 @@
 - my page에서 본인의 프로필 사진을 바꿀 수 있습니다.
 
  🧁URL : http://todays-table.shop/
- 시현영상 : https://www.youtube.com/watch?v=j9MvdwPx12o
+ 시연영상 : https://www.youtube.com/watch?v=j9MvdwPx12o
 
 <br />
 
