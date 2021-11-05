@@ -394,11 +394,11 @@ h1 {
 .modal .modal-contents .modal-result .recomended-dish {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   position: absolute;
-  top: 5.5rem;
+  top: 50%;
+  transform: translateY(-45%);
   width: 400px;
-  height: 400px;
   background-color: tomato;
   border-radius: 10px;
   padding: 1rem;
@@ -409,7 +409,9 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 0.5rem;
 }
+
 .modal-contents .modal-result .recomended-dish .img-wrap {
   border-radius: 5px;
   overflow: hidden;
@@ -422,16 +424,34 @@ h1 {
 
 .modal-contents .modal-result .recomended-dish .dish-name {
   position: absolute;
-  top: -20px;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
   font-size: 1.5rem;
   font-weight: bold;
-  color: black;
+  color: #fff;
   background-color: brown;
   padding: 0.5rem 1rem;
   letter-spacing: 2px;
   border-radius: 5px;
+  word-break: keep-all;
+  text-align: center;
+}
+
+.modal-contents .modal-result .recomended-dish .description {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0.25rem 0.25rem 0;
+}
+
+.recomended-dish .description p {
+  background-color: rgba(85, 85, 85, 0.5);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin: 0.25rem;
+  padding: 0.5rem 0.6rem;
+  color: #fff;
 }
 
 .modal-contents .modal-result .recomended-dish .retry-btn {
@@ -441,7 +461,6 @@ h1 {
   border: none;
   border-radius: 5px;
   padding: 0.2rem 0.5rem;
-  margin-top: 1rem;
   cursor: pointer;
 }
 .modal-contents .modal-result .recomended-dish .retry-btn:hover {
@@ -449,16 +468,11 @@ h1 {
   color: coral;
 }
 
-.modal-contents .modal-result .recomended-dish .description {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
+.recomended-dish .retry-noti {
   font-size: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-.recomended-dish .description p {
-  margin: 0.25rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  word-break: keep-all;
 }
 
 .modal .modal-contents .exit-btn {
