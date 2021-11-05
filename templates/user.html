@@ -80,7 +80,7 @@
                         let time_before = time2str(time_post)
                         let html_temp = `<div class="comment">
                                             <div class="user">
-                                                <img class="user-profil" src="https://picsum.photos/id/237/200/300" alt="유저 프로필사진">
+                                                <img class="user-profil" src="../static/imgs/기본프로필.jpg" alt="유저 프로필사진">
                                                 <p class="user-name"> ${comment["nickname"]}</p>
                                             </div>
 
@@ -132,7 +132,7 @@
       <h1><a onclick="window.location.href='/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div tabindex="0" class="user">
         <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
-        <img src="https://picsum.photos/id/237/200/300" alt="프로필">
+        <img src="../static/imgs/기본프로필.jpg" alt="프로필">
          <div class="nav">  <div onclick="sign_out()">로그아웃</div> </div>
       </div>
     </header>
@@ -145,7 +145,7 @@
               <figure class="media-left" style="align-self: center">
                 <img
                   class="user-profile"
-                  src="https://picsum.photos/id/237/200/300"/>
+                  src="../static/imgs/기본프로필.jpg"/>
                 <div class="user-box">
                   <p class="user-nickname">{{ nickname }}</p>
                   <p class="user-name">@{{ user_info.username }}</p>
