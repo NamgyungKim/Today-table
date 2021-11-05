@@ -259,11 +259,9 @@ def recommend_food():
         if answer2 == "고단백":
             if float(i['protein']) > 25:
                 r2.append(i)
-                print(r2)
         else:
             if float(i['natrium']) < 100:
                 r2.append(i)
-                print(r2)
 
     # 3차 필터링
     r3 = []
@@ -271,11 +269,9 @@ def recommend_food():
         if answer3 == "다이어트식":
             if float(i['calorie']) < 300:
                 r3.append(i)
-                print(r3)
         else:
             if float(i['calorie']) > 500:
                 r3.append(i)
-                print(r3)
 
     # 결과값 중, 랜덤으로 1개의 음식을 추천
     result = random.sample(r3, 1)
