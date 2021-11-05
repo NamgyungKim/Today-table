@@ -33,6 +33,7 @@ h1 {
 }
 
 .main-container .recommend-container .image-container {
+  box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -255,10 +256,14 @@ h1 {
   height: 100%;
   z-index: 200;
   background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease-in;
 }
 
-.main-container .modal.hidden {
-  display: none;
+.main-container .modal.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .main-container .modal .modal-contents {

@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/static/styles/main.css" />
     <link rel="stylesheet" href="/static/styles/reset.css" />
     <link rel="stylesheet" href="/static/styles/common.css" />
-    <link rel="icon" href="../static/imgs/favicon.ico">
+    <link rel="icon" href="../static/imgs/favicon.ico" />
     <title>오늘의 식탁</title>
   </head>
   <body>
@@ -111,7 +111,7 @@
       </div>
 
       <!-- 모달 -->
-      <div class="modal hidden">
+      <div class="modal">
         <div class="modal-contents">
           <div class="modal-wrap">
             <h1>질문에 답해주세요.</h1>
@@ -259,7 +259,7 @@
       submitBtn.classList.add("hide");
 
       document.querySelector('input[value="밥"]').checked = true;
-      document.querySelector('input[value="끓이기"]').checked = true;
+      document.querySelector('input[value="저염"]').checked = true;
       document.querySelector('input[value="다이어트식"]').checked = true;
     }
 
@@ -309,6 +309,7 @@
 
     const retryBtn = document.querySelector(".retry-btn");
     retryBtn.addEventListener("click", (e) => {
+      console.log("됨?");
       retryQnA();
     });
 

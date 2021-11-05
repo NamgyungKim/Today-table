@@ -42,9 +42,9 @@ function sign_out() {
 }
 
 function show_modal() {
-  $(".modal").removeClass("hidden");
+  $(".modal").addClass("show");
 }
 
 function hide_modal() {
-  $(".modal").addClass("hidden");
+  $(".modal").removeClass("show");
 }
