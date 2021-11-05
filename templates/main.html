@@ -253,9 +253,11 @@
 
       // question 요소를 감싸고 있는 커다란 wrap 컨테이너를 idx에 따라 900px 씩 이동 시킨다
       // translateY는 위아래 중 가운데 위치시키기 위함
-      questionWrap.style.transform = `translateX(${
-        -idx * 900
-      }px) translateY(-50%)`;
+      questionWrap.style.transform = `translateX(${-idx * (100 / questions.length)}%) translateY(-50%)`;
+      // questionWrap.style.transform = `translateX(${
+      //   -idx * 900
+      // }px) translateY(-50%)`;
+      //(${-idx * (100 / pre_projects.length)}%)
     }
 
     // 설문 clear
