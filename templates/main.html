@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <meta property="og:site_name" content="오늘의 식탁">
     <meta property="og:title" content="마이페이지">
     <meta property="og:image" content="">
@@ -32,33 +32,33 @@
             crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" href="/static/styles/main.css" />
-    <link rel="stylesheet" href="/static/styles/reset.css" />
-    <link rel="stylesheet" href="/static/styles/common.css" />
-    <link rel="icon" href="../static/imgs/favicon.ico" />
+    <link rel="stylesheet" href="/static/styles/main.css"/>
+    <link rel="stylesheet" href="/static/styles/reset.css"/>
+    <link rel="stylesheet" href="/static/styles/common.css"/>
+    <link rel="icon" href="../static/imgs/favicon.ico"/>
     <title>오늘의 식탁</title>
-  </head>
-  <body>
-    <header id="header">
-      <h1>
+</head>
+<body>
+<header id="header">
+    <h1>
         <a onclick="window.location.href='/'"
-          ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
+        ><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"
         /></a>
-      </h1>
-      <div tabindex="0" class="user">
+    </h1>
+    <div tabindex="0" class="user">
         <span class="user-name"
-          ><span class="user-name-db">{{ nickname }} </span>님</span
+        ><span class="user-name-db">{{ nickname }} </span>님</span
         >
-        <img src="../static/imgs/기본프로필.jpg" alt="프로필" />
+        <img src="../static/{{ user_pic }}" alt="프로필"/>
         <div class="nav">
-          <div onclick="userpage()">마이페이지</div>
-          <div onclick="sign_out()">로그아웃</div>
+            <div onclick="userpage()">마이페이지</div>
+            <div onclick="sign_out()">로그아웃</div>
         </div>
-      </div>
-    </header>
-    <button id="top-btn" type="button">Top</button>
-    <div class="main-container">
-      <div class="recommend-container">
+    </div>
+</header>
+<button id="top-btn" type="button">Top</button>
+<div class="main-container">
+    <div class="recommend-container">
         <h2>추천 드려요~!</h2>
         <h4>오늘의 건강식을 추천드립니다. 확인해보세요!</h4>
         <div class="image-container">
@@ -236,7 +236,7 @@
             submitBtn.classList.add('hide')
         }
 
-        questionWrap.style.transform = `translateX(${-idx * 900}px)`
+        questionWrap.style.transform = `translateX(${-idx * 900}px) translateY(-50%)`;
     }
 
     function clearQnA() {
@@ -265,7 +265,7 @@
             'input[name="item_type"]:checked'
         ).value
         const answerHowto = document.querySelector(
-            'input[name="item_howto"]:checked'
+            'input[name="item_healthy"]:checked'
         ).value
         const answerCal = document.querySelector(
             'input[name="item_cal"]:checked'
@@ -280,17 +280,21 @@
         clearQnA()
 
         // 메뉴 한 개 추천받으러
+
         $.ajax({
             type: 'POST',
             url: '/api/recommend_food',
             data: {
-                answers_give: answers,
+                answers_give: answers
+            },
+            error: function (e) {
+                console.log(e);
             },
             success: function (response) {
-                // 여기는 안쓰고
                 if (response["result"] == "success") {
                     $(".question-wrap").empty();
                     let recommended_dish = response["recommended"]; // recommended
+                    console.log(recommended_dish)
                     let temp_html = `<h1>추천 드립니다!</h1>
                                 <div class="recomended-dish">
                                   <a href="/detail/">
@@ -315,11 +319,12 @@
             },
         })
     })
-
+    /*
     const retryBtn = document.querySelector('.retry-btn')
     retryBtn.addEventListener('click', (e) => {
         retryQnA()
     })
+    */
 
     modalHideBtn.addEventListener('click', (e) => {
         retryQnA()

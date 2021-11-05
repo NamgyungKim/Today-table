@@ -120,7 +120,7 @@
                                 let time_before = time2str(time_post)
                                 let html_temp1 = `<div class="comment">
                                                     <div class="user">
-                                                        <img class="user-profil" src="../static/imgs/기본프로필.jpg" alt="유저 프로필사진">
+                                                        <img class="user-profil" src="../static/${comment["profile_pic_real"]}" alt="유저 프로필사진">
                                                         <p class="user-name"> ${comment["nickname"]}</p>
                                                     </div>
                                                     <p class="comment-text">
@@ -129,7 +129,6 @@
                                                     <div class="comment-bottom">
                                                         <span class="date">${time_before}</span>
                                                         `
-
                                 let html_temp2 = ``
                                 if(comment["nickname"] == nickname ){
                                     html_temp2 =  `<button class="delete-btn" onclick="delete_comment('${comment["username"]}','${comment["comment"]}')">삭제</button>`
@@ -155,7 +154,7 @@
       <h1><a onclick="window.location.href='/'"><img class="logo" src="../static/imgs/logo.PNG" alt="오늘 뭐먹지?"></a></h1>
       <div tabindex="0" class="user">
         <span class="user-name"><span class="user-name-db">{{ nickname }} </span>님</span>
-        <img src="../static/imgs/기본프로필.jpg" alt="프로필">
+        <img src="../static/{{ user_pic }}" alt="프로필">
 
 
           <div class="nav">  <div onclick="userpage()"> 마이페이지</div> <div onclick="sign_out()">로그아웃</div> </div>
