@@ -46,12 +46,8 @@ def home():
         recommends = random.sample(dishes, 3)
 
         return render_template('main.html', nickname=user_info["nickname"], dishes=dishes, recommends=recommends, user_pic=user_info["profile_pic_real"])
-    # 토큰이 만료되었을 때 -> 로그인 페이지로 이동
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("index", msg="login expired"))
-    # 토큰이 없을 때 -> 로그인 페이지로 이동
-    except jwt.exceptions.DecodeError:
-        return redirect(url_for("index", msg="not logged in"))
+    except:  # 토큰이 만료되었거나 정보가 없는 경우, 로그인 페이지로 바로 이동
+        return redirect(url_for("index"))
 
 
 # 로그인 및 회원가입 페이지
@@ -136,9 +132,8 @@ def detail(keyword):
 
         return render_template('detail.html', food=food, comments=comments,
                                receipe=food_recipe, foodImg=food_img, username=username, nickname=nickname, user_pic=user_pic)
-    # 토큰이 없을 경우, 로그인 페이지로 이동
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("/"))
+    except: # 토큰이 만료되었거나 정보가 없는 경우, 로그인 페이지로 바로 이동
+        return redirect(url_for("index"))
 
 # 코멘트 저장 기능
 @app.route('/api/save_comment', methods=['POST'])
@@ -234,8 +229,8 @@ def user():
             food_info[comment["num"]] = db.foodInfo.find_one({"no":comment["num"]})["menu_name"]
 
         return render_template('user.html', user_info=user_info, nickname=user_info["nickname"], food_info=food_info, comments=comments, user_pic=user_pic)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("/"))
+    except: # 토큰이 만료되었거나 정보가 없는 경우, 로그인 페이지로 바로 이동
+        return redirect(url_for("index"))
 
 
 # 마이페이지 코멘트 불러오기
