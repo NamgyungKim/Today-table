@@ -22,5 +22,5 @@
 /* 태블릿 세로, 모바일 가로*/
 @media (max-width: 480px){
  #header .user .user-name { display: none; } 
- #header .nav { width: 100px; height: 50px; font-size: 20px; line-height:50px;}
+ #header .nav { right: 20px; width: 120px; height: 100px; font-size: 20px; line-height:50px;}
  }
