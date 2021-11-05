@@ -30,10 +30,10 @@
     ></script>
     <script src="/static/scripts/main.js"></script>
 
-    <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="/static/styles/user.css" />
     <link rel="stylesheet" href="/static/styles/reset.css" />
     <link rel="stylesheet" href="/static/styles/common.css" />
+    <link rel="icon" href="../static/imgs/favicon.ico">
     <title>오늘의 식탁</title>
 
     <script>
@@ -84,7 +84,7 @@
                                                 <p class="user-name"> ${comment["nickname"]}</p>
                                             </div>
 
-                                            <p class="food_name"><a href="/detail/${food_info["num"]}"> [${food_info[comment["num"]]}] </a></p>
+                                            <p class="food_name"><a href="/detail/${food_info["num"]}"> ${food_info[comment["num"]]} </a></p>
                                             <p class="comment-text">${comment["comment"]}</p>
                                             <div class="comment-bottom">
                                                 <span class="date">${time_before}</span>
@@ -137,15 +137,6 @@
       </div>
     </header>
 <div class="wrap">
-    <div class="main-container">
-
-          <span class="user-name-db">{{ nickname }}</span>님</span
-        >
-        <img src="https://picsum.photos/id/237/200/300" />
-      </div>
-      <div class="nav" onclick="sign_out()">로그아웃</div>
-    </header>
-    <div class="wrap">
       <div class="main-container">
         <section class="profile-top">
           <div class="profile-info">
@@ -269,7 +260,6 @@
 
         <footer id="footer">© 2021 오늘뭐먹지? by 5조</footer>
       </div>
-    </div>
 
 </div>
 </body>

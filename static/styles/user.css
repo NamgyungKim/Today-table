@@ -1,7 +1,7 @@
 body {background-color: #ffe4e0;}
 
 .wrap {max-width: 1024px;margin: auto;padding: 20px;}
-.main-container {width: 1024px;margin: auto;}
+.main-container {margin: auto;}
 
 #comments .comment { padding: 20px; border: 3px solid #f8ada9; border-radius: 10px; background-color: #f8ada9;}
 #comments .form-comment {display: flex;justify-content: space-between;border-radius: 10px;margin: 0 0 30px;width: 100%;background-color: white;-webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
@@ -20,13 +20,11 @@ body {background-color: #ffe4e0;}
 #comments .comment .comment-bottom .delete-btn {margin: 0 10px;border: 1px solid gray;border-radius: 10px;background-color: white;color: rgb(156, 156, 156);font-weight: bold;font-size: 17px;cursor: pointer;transition: all 0.5s;}
 #comments .comment .comment-bottom .delete-btn:hover {border: 1px solid rgb(77, 76, 76); color: black;}
 
-.media-left {display: flex;margin-bottom: 50px;}
-.user-profile { width: 150px; height: 150px; border-radius: 50%;}
-.profile-info { min-height: 200px; border-radius: 20px; margin: 30px auto 30px auto; padding: 60px 50px 40px 50px; background-color: white; }
-.user-box {margin-left: 50px;}
-.user-box p{}
-.user-box .user-nickname{margin-top: 30px; font-size: 40px; font-weight: bold;}
-.user-box .user-name{margin-top: 10px; font-size: 30px;}
+.media-left {margin: 0 0 50px;}
+.user-profile { width: 150px; height: 150px; margin: auto; border-radius: 50%;}
+.profile-info { min-height: 200px; border-radius: 20px; margin: 60px auto 60px auto; }
+.user-box .user-nickname {margin-top: 30px; text-align: center; font-size: 40px; font-weight: bold;}
+.user-box .user-name{margin-top:  10px; text-align: center; font-size: 30px;}
 
 /* pc */
 @media (max-width: 1024px) {
