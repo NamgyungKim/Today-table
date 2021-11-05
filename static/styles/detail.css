@@ -1,34 +1,34 @@
 body { background-color: #FFE4E0; color: #4a4a4a;}
 .wrap { max-width: 1024px; margin: auto; padding: 20px}
-.blind {position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);}
-.show {opacity: 1 !important;}
+.blind { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0,0,0,0);}
+.show { opacity: 1 !important;}
 
 
 /* 상세 이미지 */
-#detail-image { border-radius: 10px; padding: 0 10px 40px; margin: 80px 90px 0; background-color: white; opacity: 0; transition: all 1s; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
-#detail-image .h2 {text-align: center; color: black;}
-#detail-image .title {display: inline-block; padding: 0 30px; margin: 0 auto 0px; background-color: #F8ADA9; transform: translateY(-50%); text-align: center; line-height: 60px; font-size: 34px; font-weight: bold;}
+#detail-image { border-radius: 10px; padding: 0 10px 40px; margin: 80px 90px 0; background-color: white; transition: all 1s; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
+#detail-image .h2 { text-align: center; color: black;}
+#detail-image .title { display: inline-block; padding: 0 30px; margin: 0 auto 0px; background-color: #F8ADA9; transform: translateY(-50%); text-align: center; line-height: 60px; font-size: 34px; font-weight: bold;}
 #detail-image .ingredient-list {position: relative; }
 #detail-image .food-img{ width: 550px; margin: 56px auto 74px;-webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);}
-#detail-image .circle {position: absolute; width: 180px; height: 180px; text-align: center; padding: 50px 0; border-radius: 50%; background-color: #FF4253;  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); color: white; box-sizing: border-box; font-size: 25px; }
-#detail-image .circle-1{top: -70px; left: 50%; transform: translateX(-50%);}
-#detail-image .circle-2{top: 150px; left: 50px;}
-#detail-image .circle-3{top: 150px; right: 50px;}
-#detail-image .circle-4{bottom: -80px; left: 140px;}
-#detail-image .circle-5{bottom: -80px; right: 140px;}
-#detail-image .circle p {margin-top: 10px; font-weight: bold; font-size: 50px;}
-#detail-image .circle .unit {font-size: 25px;}
+#detail-image .circle { position: absolute; width: 180px; height: 180px; text-align: center; padding: 50px 0; border-radius: 50%; background-color: #FF4253;  -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2);box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.2); color: white; box-sizing: border-box; font-size: 25px; }
+#detail-image .circle-1{ top: -70px; left: 50%; transform: translateX(-50%);}
+#detail-image .circle-2{ top: 150px; left: 50px;}
+#detail-image .circle-3{ top: 150px; right: 50px;}
+#detail-image .circle-4{ bottom: -80px; left: 140px;}
+#detail-image .circle-5{ bottom: -80px; right: 140px;}
+#detail-image .circle p { margin-top: 10px; font-weight: bold; font-size: 50px;}
+#detail-image .circle .unit { font-size: 25px;}
 
 /* 상세 설명글 */
-#detail-text{margin:50px 0 100px; opacity: 0; transition: all 1.5s;}
-#detail-text .h2 {text-align: center; color: black;}
+#detail-text{ margin:50px 0 100px; opacity: 0; transition: all 1.5s;}
+#detail-text .h2 { text-align: center; color: black;}
 #detail-text .h2 h2 { display: inline-block; padding: 0 50px; transform: translateY(50%); font-size: 45px; font-weight: bold; line-height: 60px; background-color: #F8ADA9;}
-#detail-text .recipe{padding: 50px 30px 30px; border-radius: 10px; margin: 0 90px; background-color: white; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
-#detail-text .recipe-img{display: flex; flex-wrap: wrap; justify-content:space-around;}
+#detail-text .recipe{ padding: 50px 30px 30px; border-radius: 10px; margin: 0 90px; background-color: white; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.15);}
+#detail-text .recipe-img{ display: flex; flex-wrap: wrap; justify-content:space-around;}
 #detail-text .recipe-img .img-box{ margin-bottom: 15px}
-#detail-text .recipe-img .process-img{height: 200px;}
+#detail-text .recipe-img .process-img{ height: 200px;}
 #detail-text .recipe-text{ margin-top: 40px;}
-#detail-text .recipe-text p{font-size: 20px; line-height: 40px;}
+#detail-text .recipe-text p{ font-size: 20px; line-height: 40px;}
 #detail-text .recipe-text .ingredient{ margin-bottom: 20px; font-size: 16px;line-height: 30px;}
 #detail-text .recipe-text .ingredient strong{ font-weight: bold;}
 
