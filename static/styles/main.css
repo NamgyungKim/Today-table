@@ -296,9 +296,9 @@ h1 {
   width: 2700px;
   display: flex;
   position: absolute;
-  top: 4.5rem;
+  top: 50%;
   left: 0;
-  transform: translateX(0);
+  transform: translateX(0) translateY(-50%);
   transition: 0.3s ease-in;
 }
 
