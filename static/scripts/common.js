@@ -23,13 +23,18 @@ function time2str(date) {
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 }
 
-
 // header의 로그아웃버튼
 // 사용: user.html, detail.html, main.html
 function sign_out() {
   $.removeCookie('mytoken', { path: '/'});
   alert('정상적으로 로그아웃 되었습니다.')
   window.location.href = "/"
+}
+ 
+// userpage로 이동
+// 사용: detail.html, main.html
+function userpage(){
+  location.href='/user'
 }
 
 // 프로필클릭시 로그아웃버튼 show
