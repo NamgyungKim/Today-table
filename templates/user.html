@@ -73,6 +73,21 @@
             });
         }
 
+        function delete_comment(username, comment) {
+          $.ajax({
+              type: "POST",
+              url: '/api/delete_comment',
+              data: {
+                  username_give: username,
+                  comment_give: comment
+              },
+              success: function (response) {
+                  alert(response["msg"])
+                  window.location.reload()
+              }
+          });
+      }
+
 
         function get_my_comments() {
             $.ajax({
