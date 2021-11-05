@@ -1,6 +1,6 @@
 /*********header *********/
 #header { position: sticky; display: flex; top: 0; justify-content: space-between; height: 100px; background-color: #ff4253; -webkit-box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3); box-shadow: 0px 0px 50px 5px rgba(0, 0, 0, 0.3); z-index: 10; } 
-#header .logo { height: 100px; padding: 0 20px; box-sizing: border-bo } 
+#header .logo { height: 100px; padding: 0 20px; box-sizing: border-box; } 
 #header .user { display: flex; align-items: center; justify-content: space-between; cursor: pointer; } 
 #header .user .user-name { font-size: 24px; font-weight: bold; color: white; } 
 #header .user img { width: 40px; height: 40px; border-radius: 50%; margin: 0 50px 0 20px; } 
@@ -17,4 +17,5 @@
 /* 태블릿 세로, 모바일 가로*/
 @media (max-width: 480px){
  #header .user .user-name { display: none; } 
- #header .nav { width: 100px; height: 50px; font-size: 20px; line-heightF
+ #header .nav { width: 100px; height: 50px; font-size: 20px; line-height:50px;}
+ }
