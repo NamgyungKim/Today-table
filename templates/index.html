@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+
+    <title>오늘의 식탁</title>
+
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+
     <meta property="og:site_name" content="오늘의 식탁">
     <meta property="og:title" content="마이페이지">
     <meta property="og:image" content="">
@@ -14,26 +14,19 @@
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="ko_KR">
     <meta property="og:type" content="website">
-    <!-- Bulma CSS 링크 -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
-    />
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
+    <!-- Bulma CSS 링크 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+  
     <!-- CSS -->
-    
-    <link
-      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../static/styles/reset.css" />
     <link rel="stylesheet" href="../static/styles/login.css" />
     <link rel="icon" href="../static/imgs/favicon.ico">
-
-    <title>오늘의 식탁</title>
+    
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <script>
       // is-hidden을 껐다가 켤 수 있는 토글 기능 (toggleClass)
@@ -236,78 +229,77 @@
       <div class="bg_right"></div>
       <h1>
         <a href="/">
-          <img src="../static/imgs/logo.png" alt="오늘 뭐먹이지?"
-        /></a>
+          <img src="../static/imgs/logo.png" alt="오늘 뭐먹이지?"/></a>
       </h1>
       <section class="section">
         <div class="container">
+
+          <!-- 로그인 상자 -->
           <div class="box form">
             <article class="media">
               <div class="media-content">
                 <div class="content">
+
+
+                  <!-- 아이디 입력,중복 -->
                   <div class="field has-addons">
                     <div class="control has-icons-left" style="width: 100%">
                       <h2 class="h2-sign-up">SIGN IN</h2>
                       <h2 class="h2-sign-in is-hidden">SIGN UP</h2>
                       <div class="bar"></div>
                       <div class="fild flex">
-                        <input
+                        <input 
                           id="input-username"
                           class="input"
                           type="text"
-                          placeholder="아이디"
-                        />
-                        <span class="icon is-small is-left"
-                          ><i class="fa fa-user"></i
-                        ></span>
-                        <!-- 클래스 'is-hidden' 추가 -->
-                        <button
+                          placeholder="아이디"/>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-user"></i>
+                        </span>
+                        <button 
                           id="btn-check-dup"
                           class="button is-hidden is-sparta"
-                          onclick="check_dup()"
-                        >
+                          onclick="check_dup()">
                           중복확인
                         </button>
                       </div>
                     </div>
                   </div>
-
-                  <!-- 클래스 'is-hidden' 추가 -->
                   <p id="help-id" class="help is-hidden">
                     아이디는 2-10자의 영문과 숫자와 일부 특수문자(._-)만 입력
                     가능합니다.
                   </p>
                   <p id="help-id-login" class="help is-danger"></p>
 
+
+                  <!-- 닉네임 입력 -->
                   <div class="control has-icons-left" style="width: 100%">
                     <input
                       id="input-nickname"
                       class="input is-hidden"
                       type="text"
-                      placeholder="닉네임"
-                    />
+                      placeholder="닉네임" />
                     <span
                       class="icon is-small is-left is-hidden"
-                      id="nicknameIcon"
-                      ><i class="fa fa-user"></i
-                    ></span>
+                      id="nicknameIcon">
+                      <i class="fa fa-user"></i>
+                    </span>
                   </div>
                   <p id="help-nickname" class="is-hidden"></p>
 
+
+                  <!-- 비밀번호 입력 -->
                   <div class="field">
                     <div class="control has-icons-left">
                       <input
                         id="input-password"
                         class="input"
                         type="password"
-                        placeholder="비밀번호"
-                      />
-                      <span class="icon is-small is-left"
-                        ><i class="fa fa-lock"></i
-                      ></span>
-                      
+                        placeholder="비밀번호"/>
+                      <span class="icon is-small is-left">
+                        <i class="fa fa-lock"></i>
+                      </span>
                     </div>
-                    <!-- 클래스 'is-hidden' 추가 -->
                     <p id="help-password" class="help is-hidden">
                       영문과 숫자 조합의 8-20자의 비밀번호를 설정해주세요.
                       특수문자(!@#$%^&*)도 사용 가능합니다.
@@ -315,24 +307,26 @@
                     <p id="help-password-login" class="help is-danger"></p>
                   </div>
                 </div>
+
+
+                <!-- 로그인, 회원가입으로 가는 버튼 -->
                 <div id="div-sign-in-or-up" class="has-text-centered">
                   <button
                     class="sign-up-btn level-item button is-sparta"
-                    onclick="sign_in()"
-                  >
+                    onclick="sign_in()">
                     로그인
                   </button>
                   <h4>회원이 아니신가요?</h4>
                   <span
                     class="sign-in-btn is-sparta is-outlined"
-                    onclick="toggle_sign_up()"
-                  >
+                    onclick="toggle_sign_up()">
                     Sign Up
                   </span>
                 </div>
 
-                <!-- 클래스 'is-hidden' 추가 -->
+
                 <div id="sign-up-box" class="is-hidden">
+                  <!-- 비밀번호 재입력 -->
                   <div class="mb-5">
                     <div class="field">
                       <div class="control has-icons-left" style="width: 100%">
@@ -340,42 +334,45 @@
                           id="input-password2"
                           class="input"
                           type="password"
-                          placeholder="비밀번호 재입력"
-                        />
-                        <span class="icon is-small is-left"
-                          ><i class="fa fa-lock"></i
-                        ></span>
+                          placeholder="비밀번호 재입력"/>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-lock"></i>
+                        </span>
                       </div>
                       <p id="help-password2" class="help is-hidden">
                         비밀번호를 다시 한 번 입력해주세요.
                       </p>
                     </div>
                   </div>
+
+
+                  <!-- 회원가입, 취소버튼 -->
                   <nav class="level is-mobile">
                     <button
                       class="level-item button is-sparta"
-                      onclick="sign_up()"
-                    >
+                      onclick="sign_up()">
                       회원가입
                     </button>
                     <button
                       class="level-item button is-sparta is-outlined"
-                      onclick="toggle_sign_up()"
-                    >
+                      onclick="toggle_sign_up()">
                       취소
                     </button>
                   </nav>
+
+
                 </div>
               </div>
             </article>
           </div>
         </div>
-      </section>
 
+      </section>
     </div>
   </body>
   <script>
 
+    // 엔터시 로그인 버튼클릭
     $("input").keydown(function(key) { 
       if (key.keyCode == 13) { 
         $(".sign-up-btn").click(); 
