@@ -42,6 +42,7 @@ def home():
             dish["count_like"] = db.likes.count_documents({'foodNum':dish['no'], 'type':'heart'})
             dish["like_by_me"] = bool(db.likes.find_one({'foodNum':dish['no'], 'type':'heart', 'username':payload['id']}))
         recommends = random.sample(dishes, 3)
+
         return render_template('main.html', nickname=user_info["nickname"], dishes=dishes, recommends=recommends)
     # 토큰이 만료되었을 때
     except jwt.ExpiredSignatureError:
@@ -237,10 +238,41 @@ def get_my_comments():
         return redirect(url_for("/"))
 
 
-# 음식 추천
+#음식 추천
 @app.route('/api/recommend_food', methods=['POST'])
 def recommend_food():
-    return 0
+    answer_receive = request.form['answers_give']
+    answer1 = answer_receive[0]
+    answer2 = answer_receive[1]
+    answer3 = answer_receive[2]
+
+    main_dish = db.foodInfo.find({'menu_type': '밥'}, {'_id': False})
+    dessert = db.foodInfo.find({'menu_type': '후식'}, {'_id': False})
+
+    r = main_dish if answer1 == "밥" else dessert
+
+    r2 = []
+    for i in r:
+        if answer2 == "고단백":
+            if int(i['protein']) > 25:
+                r2.append(i)
+        else:
+            if int(i['natrium']) < 100:
+                r2.append(i)
+
+    r3 = []
+    for i in r2:
+        if answer3 == "다이어트식":
+            if int(i['calorie']) < 300:
+                r3.append(i)
+        else:
+            if int(i['calorie']) > 500:
+                r3.append(i)
+
+    result = random.sample(r3, 1)
+    print(result)
+
+    return jsonify({'result': 'success', 'recommended': result})
 
 
 # 프로필 수정
