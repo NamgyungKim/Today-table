@@ -35,12 +35,6 @@ function userpage() {
   window.location.href = "/user/{{ user_info.username }}";
 }
 
-function sign_out() {
-  $.removeCookie("mytoken", { path: "/" });
-  alert("정상적으로 로그아웃 되었습니다.");
-  window.location.href = "/";
-}
-
 function show_modal() {
   $(".modal").addClass("show");
 }

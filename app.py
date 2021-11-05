@@ -280,7 +280,6 @@ def recommend_food():
                 print(r3)
 
     result = random.sample(r3, 1)
-    # result = {'no': '16', 'menu_name': '누룽지 두부 계란죽', 'menu_howto': '끓이기', 'menu_type': '밥', 'calorie': '380', 'carbo': '67', 'protein': '12', 'fat': '7', 'natrium': '271', 'ingredient': '채소준비\n애호박 30g(1/6개), 표고버섯 20g(2개), 당근 5g(3×2×1cm)\n누룽지 죽\n누룽지 70g(1/3컵), 순두부 100g(1/4모), 달걀 50g(1개),참기름 3g(2/3작은술), 소금 약간, 참깨 약간, 흰 후추 약간', 'img': 'http://www.foodsafetykorea.go.kr/uploadimg/cook/10_00016_1.png', 'Manual01': '1. 깨끗이 씻어 손질한 애호박, 당근과 기둥을 뗀 표고버섯을 잘게 다지듯이 썬다.a', 'FoodImg01': 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00016_1.png', 'Manual02': '2. 누룽지는 1cm 정도로 잘게 부숴준다.b', 'FoodImg02': 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00016_2.png', 'Manual03': '3. 냄비에 참기름을 두르고 썰어놓은 채소를 볶다가 누룽지와 물을 넣고 끓인다.', 'Manual04': '4. 누룽지가 살짝 퍼지면 순두부를 넣고 흰후추와 소금을 넣는다.', 'Manual05': '5. 죽이 끓으면 달걀을 풀어 넣고 한 소끔 끓여낸 후 참깨를 뿌려 마무리 한다.c', 'FoodImg05': 'http://www.foodsafetykorea.go.kr/uploadimg/cook/20_00016_5.png', 'likeCount': 1}
     return jsonify({'result': 'success', 'recommended': result})
 
 # 프로필 수정
