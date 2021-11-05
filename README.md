@@ -11,7 +11,10 @@
 - my page에서 본인이 작성한 뎃글 확인 밑 삭제가 가능합니다.
 - my page에서 본인의 프로필 사진을 바꿀 수 있습니다.
 
- URL : http://todays-table.shop/
+ 🧁URL : http://todays-table.shop/
+ 시현영상 : https://www.youtube.com/watch?v=j9MvdwPx12o
+
+<br />
 
 ![preview](./static/imgs/preview.png)
 
@@ -50,6 +53,7 @@
 - AWS EC2
 
 
+<br />
 
 ## 📑 와이어 프레임
 
@@ -58,3 +62,7 @@
 <br />
 
 ## 👀 API 설계
+
+![API설계](./static/imgs/API설계.png)
+
+![API설계2](./static/imgs/API설계2.png)
