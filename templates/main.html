@@ -323,7 +323,7 @@
       retryQnA();
     });
 
-    let dishes = {{ dishes|tojson }};
+    let dishes = {{ dishes|tojson }}; //dish
     $(document).ready(function () {
         $(".search-form").on("submit", function (e) {
             e.preventDefault();
@@ -332,13 +332,9 @@
             $('#ds').empty();
             let existWords = false;
             for (let i = 0; i < dishes.length; i++) {
-
                 if (dishes[i]["ingredient"].includes(words)) {
-
                     let dish = dishes[i]
                     let class_heart = dish["like_by_me"] ? "fa-heart" : "fa-heart-o";
-
-
                     let dish_no = dishes[i]['no'];
                     let dish_img = dishes[i]['img'];
                     let dish_name = dishes[i]["menu_name"];
